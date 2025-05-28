@@ -1,0 +1,628 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: "Mukta", sans-serif;
+}
+
+/* Top Bar */
+.top-bar {
+  background-color: #009d88;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  font-size: 14px;
+  color: #fff;
+  position: relative;
+  max-height: 50px;
+}
+
+.top-bar p {
+  padding-right: 25px;
+  font-size: 1rem;
+  position: absolute;
+  right: 10px;
+}
+
+.top-bar h4 {
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.top-bar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Navigation */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  z-index: 1000;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position:relative;
+  box-sizing: border-box; 
+}
+
+.main-nav ul {
+  padding: 20px 0 20px 0;
+}
+
+.logo img {
+  width: 4.5rem;
+  height: auto;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #3e3a39;
+  font-size: 1.2rem;
+  transition: color 0.3s ease; /* Added for smooth color transition */
+}
+
+/* ADDED: Change text color on hover for main navigation links */
+.nav-links a:hover {
+  color: #009d88; 
+}
+
+.nav-icons a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #3e3a39;
+  font-size: 18px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: fixed; 
+  top: 130px; 
+  left: 0;
+  width: 100vw;
+  background: white;
+  padding: 30px 0;
+  display: none; 
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+}
+
+.dropdown-columns {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  gap: 40px;
+}
+
+.dropdown-columns ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dropdown-columns ul li {
+  margin: 10px 0;
+}
+
+/* Hero Section Carousel */
+.hero {
+  height: 100vh;
+  padding: 0; 
+  margin-top: 60px; 
+  position: relative;
+  overflow: hidden; 
+}
+
+.hero-content {
+  /* align-items: left; Removed as it's not a flex property for parent */
+  text-align: left;
+  /* justify-content: left; Removed as it's not a flex property for parent */
+  transform: translateY(-30px);
+}
+
+.hero-content p {
+  padding-top: 10px;
+  padding-left: 5px;
+  text-align: left;
+  max-width: 600px;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-slide .hero-content {
+  max-width: 90%; 
+}
+
+.carousel-slide .hero-content h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color:#fff;
+  font-family: "Lexend", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-slide .hero-content p {
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+.carousel-slide .hero-content button {
+  padding: 12px 25px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.hero-chevron {
+  font-size: 24px;
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+  position: absolute;
+  bottom: 5vh; 
+  left: 50%;
+  transform: translateX(-50%); 
+  z-index: 10; 
+}
+
+.fa-chevron-down {
+  content: "\f077";
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 30px;
+  filter: drop-shadow(1px 1px 10px #000);
+}
+
+.fa-trophy {
+  content: "\f091";
+  font-size: 1rem;
+  margin-right: 10px;
+  color: #fff;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
+}
+
+/* Highlight Section */
+.highlight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 170px 40px 0 40px;
+  background-color: #fff;
+}
+
+.highlight-content {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  width: 100%;
+  gap: 10px;
+}
+
+.highlight-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 0;
+}
+
+.highlight-text {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.highlight-text a:hover {
+  opacity: 0.8;
+}
+
+.highlight-text h2 {
+  color: #3e3a39;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  margin-block-start: 0.2rem;
+}
+
+.highlight-text p {
+  color: #3e3a39;
+  font-size: 1.3rem;
+  line-height: 2;
+  margin-bottom: 20px;
+}
+
+.highlight-text a {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  font-weight: 500;
+  color: #3e3a39;
+}
+
+.highlight-text img {
+  width: 28px;
+  height: auto;
+  margin-right: 10px;
+  transform: translateY(7px);
+}
+
+/* Footer */
+.site-footer {
+  background-color: #009d88;
+  padding: 30px 40px 20px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h4 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a,
+.footer-column p a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-column p a:hover,
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+.newsletter-form {
+  display: flex;
+  border-bottom: 1px solid #fff;
+  max-width: 350px;
+}
+
+.newsletter-form input {
+  border: none;
+  background: transparent;
+  padding: 8px;
+  width: 100%;
+  font-size: 14px;
+  color: #fff;
+}
+
+input::placeholder {
+  opacity: 0.5;
+  color: #fff;
+}
+
+.newsletter-form button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px;
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid #fff;
+  font-size: 13px;
+}
+
+/* Showroom Remodel Section */
+.showroom-remodel {
+  text-align: center;
+  padding: 80px 40px;
+  background-color: #fff;
+}
+
+.showroom-remodel h2 {
+  color: #3e3a39;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-top: 80px;
+  margin-bottom: 10px;
+}
+
+.showroom-remodel a {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #3e3a39;
+}
+
+.divider {
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  margin: 10px auto 40px;
+}
+
+.remodel-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.remodel-gallery img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.remodel-button button {
+  padding: 10px 20px;
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.remodel-button button:hover {
+  background: #ddd;
+}
+
+.showroom-remodel a:hover {
+  opacity: 0.8;
+}
+
+/* Scroll to Top */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #009d88;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 999;
+  display: none; 
+  transition: opacity 0.3s ease;
+}
+
+.fa-chevron-up{
+  content: "\f077";
+  font-size: 10px;
+  color: #fff;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.fa-bars {
+  content: "\f0c9";
+  font-size: 25px;
+  color: #000;
+}
+
+@media (max-width: 1000px){
+  .highlight-content{
+    flex-direction: column;
+  }
+  .top-bar h4 {
+    display: none;
+  }
+  .top-bar {
+    height: 50px;
+  }
+}
+
+@media (max-width: 780px) {
+
+  .hero {
+    margin-top: 60px; 
+  }
+  .carousel-slide .hero-content h1 {
+    font-size: 2.5rem; 
+    transform: translateY(0); 
+  }
+  .hero-chevron {
+    left: 50%; 
+    transform: translateX(-50%);
+    bottom: 3vh;
+  }
+   @keyframes bounce { 
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  .showroom-remodel {
+    padding: 30px 40px 80px 40px;
+  }
+
+  .remodel-gallery img {
+    max-width: 180px;
+  }
+  .remodel-gallery {
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none; 
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 60px; 
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.active { 
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 20px;
+  }
+  
+  .nav-links.active .dropdown-menu {
+    position: static; 
+    width: auto;
+    box-shadow: none;
+    padding: 10px 0 25px 20px; 
+  }
+
+  .nav-icons {
+    display: none;
+  }
+
+  .highlight {
+    padding: 50px 40px 0 40px;
+  }
+}
+
+@media (max-width: 480px) { 
+  .carousel-slide .hero-content h1 {
+    font-size: 2rem; 
+  }
+  .hero-chevron {
+    left: 50%; 
+    transform: translateX(-50%);
+  }
+
+  .hero-content {
+    transform: translateY(10px);
+  }
+
+  .carousel-slide .hero-content p {
+    font-size: 1.2rem;
+  } 
+
+  @keyframes bounce { 
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(5px); }
+  }
+
+  .highlight-text p {
+    font-size: 0.9rem;
+  }
+
+  .highlight-text h2 {
+    font-size: 28px;
+  }
+
+  .highlight-text a {
+    font-size: 1rem;
+  }
+
+  .showroom-remodel h2 {
+    font-size: 28px;
+  }
+
+  .showroom-remodel {
+    padding: 10px 40px 80px 40px;
+  }
+
+  .remodel-gallery img {
+    max-width: 150px;
+  }
+  .remodel-gallery {
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+  .showroom-remodel a {
+    font-size: 1rem;
+  }
+}

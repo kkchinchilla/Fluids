@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluids Control</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="https://use.typekit.net/dgx7nvl.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Lexend:wght@100..900&family=Zen+Old+Mincho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <h4><i class="fa-solid fa-trophy"></i>Your Trusted Partner for Advanced Fluid Control Solutions</h4>
+      <p><a href="#">Eng</a> / <a href="#">繁中</a> / <a href="#">简中</a></p>
+    </div>
+    <nav class="main-nav">
+      <div class="logo"><img src="images/logo_fluids.png" alt="logo"></div>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li class="dropdown">
+          <a href="#" id="about-link">About Us</a>
+          <div class="dropdown-menu" id="about-dropdown">
+            <div class="dropdown-columns">
+              <div>
+                <ul>
+                  <li><a href="#">Company Profile</a></li>
+                  <li><a href="#">Business Philosophy</a></li>
+                  <li><a href="#">Our Customers</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="#">News</a></li>
+        <li class="dropdown">
+          <a href="#" id="project-link">Project Record</a>
+          <div class="dropdown-menu" id="project-dropdown">
+            <div class="dropdown-columns">
+              <div>
+                <ul>
+                  <li><a href="#">2016</a></li>
+                  <li><a href="#">2017</a></li>
+                  <li><a href="#">2018</a></li>
+                  <li><a href="#">2019</a></li>
+                </ul>
+              </div>
+              <div>
+                <ul>
+                  <li><a href="#">2020</a></li>
+                  <li><a href="#">2021</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" id="product-link">Products</a>
+          <div class="dropdown-menu" id="product-dropdown">
+            <div class="dropdown-columns">
+              <div>
+                <ul>
+                  <li><a href="#">Valve</a></li>
+                  <li><a href="#">Instrument</a></li>
+                  <li><a href="#">System</a></li>
+                  <li><a href="#">Brand</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" id="service-link">Service</a>
+          <div class="dropdown-menu" id="service-dropdown">
+            <div class="dropdown-columns">
+              <div>
+                <ul>
+                  <li><a href="#">Service Category</a></li>
+                  <li><a href="#">Certification</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" id="contact-link">Contact Us</a>
+          <div class="dropdown-menu" id="contact-dropdown">
+            <div class="dropdown-columns">
+              <div>
+                <ul>
+                  <li><a href="#">Location</a></li>
+                  <li><a href="#">Inquiry</a></li>
+                  <li><a href="#">Career</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-icons">
+        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="carousel-container">
+      <div class="carousel-slide active" style="background-image: url('images/hero-service.jpg');">
+        <div class="hero-content">
+          <h1>World-Class Service</h1>
+          <p>Dedicated service ensuring your fluid systems achieve peak performance and lasting reliability with expert support.</p>
+          </div>
+      </div>
+      <div class="carousel-slide" style="background-image: url('images/hero-quality.jpg');">
+        <div class="hero-content">
+          <h1>World-Class Quality</h1>
+          <p>Meticulously engineered quality for durable, reliable fluid control systems, ensuring your operational excellence.</p>
+          </div>
+      </div>
+      <div class="carousel-slide" style="background-image: url('images/hero-products.jpg');">
+        <div class="hero-content">
+          <h1>World-Class Products</h1>
+          <p>Advanced valves, instruments, and systems: innovative fluid control products for your operational efficiency and success.</p>
+          </div>
+      </div>
+    </div>
+    <div class="hero-chevron" onclick="scrollToNextSection()">
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <section class="highlight">
+    <div class="highlight-content">
+      <div class="highlight-image">
+        <img src="images/professional.jpg" alt="Professional Services" />
+      </div>
+      <div class="highlight-text">
+        <h2>Professional Services</h2>
+        <p>
+          <img src="images/icon-1.svg">Dust explosion preventing & fire detection system <br>
+          <img src="images/icon-2.svg">Vibrating condition monitoring solution<br>
+          <img src="images/icon-3.svg">Pressure relief & protection solution<br>
+          <img src="images/icon-4.svg">Valve automation service<br>
+          <img src="images/icon-5.svg">Valve diagnosis evaluation<br>
+        </p>
+        <a href="#">View More →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="showroom-remodel">
+    <h2>Our Partners</h2>
+    <div class="divider"></div>
+    <div class="remodel-gallery">
+      <img src="images/1.jpg" alt="Showroom 1">
+      <img src="images/2.jpg" alt="Showroom 2">
+      <img src="images/3.jpg" alt="Showroom 3">
+      <img src="images/4.jpg" alt="Showroom 4">
+    </div>
+    <a href="#">View More →</a>
+  </section>
+
+
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h4>HQ Taipei</h4>
+        <ul>
+          <li><a href="#">21F., No.65, Sec. 2, Dunhua S. Rd., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)</a></li>
+          <li><a href="#">TEL : 02-27093389</a></li>
+          <li><a href="#">FAX : 02-27093385</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Branch Kaohsiung</h4>
+        <ul>
+          <li><a href="#">11F.-1, No.439, Dashun 1st Rd., Gushan Dist., Kaohsiung City 804, Taiwan (R.O.C.)</a></li>
+          <li><a href="#">TEL : 07-5554485</a></li>
+          <li><a href="#">FAX : 07-5554487</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>RenWu Service Center</h4>
+        <ul>
+          <li><a href="#">No. 321, Sec. 2, Wenxue Rd., Renwu Dist., Kaohsiung City 814015 , Taiwan (R.O.C.)</a></li>
+          <li><a href="#">TEL : 07-3730000</a></li>
+          <li><a href="#">FAX : 07-3730579</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Email</h4>
+        <ul>
+          <li><a href="#">fluidscontrol@fluids.com.tw</a></li>
+        </ul>
+      </div>
+
+      <!-- <div class="footer-column">
+        <h4>Contact Us</h4>
+        <form class="newsletter-form">
+          <input type="email" placeholder="your-email@example.com" style="color:#fff" />
+          <button type="submit">→</button>
+        </form>
+      </div> -->
+    </div>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fa-solid fa-chevron-up"></i></button>
+
+    <div class="footer-bottom">
+      <p>© 2025. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
