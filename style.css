@@ -50,7 +50,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 30px;
+  padding: 8px 30px 3px 30px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position:relative;
   box-sizing: border-box; 
