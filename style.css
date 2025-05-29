@@ -859,3 +859,280 @@ input::placeholder {
     font-size: 0.85rem;
   }
 }
+
+/* News Carousel Section */
+.news-carousel-section {
+  padding: 100px 0 10px 0;
+  background-color: #fff;
+}
+
+.news-carousel-section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #3e3a39;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* NEW: Wrapper for carousel and navigation */
+.news-carousel-wrapper {
+  position: relative;
+  max-width: 1300px; /* Max width to comfortably fit 3 cards + gaps + nav space */
+  margin: 0 auto;
+  padding: 0 50px; /* Add padding to make space for absolute positioned nav arrows */
+  box-sizing: border-box;
+}
+
+.news-carousel-container {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padd-left: 15px;
+  padding-right: 15px;
+  width: 100%; /* Takes width from wrapper */
+  /* max-width: 1300px; /* Max width is now on wrapper */
+  /* margin: 0 auto; /* Centering is handled by wrapper */
+  overflow: hidden;
+  position: relative;
+}
+
+.news-carousel-track {
+  display: flex;
+  /* REMOVE width: calc(410px * 12); -- Width will be natural width of 6 cards */
+  /* REMOVE animation: scroll-news ... ; */
+  gap: 30px;
+  transition: transform 0.5s ease-in-out; /* For smooth manual scrolling */
+}
+
+/* .news-card styles remain largely the same (width, height, appearance) */
+.news-card {
+  width: 380px;
+  height: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  flex-shrink: 0; /* Important for flex items in a scrolling container */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.news-card::after { /* Gradient overlay styles remain the same */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top,
+    rgba(62, 58, 57, 0.8) 10%,
+    rgba(62, 58, 57, 0.6) 40%,
+    rgba(62, 58, 57, 0.3) 70%,
+    rgba(62, 58, 57, 0.1) 100%
+  );
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* news-card-content, -meta, -title, -excerpt, -readmore styles remain the same */
+.news-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.news-card-meta {
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  text-shadow: 1px 1px 12px #3e3a39;
+}
+
+.news-card-title {
+  font-family: "Mukta", serif;
+  font-size: 1.6rem;
+  font-weight: normal;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  margin-top: 0;
+  text-shadow: 1px 1px 12px #3e3a39;
+}
+
+.news-card-excerpt {
+  font-family: "Mukta", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 12px #3e3a39;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(0.9rem * 1.6 * 3);
+}
+
+.news-card-readmore {
+  font-family: "Mukta", sans-serif;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: opacity 0.2s ease;
+  text-shadow: 1px 1px 12px #3e3a39;
+}
+
+.news-card-readmore i {
+  margin-left: 5px;
+  transition: transform 0.2s ease;
+}
+
+.news-card-readmore:hover {
+  opacity: 0.8;
+}
+
+.news-card-readmore:hover i {
+  transform: translateX(3px);
+}
+
+
+/* REMOVE Pause animation on hover */
+/* .news-carousel-container:hover .news-carousel-track {
+  animation-play-state: paused;
+} */
+
+/* REMOVE @keyframes scroll-news */
+/* @keyframes scroll-news { ... } */
+
+
+/* NEW Styles for Carousel Navigation Buttons */
+.news-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent; 
+  border: none;
+  color: #333;
+  font-size: 1.5rem; /* Size of the chevron icon */
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  width: 45px; /* Fixed width */
+  height: 45px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-carousel-nav.prev {
+  transform: translateY(-50%);
+  left: 0px; /* Position inside the wrapper's padding */
+}
+
+.news-carousel-nav.next {
+  transform: translateY(-50%);
+  right: 0px; /* Position inside the wrapper's padding */
+}
+
+.news-carousel-nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.news-carousel-indicators {
+  text-align: center;
+  margin-top: 25px; /* Space above the dots */
+  display: flex; /* Use flex for alignment if needed */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow dots to wrap if many */
+}
+
+.indicator-dot {
+  background-color: #ccc; /* Default color for dots */
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /* Make them circular */
+  margin: 0 5px;    /* Space between dots */
+  padding: 0;       /* Remove default button padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.indicator-dot.active {
+  background-color: #009d88; /* Active dot color (your site's primary green) */
+  width: 10px; /* Optional: make active dot slightly larger */
+  height: 10px;
+}
+
+
+/* Responsive adjustments for News Carousel */
+@media (max-width: 1200px) {
+  .news-carousel-wrapper {
+     /* max-width: initial;
+     padding: 0 40px; */
+  }
+}
+
+@media (max-width: 860px) {
+    .news-card {
+        width: 320px; /* Keep card width consistent for JS calculation for now */
+        height: 450px;
+    }
+    .news-carousel-wrapper {
+      padding: 0 40px; /* Adjust space for arrows */
+    }
+    .news-carousel-nav {
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+    }
+    .news-carousel-nav.prev { left: -5px; } /* Adjust if wrapper padding is smaller */
+    .news-carousel-nav.next { right: -5px; }
+    .news-carousel-nav {
+      display: none; /* Hide chevron navigation buttons */
+    }
+    .news-carousel-wrapper {
+      padding: 0 15px; /* Reduce side padding when chevrons are hidden */
+    }
+    .indicator-dot { /* Slightly smaller dots on mobile */
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+    }
+    .indicator-dot.active {
+      width: 10px;
+      height: 10px;
+    }
+    .news-carousel-indicators {
+      margin-top: 20px;
+    }
+}
+
+
+@media (max-width: 700px) {
+  .news-carousel-container {
+    /* width: 100%; */ /* Container takes full width of wrapper */
+  }
+   .news-carousel-wrapper {
+    padding: 0 10px; /* Less space for arrows needed as they might be smaller or closer */
+   }
+  .news-card {
+    width: 280px; /* Example smaller card width for single display focus, adjust as needed */
+    height: 420px;
+  }
+   .news-carousel-nav {
+      width: 35px;
+      height: 35px;
+      font-size: 1.1rem;
+      /* Adjust top position slightly if card height changes significantly */
+    }
+    .news-carousel-nav.prev { left: -15px; } /* Bring arrows closer or overlay slightly if space is tight */
+    .news-carousel-nav.next { right: -15px; }
+}

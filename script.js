@@ -167,3 +167,202 @@ function toggleMenu() {
     }
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // ... (your existing script.js code like hero carousel, dropdowns, etc.)
+
+  // --- News Carousel Logic ---
+  const newsCarousel = document.querySelector('.news-carousel-section');
+  if (newsCarousel) {
+    const track = newsCarousel.querySelector('.news-carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = newsCarousel.querySelector('.news-carousel-nav.next');
+    const prevButton = newsCarousel.querySelector('.news-carousel-nav.prev');
+    const container = newsCarousel.querySelector('.news-carousel-container');
+    const indicatorsContainer = newsCarousel.querySelector('.news-carousel-indicators');
+
+    let cardWidth = 0;
+    let cardsInView = 0;
+    let currentIndex = 0;
+    let gap = 0;
+    let totalSlides = slides.length;
+
+    // Variables for touch dragging
+    let isDragging = false;
+    let startX;
+    let initialTrackTranslateX; // To store the track's translateX at the start of a drag
+
+    function calculateDimensions() {
+      if (slides.length === 0) return;
+      
+      const trackStyle = getComputedStyle(track);
+      gap = parseFloat(trackStyle.gap) || 30; 
+
+      cardWidth = slides[0].offsetWidth; // Includes padding & border, not margin
+      
+      if (window.innerWidth < 700) {
+          cardsInView = 1;
+      } else if (window.innerWidth < 860) {
+          cardsInView = 2;
+      } else {
+          cardsInView = 3;
+      }
+      cardsInView = Math.max(1, Math.min(cardsInView, totalSlides));
+    }
+
+    // Helper function to get the current numerical translateX value
+    function getCurrentTranslateX() {
+        const style = window.getComputedStyle(track);
+        const matrix = new DOMMatrixReadOnly(style.transform); // Use DOMMatrixReadOnly
+        return matrix.m41; // This is the translateX value
+    }
+
+    function updateCarouselPosition() {
+      const amountToTranslate = currentIndex * (cardWidth + gap);
+      track.style.transform = `translateX(-${amountToTranslate}px)`;
+    }
+
+    function updateNavButtons() {
+      if (!prevButton || !nextButton) return;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = totalSlides === 0 || currentIndex >= totalSlides - cardsInView;
+    }
+
+    function setupIndicators() {
+      if (!indicatorsContainer) return;
+      indicatorsContainer.innerHTML = ''; 
+      const numIndicators = totalSlides > 0 ? Math.max(1, totalSlides - cardsInView + 1) : 0;
+
+      if (numIndicators <= 1 && totalSlides > 0) {
+          indicatorsContainer.style.display = 'none';
+          return;
+      }
+      indicatorsContainer.style.display = 'flex';
+
+      for (let i = 0; i < numIndicators; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('indicator-dot');
+        dot.setAttribute('aria-label', `Go to news group ${i + 1}`);
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarouselPosition();
+          updateNavButtons();
+          updateActiveIndicator();
+        });
+        indicatorsContainer.appendChild(dot);
+      }
+    }
+
+    function updateActiveIndicator() {
+      if (!indicatorsContainer) return;
+      const dots = indicatorsContainer.querySelectorAll('.indicator-dot');
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function handleResize() {
+      const oldCardsInView = cardsInView;
+      calculateDimensions();
+      
+      if (currentIndex > totalSlides - cardsInView) {
+          currentIndex = Math.max(0, totalSlides - cardsInView);
+      }
+
+      if (oldCardsInView !== cardsInView || indicatorsContainer.children.length === 0 || 
+          indicatorsContainer.children.length !== (totalSlides > 0 ? Math.max(1, totalSlides - cardsInView + 1) : 0) ) {
+          setupIndicators();
+      }
+      
+      updateCarouselPosition();
+      updateNavButtons();
+      updateActiveIndicator();
+    }
+
+    if (slides.length > 0) {
+      // Click listeners for chevrons
+      nextButton.addEventListener('click', () => {
+        if (currentIndex < totalSlides - cardsInView) {
+          currentIndex++;
+          updateCarouselPosition();
+          updateNavButtons();
+          updateActiveIndicator();
+        }
+      });
+
+      prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarouselPosition();
+          updateNavButtons();
+          updateActiveIndicator();
+        }
+      });
+      
+      // --- NEW: Touch Event Listeners for Dragging ---
+      track.addEventListener('touchstart', (e) => {
+        // Enable dragging only on smaller screens (where chevrons are hidden)
+        // and if there are actually more slides than can be viewed at once.
+        if (window.innerWidth >= 780 || totalSlides <= cardsInView) {
+          isDragging = false; // Ensure isDragging is false if conditions not met
+          return;
+        }
+        isDragging = true;
+        startX = e.touches[0].pageX;
+        initialTrackTranslateX = getCurrentTranslateX(); // Get current numerical translateX
+        track.style.transition = 'none'; // Disable CSS transition during drag for direct feedback
+      }, { passive: true }); // passive: true for better scroll performance if not calling preventDefault
+
+      track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        // If you want to prevent vertical page scroll while dragging horizontally:
+        // You might need more complex logic to detect swipe angle first and set passive: false.
+        // For this version, we'll keep it simple.
+        const currentX = e.touches[0].pageX;
+        const deltaX = currentX - startX;
+        track.style.transform = `translateX(${initialTrackTranslateX + deltaX}px)`;
+      });
+
+      track.addEventListener('touchend', () => {
+        if (!isDragging) return; // Only proceed if a drag was initiated under valid conditions
+        isDragging = false;
+        track.style.transition = 'transform 0.5s ease-in-out'; // Re-enable CSS transition for snapping
+
+        const finalTranslateX = getCurrentTranslateX();
+        const draggedDistance = finalTranslateX - initialTrackTranslateX;
+        const cardWidthWithGap = cardWidth + gap;
+        const dragThreshold = 20; // Minimum drag in pixels to be considered more than a tap/tiny move
+
+        if (Math.abs(draggedDistance) < dragThreshold) {
+            // If drag was very small, snap back to the current index's position
+            updateCarouselPosition(); // Uses the unchanged currentIndex
+            return;
+        }
+
+        // Calculate the ideal target index based on the final dragged position
+        // Target index is how many full cardWidthsWithGap the track has moved from its 0 position
+        let targetIndex = Math.round(Math.abs(finalTranslateX) / cardWidthWithGap);
+        
+        // Clamp the targetIndex to be within valid bounds
+        currentIndex = Math.max(0, Math.min(targetIndex, totalSlides - cardsInView));
+        
+        updateCarouselPosition(); // Snap to the new currentIndex
+        updateNavButtons();
+        updateActiveIndicator();
+      });
+      // --- End Touch Event Listeners ---
+
+      window.addEventListener('resize', handleResize);
+      handleResize(); // Initial setup
+    } else {
+        if(nextButton) nextButton.style.display = 'none';
+        if(prevButton) prevButton.style.display = 'none';
+        if(indicatorsContainer) indicatorsContainer.style.display = 'none';
+    }
+  }
+  // --- End News Carousel Logic ---
+});
