@@ -246,7 +246,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 170px 40px 0 40px;
+  padding: 100px 40px 0 40px;
   background-color: #fff;
 }
 
@@ -279,7 +279,8 @@ header {
   color: #3e3a39;
   font-size: 2.2rem;
   margin-bottom: 20px;
-  margin-block-start: 0.2rem;
+  margin-block-start: 0;
+  font-weight: 600;
 }
 
 .highlight-text p {
@@ -391,65 +392,107 @@ input::placeholder {
   font-size: 13px;
 }
 
-/* Showroom Remodel Section */
+/* Styles for the Showroom (Partners) Carousel */
+
+
 .showroom-remodel {
-  text-align: center;
-  padding: 80px 40px;
-  background-color: #fff;
+  padding: 150px 40px 100px 40px; /* Keep existing padding or adjust as preferred */
+  background-color: #fff; /* Keep existing background */
 }
 
-.showroom-remodel h2 {
-  color: #3e3a39;
-  font-size: 2.2rem;
-  font-weight: 800;
-  margin-top: 80px;
-  margin-bottom: 10px;
+.showroom-carousel-container {
+    width: 90%;
+    max-width: 1200px; /* Or adjust to your site's content width */
+    overflow: hidden;
+    margin: 20px auto 40px auto; /* Centered, with margin top/bottom */
+    position: relative;
 }
 
-.showroom-remodel a {
-  font-weight: 500;
-  font-size: 1.2rem;
-  color: #3e3a39;
+.showroom-carousel-track {
+    display: flex;
+    /* Card width (280px) + gap (20px) = 300px. Total 8 cards (4 original + 4 duplicate) */
+    width: calc(300px * 8);
+    animation: scroll-showroom 166s linear infinite; /* Adjust duration for speed */
+    gap: 20px;
 }
 
-.divider {
-  width: 20px;
-  height: 2px;
-  background-color: #fff;
-  margin: 10px auto 40px;
+.showroom-card {
+    background-color: #ffffff; /* White card background */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    padding: 10px; /* Padding around the image within the card */
+    width: 280px; /* Fixed width for each card */
+    height: auto; /* Auto height based on content, or set a fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
+
+.showroom-card img {
+    max-width: 100%;
+    max-height: 180px; /* Max height for images to maintain some uniformity, adjust as needed */
+    object-fit: contain; /* Use 'contain' to see the whole image, 'cover' to fill */
+    border-radius: 4px; /* Optional: if images themselves should have rounded corners */
+}
+
+/* Pause animation on hover (optional) */
+.showroom-carousel-container:hover .showroom-carousel-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-showroom {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* (Card width (280px) + gap (20px)) * number of ORIGINAL cards (4) */
+        transform: translateX(calc(-300px * 38));
+    }
+}
+
 
 .remodel-gallery {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-bottom: 60px;
+  display: none;
 }
 
-.remodel-gallery img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 4px;
-  object-fit: cover;
-}
-
-.remodel-button button {
-  padding: 10px 20px;
-  background: #eee;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.remodel-button button:hover {
-  background: #ddd;
+.showroom-remodel > a { /* Using '>' for specificity, assuming 'a' is direct child or after carousel */
+  font-weight: 500;      /* Matches highlight-text a */
+  font-size: 1.2rem;     /* Matches highlight-text a */
+  color: #3e3a39;        /* Matches highlight-text a */
+  text-decoration: underline; /* CHANGED to match highlight-text a */
+  
+  /* New/adjusted styles for alignment and block behavior */
+  display: block; /* Ensure it's a block for margin auto */
+  max-width: 1200px; /* Align with carousel container width */
+  width: 90%;      /* Consistent with carousel container width behavior */
+  margin-left: auto;  /* Center the block of the link */
+  margin-right: auto; /* Center the block of the link */
+  text-align: center;   /* Align text within the block to the left */
+  margin-top: 20px; /* Keeps space after the carousel, similar to highlight section spacing */
 }
 
 .showroom-remodel a:hover {
   opacity: 0.8;
+}
+
+.showroom-remodel h2 {
+  color: #3e3a39; /* Matches highlight-text h2 */
+  font-size: 2.2rem; /* Matches highlight-text h2 */
+  font-weight: 600; /* Adjusted from 800 to be closer to highlight-text h2 appearance */
+  margin-block-start: 0.2rem; /* Matches highlight-text h2 top margin */
+  margin-bottom: 20px; /* Matches highlight-text h2 bottom margin, creates space before carousel */
+  
+  /* New styles for alignment and block behavior */
+  display: block; /* Ensure it's a block for margin auto to work */
+  max-width: 1200px; /* Align with carousel container width */
+  width: 90%;      /* Consistent with carousel container width behavior */
+  margin-left: auto;  /* Center the block of the h2 */
+  margin-right: auto; /* Center the block of the h2 */
+  text-align: center;   /* Align text within the block to the left */
 }
 
 /* Scroll to Top */
@@ -489,6 +532,11 @@ input::placeholder {
 }
 
 @media (max-width: 1000px){
+
+  .highlight {
+    padding-top: 60px; 
+  }
+
   .highlight-content{
     flex-direction: column;
   }
@@ -497,6 +545,9 @@ input::placeholder {
   }
   .top-bar {
     height: 50px;
+  }
+  .showroom-remodel {
+    padding-top: 100px;
   }
 }
 
@@ -519,9 +570,35 @@ input::placeholder {
     50% { transform: translateX(-50%) translateY(6px); }
   }
 
-  .showroom-remodel {
-    padding: 30px 40px 80px 40px;
+  .highlight {
+    padding-top: 100px;
   }
+
+  .showroom-remodel {
+    padding: 60px 40px 80px 40px;
+  }
+
+  .showroom-card {
+        width: 220px; /* Adjust card width for smaller screens */
+        padding: 8px;
+    }
+    .showroom-card img {
+        max-height: 150px; /* Adjust image max height */
+    }
+    .showroom-carousel-track {
+        display: flex;
+        width: calc(300px * 38); /* UPDATED: 300px * (19 original + 19 duplicate) */
+        animation: scroll-showroom 166s linear infinite; /* Consider increasing duration (see note below) */
+        gap: 20px;
+    }
+    @keyframes scroll-showroom { /* Re-declare for the new values if calc() isn't overridden directly */
+      0% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(calc(-300px * 19));
+      }
+    }
 
   .remodel-gallery img {
     max-width: 180px;
@@ -625,4 +702,35 @@ input::placeholder {
   .showroom-remodel a {
     font-size: 1rem;
   }
+
+    .showroom-card {
+        width: 160px; /* Further adjust card width for mobile */
+        padding: 6px;
+    }
+    .showroom-card img {
+        max-height: 100px; /* Adjust image max height */
+    }
+    .showroom-carousel-track {
+        /* Card width (160px) + gap (10px) = 170px */
+        width: calc(170px * 38);
+        gap: 10px; /* Adjust gap */
+        animation-duration: 150s; /* Optionally adjust speed */
+    }
+
+    @keyframes scroll-showroom {  /* Re-declare for the new values */
+      0% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(calc(-170px * 19));
+      }
+    }
+    /* Adjusting existing .showroom-remodel padding for consistency if needed */
+    .showroom-remodel {
+      padding: 40px 15px; /* Example adjustment */
+      margin-top: 0; /* Reduce top margin if .showroom-remodel h2 margin-top is too much */
+    }
+    .showroom-remodel h2 {
+        margin-top: 20px; /* Reduce top margin on h2 if needed for smaller screens */
+    }
 }
