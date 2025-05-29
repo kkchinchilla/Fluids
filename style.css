@@ -906,7 +906,7 @@ input::placeholder {
 /* .news-card styles remain largely the same (width, height, appearance) */
 .news-card {
   width: 380px;
-  height: 480px;
+  height: 380px;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
