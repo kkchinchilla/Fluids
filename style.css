@@ -1083,7 +1083,7 @@ input::placeholder {
 @media (max-width: 860px) {
     .news-card {
         width: 320px; /* Keep card width consistent for JS calculation for now */
-        height: 450px;
+        height: 320px;
     }
     .news-carousel-wrapper {
       padding: 0 40px; /* Adjust space for arrows */
@@ -1125,7 +1125,7 @@ input::placeholder {
    }
   .news-card {
     width: 280px; /* Example smaller card width for single display focus, adjust as needed */
-    height: 420px;
+    height: 280px;
   }
    .news-carousel-nav {
       width: 35px;
