@@ -275,7 +275,7 @@ header {
   opacity: 0.8;
 }
 
-.highlight-text h2 {
+.highlight-text h2, .info-cards-section h2 {
   color: #3e3a39;
   font-size: 2.2rem;
   margin-bottom: 20px;
@@ -479,7 +479,7 @@ input::placeholder {
   opacity: 0.8;
 }
 
-.showroom-remodel h2 {
+.showroom-remodel h2, .info-cards-section h2 {
   color: #3e3a39; /* Matches highlight-text h2 */
   font-size: 2.2rem; /* Matches highlight-text h2 */
   font-weight: 600; /* Adjusted from 800 to be closer to highlight-text h2 appearance */
@@ -675,7 +675,7 @@ input::placeholder {
     font-size: 0.9rem;
   }
 
-  .highlight-text h2 {
+  .highlight-text h2, .info-cards-section h2 {
     font-size: 28px;
   }
 
@@ -714,7 +714,7 @@ input::placeholder {
         /* Card width (160px) + gap (10px) = 170px */
         width: calc(170px * 38);
         gap: 10px; /* Adjust gap */
-        animation-duration: 150s; /* Optionally adjust speed */
+        animation-duration: 80s; /* Optionally adjust speed */
     }
 
     @keyframes scroll-showroom {  /* Re-declare for the new values */
@@ -733,4 +733,129 @@ input::placeholder {
     .showroom-remodel h2 {
         margin-top: 20px; /* Reduce top margin on h2 if needed for smaller screens */
     }
+}
+
+/* Info Cards Section - (base styles from previous steps) */
+.info-cards-section {
+  padding: 70px 20px;
+  background-color: #fff;
+}
+
+.info-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.info-card {
+  background-color: #ffffff; /* This remains the default static background */
+  border-radius: 8px;
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.1);
+  padding: 30px 25px;
+  text-align: left;
+  flex: 1 1 calc(25% - 25px);
+  min-width: 260px;
+  box-sizing: border-box;
+  /* MODIFIED for new hover effect: */
+  position: relative;   /* Essential for positioning the pseudo-element */
+  overflow: hidden;     /* Ensures the pseudo-element doesn't spill out */
+  z-index: 1;           /* Ensures card itself is above other static page elements if needed */
+  /* REMOVE direct background-color transition if it was on .info-card itself */
+}
+
+/* NEW: Pseudo-element for the background fill animation */
+.info-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0; /* Starts with no height, so it's hidden */
+  background-color: rgb(0, 157, 136);
+  z-index: -1; /* Positioned behind the card's actual content */
+  transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth fill animation */
+}
+
+/* MODIFIED: Card content elements to ensure they are above the ::before pseudo-element */
+.info-card .info-card-icon,
+.info-card h3,
+.info-card p {
+  position: relative; /* Required to use z-index effectively on these elements */
+  z-index: 1;         /* Ensures content is above the filling background */
+}
+
+.info-card-icon { /* Existing style, ensure 'position' and 'z-index' from above are applied or combined */
+  margin-bottom: 18px;
+}
+
+.info-card-icon i {
+  font-size: 2rem;
+  color: rgb(0,157,136);
+  /* MODIFIED: Add a slight delay to color transition so background appears first */
+  transition: color 0.25s ease-in-out 0.1s;
+}
+
+.info-card h3 {
+  font-family: "Mukta", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #3e3a39;
+  margin-top: 0;
+  margin-bottom: 12px;
+  /* MODIFIED: Add a slight delay to color transition */
+  transition: color 0.25s ease-in-out 0.1s;
+}
+
+.info-card p {
+  font-family: "Mukta", sans-serif;
+  font-size: 1rem;
+  color: #3e3a39;
+  line-height: 1.65;
+  margin-bottom: 0;
+  /* MODIFIED: Add a slight delay to color transition */
+  transition: color 0.25s ease-in-out 0.1s;
+}
+
+/* HOVER EFFECTS */
+.info-card:hover::before {
+  height: 100%; /* Makes the pseudo-element fill the card from bottom to top */
+}
+
+.info-card:hover .info-card-icon i,
+.info-card:hover h3,
+.info-card:hover p {
+  color: #ffffff; /* Change text and icon color to white for contrast */
+}
+
+/* Responsive adjustments for Info Cards (from previous step) */
+@media (max-width: 992px) {
+  .info-card {
+    flex-basis: calc(50% - 25px);
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .info-cards-section {
+    padding: 50px 15px;
+  }
+  .info-cards-container {
+    gap: 20px;
+  }
+  .info-card {
+    flex-basis: 100%;
+    min-width: unset;
+  }
+  .info-card-icon i {
+    font-size: 2rem;
+  }
+  .info-card h3 {
+    font-size: 1.2rem;
+  }
+  .info-card p {
+    font-size: 0.85rem;
+  }
 }
