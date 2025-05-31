@@ -40,9 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Optional: Pause on hover over the carousel container
     const carouselContainer = document.querySelector('.carousel-container');
     if (carouselContainer) {
-      // carouselContainer.addEventListener('mouseenter', () => {
-      //   clearInterval(carouselInterval);
-      // });
+      
       carouselContainer.addEventListener('mouseleave', () => {
         startCarousel(); // Resume autoplay
       });
@@ -366,3 +364,72 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // --- End News Carousel Logic ---
 });
+
+// Number counting animation for Stats Section
+document.addEventListener('DOMContentLoaded', () => {
+  const statsSection = document.querySelector('.stats-section');
+
+  if (statsSection) {
+    let animationHasRun = false; // Flag to ensure animation runs only once
+
+    const animateValue = (element, start, end, duration) => {
+      let startTime = null;
+      const suffixText = element.dataset.suffix || ""; // Get the suffix text (e.g., "+")
+
+      // Clear any existing suffix span and set initial text content for the number
+      const existingSuffix = element.querySelector('.stat-suffix');
+      if (existingSuffix) {
+        existingSuffix.remove();
+      }
+      element.textContent = start; // Initialize with the start number
+
+      const step = (currentTime) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const currentValue = Math.floor(progress * (end - start) + start);
+        
+        // Update only the number part. We'll ensure element.textContent holds the number.
+        // If a suffix was there from a previous run (though unlikely with current logic),
+        // setting textContent directly here will clear it before appending a new one.
+        element.textContent = currentValue; 
+
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          element.textContent = end; // Set final number
+          if (suffixText) {
+            const suffixSpan = document.createElement('span');
+            suffixSpan.className = 'stat-suffix';
+            suffixSpan.textContent = suffixText;
+            element.appendChild(suffixSpan); // Append the styled suffix span
+          }
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Check if the element is intersecting and if the animation hasn't run yet
+        if (entry.isIntersecting && !animationHasRun) {
+          const statNumbers = statsSection.querySelectorAll('.stat-number');
+          statNumbers.forEach(numberElement => {
+            const target = parseInt(numberElement.dataset.target, 10);
+            animateValue(numberElement, 0, target, 700); // 3000ms = 3 seconds
+          });
+          animationHasRun = true; // Set flag to true after animation starts
+          observer.unobserve(statsSection); // Optional: stop observing after animation
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% of the element is visible
+    });
+
+    observer.observe(statsSection);
+  }
+});
+
+
+
+
+

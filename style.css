@@ -128,17 +128,19 @@ header {
 
 /* Hero Section Carousel */
 .hero {
+  display: flex;
   height: 100vh;
-  padding: 0; 
+  padding: 0;
+  text-align: left;
+  justify-content: left;
   margin-top: 60px; 
   position: relative;
   overflow: hidden; 
 }
 
 .hero-content {
-  /* align-items: left; Removed as it's not a flex property for parent */
   text-align: left;
-  /* justify-content: left; Removed as it's not a flex property for parent */
+  justify-content: left;
   transform: translateY(-30px);
 }
 
@@ -150,9 +152,12 @@ header {
 }
 
 .carousel-container {
+  display: flex;
   width: 100%;
   height: 100%;
   position: relative;
+  text-align: left;
+  justify-content: left;
 }
 
 .carousel-slide {
@@ -168,8 +173,10 @@ header {
   transition: opacity 1.2s ease-in-out; 
   display: flex; 
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left:80px;
+  box-sizing: border-box;
 }
 
 .carousel-slide.active {
@@ -1135,4 +1142,83 @@ input::placeholder {
     }
     .news-carousel-nav.prev { left: -15px; } /* Bring arrows closer or overlay slightly if space is tight */
     .news-carousel-nav.next { right: -15px; }
+}
+
+/* Stats Section */
+.stats-section {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  padding: 40px 40px 20px 40px;
+  background-color: #e5f5f3; /* Consistent with other content sections */
+  text-align: center;
+}
+
+
+.stats-container {
+  display: flex;
+  justify-content: space-around; /* Distributes items evenly */
+  align-items: flex-start; /* Aligns items to the top */
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  flex: 1; /* Allows items to grow and shrink */
+  min-width: 200px; /* Minimum width before wrapping */
+  margin: 20px 10px; /* Spacing around each item */
+  text-align: center;
+}
+
+.stat-number {
+  font-family: "Mukta", sans-serif; /* Using Lexend as seen in Hero H1 */
+  font-size: 2.5rem;
+  font-weight: 600; /* Bold */
+  color: #3e3a39; /* Dark text color */
+  display: block;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: "Mukta", sans-serif; /* Using Mukta as seen in body text */
+  font-size: 1.2rem;
+  color: #555; /* Slightly lighter text for the label */
+  line-height: 1;
+}
+
+.stat-suffix {
+  font-family: "Mukta", sans-serif; /* Or match the number's font */
+  font-size: 0.6em;   /* Makes it 50% of the parent (.stat-number) font size. Adjust as needed. */
+  font-weight: 600;   /* Slightly less bold or match the number's weight (e.g., 700) */
+  color: #3e3a39;     /* Same color as the number or a preferred one */
+  margin-left: 10px;  /* Space between the number and the "+". Adjust as needed. */
+  /* Optional: Adjust vertical alignment if needed, though baseline should generally work */
+   vertical-align: middle;  
+}
+
+/* Responsive adjustments for stats section */
+@media (max-width: 992px) {
+  .stat-item {
+    min-width: calc(50% - 40px); /* Two items per row */
+  }
+}
+
+@media (max-width: 576px) {
+  .stats-section {
+    padding: 30px 20px 15px 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .stat-item {
+    min-width: 100%; /* One item per row */
+    margin: 20px 0;
+  }
+  .stat-number {
+    font-size: 2rem;
+    line-height: 0.7;
+  }
+  .stat-label {
+    font-size: 0.9rem;
+  }
 }
