@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Optional: Pause on hover over the carousel container
     const carouselContainer = document.querySelector('.carousel-container');
     if (carouselContainer) {
-      carouselContainer.addEventListener('mouseenter', () => {
-        clearInterval(carouselInterval);
-      });
+      // carouselContainer.addEventListener('mouseenter', () => {
+      //   clearInterval(carouselInterval);
+      // });
       carouselContainer.addEventListener('mouseleave', () => {
         startCarousel(); // Resume autoplay
       });
