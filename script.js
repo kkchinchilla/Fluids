@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Hero Carousel Logic ---
   const carouselSlides = document.querySelectorAll('.carousel-container .carousel-slide');
   let currentSlide = 0;
-  const intervalTime = 4000; // Time between slides in milliseconds (e.g., 5 seconds)
+  const intervalTime = 4000; // Time between slides in milliseconds (e.g., 4 seconds)
   let carouselInterval;
 
   function showSlide(index) {
@@ -28,35 +28,37 @@ document.addEventListener('DOMContentLoaded', () => {
   function startCarousel() {
     if (carouselSlides.length === 0) return;
     // Clear existing interval to prevent multiple timers if called again for any reason
-    clearInterval(carouselInterval); 
+    clearInterval(carouselInterval);
     carouselInterval = setInterval(nextSlide, intervalTime);
   }
 
   // Initialize carousel
   if (carouselSlides.length > 0) {
     showSlide(currentSlide); // Show the first slide immediately
-    startCarousel();
+    startCarousel(); // Start autoplay
 
-    // Optional: Pause on hover over the carousel container
-    const carouselContainer = document.querySelector('.carousel-container');
-    if (carouselContainer) {
-      
-      carouselContainer.addEventListener('mouseleave', () => {
-        startCarousel(); // Resume autoplay
-      });
-    }
+    // Optional: Pause on hover over the carousel container - This logic is now fully disabled
+    // const carouselContainer = document.querySelector('.carousel-container');
+    // if (carouselContainer) {
+      // carouselContainer.addEventListener('mouseenter', () => {
+      //   clearInterval(carouselInterval); // Pause autoplay
+      // });
+      // carouselContainer.addEventListener('mouseleave', () => {
+      //   startCarousel(); // Resume autoplay
+      // });
+    // }
   }
   // --- End Hero Carousel Logic ---
 
 
   // --- Dropdown Menu Logic (existing) ---
   const dropdownLiElements = document.querySelectorAll('.nav-links > li.dropdown');
-  const navLinksContainer = document.querySelector('.nav-links'); 
+  const navLinksContainer = document.querySelector('.nav-links');
 
   dropdownLiElements.forEach(dropdownLi => {
-    const mainLink = dropdownLi.querySelector('a'); 
+    const mainLink = dropdownLi.querySelector('a');
     const menu = dropdownLi.querySelector('.dropdown-menu');
-    let hideTimeoutId = null; 
+    let hideTimeoutId = null;
 
     if (menu) {
       // Desktop Hover Logic
@@ -77,26 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth > 780) {
           hideTimeoutId = setTimeout(() => {
             menu.style.display = 'none';
-          }, 250); 
+          }, 250);
         }
       };
 
       dropdownLi.addEventListener('mouseenter', showMenuDesktop);
       dropdownLi.addEventListener('mouseleave', startHideTimerDesktop);
-      menu.addEventListener('mouseenter', showMenuDesktop); 
+      menu.addEventListener('mouseenter', showMenuDesktop);
       menu.addEventListener('mouseleave', startHideTimerDesktop);
 
       // Mobile Click Logic
       if (mainLink) {
         mainLink.addEventListener('click', function(event) {
           if (window.innerWidth <= 780 && navLinksContainer && navLinksContainer.classList.contains('active')) {
-            event.preventDefault(); 
+            event.preventDefault();
 
             const isMenuOpen = menu.style.display === 'block';
-            
+
             dropdownLiElements.forEach(otherDropdownLi => {
               const otherMenu = otherDropdownLi.querySelector('.dropdown-menu');
-              if (otherMenu && otherMenu !== menu) { 
+              if (otherMenu && otherMenu !== menu) {
                 otherMenu.style.display = 'none';
               }
             });
@@ -113,12 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroChevron) {
     heroChevron.addEventListener('click', scrollToNextSection);
   }
-  
+
   // Scroll to Top Button
   const scrollTopBtn = document.getElementById('scrollTopBtn');
   if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
-      if (scrollTopBtn) { 
+      if (scrollTopBtn) {
         scrollTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
       }
     });
@@ -128,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to scroll to the next section
 function scrollToNextSection() {
   const heroSection = document.querySelector('.hero');
-  let nextSectionElement = document.querySelector('.showroom-remodel'); 
+  let nextSectionElement = document.querySelector('.showroom-remodel');
 
   if (heroSection) {
       let sibling = heroSection.nextElementSibling;
@@ -140,7 +142,7 @@ function scrollToNextSection() {
           sibling = sibling.nextElementSibling;
       }
   }
-  
+
   if (nextSectionElement) {
     nextSectionElement.scrollIntoView({ behavior: 'smooth' });
   }
@@ -156,7 +158,7 @@ function toggleMenu() {
   const navLinks = document.querySelector('.nav-links');
   if (navLinks) {
     navLinks.classList.toggle('active');
-    
+
     if (!navLinks.classList.contains('active')) {
         const allDropdownMenus = document.querySelectorAll('.nav-links .dropdown-menu');
         allDropdownMenus.forEach(menu => {
@@ -192,12 +194,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calculateDimensions() {
       if (slides.length === 0) return;
-      
+
       const trackStyle = getComputedStyle(track);
-      gap = parseFloat(trackStyle.gap) || 30; 
+      gap = parseFloat(trackStyle.gap) || 30;
 
       cardWidth = slides[0].offsetWidth; // Includes padding & border, not margin
-      
+
       if (window.innerWidth < 700) {
           cardsInView = 1;
       } else if (window.innerWidth < 860) {
@@ -228,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setupIndicators() {
       if (!indicatorsContainer) return;
-      indicatorsContainer.innerHTML = ''; 
+      indicatorsContainer.innerHTML = '';
       const numIndicators = totalSlides > 0 ? Math.max(1, totalSlides - cardsInView + 1) : 0;
 
       if (numIndicators <= 1 && totalSlides > 0) {
@@ -266,16 +268,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleResize() {
       const oldCardsInView = cardsInView;
       calculateDimensions();
-      
+
       if (currentIndex > totalSlides - cardsInView) {
           currentIndex = Math.max(0, totalSlides - cardsInView);
       }
 
-      if (oldCardsInView !== cardsInView || indicatorsContainer.children.length === 0 || 
+      if (oldCardsInView !== cardsInView || indicatorsContainer.children.length === 0 ||
           indicatorsContainer.children.length !== (totalSlides > 0 ? Math.max(1, totalSlides - cardsInView + 1) : 0) ) {
           setupIndicators();
       }
-      
+
       updateCarouselPosition();
       updateNavButtons();
       updateActiveIndicator();
@@ -300,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
           updateActiveIndicator();
         }
       });
-      
+
       // --- NEW: Touch Event Listeners for Dragging ---
       track.addEventListener('touchstart', (e) => {
         // Enable dragging only on smaller screens (where chevrons are hidden)
@@ -344,10 +346,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Calculate the ideal target index based on the final dragged position
         // Target index is how many full cardWidthsWithGap the track has moved from its 0 position
         let targetIndex = Math.round(Math.abs(finalTranslateX) / cardWidthWithGap);
-        
+
         // Clamp the targetIndex to be within valid bounds
         currentIndex = Math.max(0, Math.min(targetIndex, totalSlides - cardsInView));
-        
+
         updateCarouselPosition(); // Snap to the new currentIndex
         updateNavButtons();
         updateActiveIndicator();
@@ -387,11 +389,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!startTime) startTime = currentTime;
         const progress = Math.min((currentTime - startTime) / duration, 1);
         const currentValue = Math.floor(progress * (end - start) + start);
-        
+
         // Update only the number part. We'll ensure element.textContent holds the number.
         // If a suffix was there from a previous run (though unlikely with current logic),
         // setting textContent directly here will clear it before appending a new one.
-        element.textContent = currentValue; 
+        element.textContent = currentValue;
 
         if (progress < 1) {
           window.requestAnimationFrame(step);
@@ -415,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const statNumbers = statsSection.querySelectorAll('.stat-number');
           statNumbers.forEach(numberElement => {
             const target = parseInt(numberElement.dataset.target, 10);
-            animateValue(numberElement, 0, target, 700); // 3000ms = 3 seconds
+            animateValue(numberElement, 0, target, 700); // 700ms duration
           });
           animationHasRun = true; // Set flag to true after animation starts
           observer.unobserve(statsSection); // Optional: stop observing after animation
@@ -428,8 +430,3 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(statsSection);
   }
 });
-
-
-
-
-
