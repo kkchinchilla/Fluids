@@ -1,0 +1,245 @@
+body {
+    background-color: #111b18; /* Your background color */ /* */
+    font-family: 'Mukta', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Vertically center content when it's shorter than viewport */
+    text-align: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px; /* Overall padding */
+    box-sizing: border-box; /* Ensures padding doesn't add to 100vh for height calculations */
+    overflow-x: auto; /* Allows horizontal scrolling for wider content */ /* */
+    position: relative;
+}
+
+.header-actions { color:#fff ;display: flex; align-items: center; flex-wrap: wrap; gap: 10px; position: absolute; top: 15px; right: 15px; opacity: 0.8}
+
+.language {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 3px 10px;
+}
+
+.logo { 
+    width: 500px; 
+    height: auto; 
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #fff;
+    font-size: 1.2rem;
+    width: 800px;
+    margin-bottom: 100px;
+}
+
+.card-container {
+    display: flex;
+    align-items: stretch; /* Ensures cards in a row stretch to the same height */ /* */
+    gap: 10px; /* Applies to both row and column gaps */ /* */
+    width: 80vw; /* UPDATED: Make container 80% of viewport width */
+    margin: 0 auto; /* UPDATED: Center the container */
+    justify-content: space-around; /* UPDATED: Distribute cards evenly */
+    /* The default overflow: visible; here is important so body's overflow-x can take effect */
+}
+
+.card {
+    width: 200px; /* */
+    height: 350px; /* */
+    background-color: #ccc; /* */
+    border-radius: 100px; /* */
+    background-size: cover; /* */
+    background-position: center; /* */
+    position: relative; /* */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* */
+    display: flex; /* */
+    flex-direction: column; /* */
+    justify-content: center; /* */
+    align-items: center; /* */
+    overflow: hidden; /* */
+    padding: 10px; /* Padding inside the card, around the title */ /* */
+    box-sizing: border-box; /* */
+    flex-shrink: 0; /* ADDED: Prevent cards from shrinking if container space is tight before overflow activates */
+}
+
+.card:hover {
+    /* --- UPDATED HOVER EFFECTS --- */
+    transform: translateY(var(--card-translate-y)) scale(1.5); /* Combine JS translateY with hover scale */
+    opacity: 0.7; /* Make card more transparent */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35); /* Slightly enhanced shadow for scaled item */
+    z-index: 10; /* Keep card on top when hovered (already present) */
+}
+
+.card-title {
+    color: white; /* */
+    text-align: center; /* */
+    font-size: 1.4em; /* */
+    font-weight: bold; /* */
+    width: 100%; /* */
+    padding: 5px; /* */
+    background-color: transparent; /* */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* */
+}
+
+/* Specific card styles (background images) */
+#card1 {
+    background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2lsa2NtOWU4dGtoYTRhZ3MwZWRvdnh2cm83M3Bid3VlaThvcjQyYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xUA7aS8zKYFHbng6NW/giphy.gif'); /* */
+}
+
+#card2 {
+    background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGt4Z2V5YzdzeDMzanhvOHBnYm56YnhqZnJrdTh2ZTlwa3Y4YXpiZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uf3jumi0zzUv6/giphy.gif'); /* */
+}
+
+#card3 {
+    background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHI4emRwcXIyanZ4Y3o5anRrNjk3cWh4OXkzdjk3aGxyMHdtY2R4YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3QK1B9Z7zc82ogbskk/giphy.gif'); /* */
+}
+
+#card4 {
+    background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGVvMWs1bzc3eXNzbTh1aHNxMXlpbmxlaGp4a2VuajF6bjJ2cjBzOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AIGF7ljcNKZI4/giphy.gif'); /* */
+}
+
+#card5 {
+    background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3AyZnMzbWZpMGRpZ3dvNWx5NThwbHh4dWU0bHJ4eXFnZ2ozdmtyMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/icCWRB8PbXsWWmYm5T/giphy.gif'); /* */
+}
+
+/* Styles for the custom ripple cursor */
+#custom-cursor {
+    position: fixed; /* Position relative to the viewport */
+    width: 40px;   /* Adjust size of the overall cursor area */
+    height: 40px;
+    pointer-events: none; /* Allows clicks to pass through to elements underneath */
+    z-index: 9999;      /* Ensure it's on top of everything */
+    transform: translate(-50%, -50%); /* Center the element on the actual cursor position */
+    /* This main element itself can be invisible if pseudo-elements do all the work */
+}
+
+#custom-cursor::before { /* This will be the central, static dot of the cursor */
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px; /* Size of the central dot */
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.8); /* Color of the dot */
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Center the dot within #custom-cursor */
+    transition: background-color 0.2s ease; /* Optional: transition for color changes */
+}
+
+#custom-cursor::after { /* This will be the animated ripple effect */
+    content: '';
+    position: absolute;
+    top: 50%; /* Start from the center of the #custom-cursor */
+    left: 50%;
+    width: 100%; /* Initial width relative to #custom-cursor */
+    height: 100%; /* Initial height relative to #custom-cursor */
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7); /* Ripple border color */
+    transform-origin: center center; /* Ensure scaling happens from the center */
+    opacity: 1;
+    /* Animation: name duration timing-function iteration-count */
+    animation: ripple-effect 1.2s infinite ease-out;
+}
+
+/* Keyframes for the ripple animation */
+@keyframes ripple-effect {
+    0% {
+        transform: translate(-50%, -50%) scale(0.3); /* Start small and centered */
+        opacity: 1;
+        border-width: 3px; /* Slightly thicker border at the start */
+    }
+    70% {
+        /* Intermediate state, could adjust border-width or opacity here if needed */
+        opacity: 0.5;
+        border-width: 2px;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2.5); /* Expand outwards */
+        opacity: 0; /* Fade out completely */
+        border-width: 1px; /* Thinner border as it fades */
+    }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 779px) { /* Applies when screen width is 779px or less */ /* */
+    body {
+        
+        overflow-x: hidden; /* Prevent horizontal scrolling as content should wrap */ /* */
+        /* padding: 20px; Maintain some padding */ /* Already on body globally */
+    }
+
+    .card-container {
+        flex-wrap: wrap; /* Allow cards to wrap to the next line */ /* */
+        width: 80vw; /* UPDATED: Keep container 80% of viewport width */
+        /* justify-content: space-around; */ /* Use center for wrapped rows for better aesthetics or space-around if preferred per row */
+        justify-content: center; /* Center items within each wrapped row */ /* */
+    }
+
+    /* Card adjustments for mobile are below, unchanged unless specified */
+    .card {
+        margin-top: 100px;
+        /* Default fixed width of 200px applies. If 80vw is too narrow for multiple cards, they wrap. */
+    }
+    .logo { 
+        width: 350px; 
+        height: auto; 
+        margin: 30px;
+        margin-top: 120px;
+    }
+
+    .subtitle {
+        width: 400px;
+        margin-bottom: 0;
+        padding-left: 20px;
+    }
+}
+
+/* Example for very small screens (e.g., phones in portrait) */
+@media (max-width: 480px) { /* */
+    .card-container {
+        /* Still 80vw due to the rule in the (max-width: 779px) media query,
+           or you can override to 90vw or similar if 80vw feels too constrained here */
+        /* width: 90vw; */ /* Example if you want more width on very small screens */
+        gap: 15px; /* Adjust gap for very small screens if needed */ /* */
+    }
+
+    .card {
+        margin-top: 30px;
+        width: 100%; /* Make cards take full width of the 80vw container */ /* */
+        max-width: 320px; /* But not excessively wide, allows for centering if 80vw is wider */ /* */
+        height: auto; /* Adjust height automatically or set a new fixed height */ /* */
+        min-height: 300px; /* Ensure a minimum height */ /* */
+    }
+
+    .card-title {
+        font-size: 1.2em; /* Slightly smaller font for smaller cards */ /* */
+    }
+
+    .logo { 
+        width: 300px; 
+        height: auto; 
+        margin-bottom: 10px;
+        margin-top: 100px;
+    }
+
+    .subtitle {
+        width: 300px; 
+        font-size: 0.8rem;
+        margin-bottom: 30px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
