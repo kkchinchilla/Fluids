@@ -309,6 +309,7 @@ body.page-is-transitioning .nav-link {
     height: 100vh;
     top: 0;
     border-left: 1px dashed #99D8CF;
+    opacity: 0.5;
 }
 
 #cursor-h-line {
@@ -316,6 +317,7 @@ body.page-is-transitioning .nav-link {
     width: 100vw;
     left: 0;
     border-top: 1px dashed #99D8CF;
+    opacity: 0.5;
 }
 
 body:hover .cursor-line {
