@@ -1,0 +1,332 @@
+/* style.css */
+
+html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+:root {
+    /* Nav link size (diameter) */
+    --nav-link-size: clamp(200px, 36vmin, 400px);
+    
+    /* Nav link radius: Increased further to ensure NO overlap */
+    --nav-link-radius: 400px !important;
+    
+    /* Font Sizes */
+    --header-logo-font-size: clamp(18px, 3vmin, 22px);
+    --header-tagline-font-size: clamp(9px, 1.5vmin, 11px);
+    --header-button-font-size: clamp(10px, 1.8vmin, 13px);
+    --nav-link-font-size: clamp(12px, 2.2vmin, 18px);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Mukta', sans-serif;
+    color: #E0E0E0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%; /* Ensure body takes full height */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    
+    position: relative; /* Keep body as relative for header positioning */
+}
+
+header {
+    font-family: 'Mukta', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: clamp(10px, 2vw, 20px) clamp(15px, 3vw, 30px);
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    transition: opacity 0.4s ease-out;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo-tagline { display: flex; flex-direction: column; text-align: left; margin-top: 15px}
+.logo { width: 200px; height: auto; margin: 15px; }
+.tagline { font-size: 1rem; max-width: 400px; line-height: 1.5; margin: 15px; margin-left:25px;font-weight: thin;}
+.header-actions { color:#99D8CF ;display: flex; align-items: center; flex-wrap: wrap; gap: 10px; position: absolute; top: 15px; right: 15px;}
+.form-prompt, .language {
+    font-weight: 900;
+    padding: clamp(4px, 1vmin, 6px) clamp(8px, 1.5vmin, 12px);
+    border-radius: 3px;
+    font-size: var(--header-button-font-size);
+    margin-left: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.language {
+    border: 1px solid #99D8CF;
+}
+
+#nav-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -37%); /* Keeps nav links positioned around the desired central point */
+    height: 140%;
+    width: 140%;
+    display: flex; /* These flex properties won't directly affect logo positioning now */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 10; /* Lower than logo to ensure logo is on top */
+}
+
+.nav-link {
+    position: absolute;
+    width: var(--nav-link-size);
+    height: var(--nav-link-size);
+    border-radius: 50%; /* Circles */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    font-family: "Mukta", sans-serif;
+    padding: clamp(10px, 2.5vmin, 25px); 
+    box-sizing: border-box;
+    z-index: 5;
+    
+    transition: transform 0.25s cubic-bezier(0.3, 1, 0.3, 1), opacity 0.25s ease-out, border-color 0.25s ease-out, background 0.25s ease-out, box-shadow 0.25s ease-out;
+    will-change: transform, opacity;
+    transform-origin: center center;
+}
+
+.nav-link span { 
+    pointer-events: none; 
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Specific styles for links 1, 4, 5 (pink bubbles: #F6BFCE) */
+#nav-link-1, #nav-link-4, #nav-link-5 {
+    background: radial-gradient(circle at center, rgba(153, 216, 207, 0.5) 0%, rgba(153, 216, 207, 0.2) 70%, rgba(153, 216, 207, 0) 100%);
+    border: 1px solid rgba(153, 216, 207, 0.4);
+    box-shadow: 
+        0 0 15px rgba(153, 216, 207, 0.2),
+        inset 0 0 10px rgba(153, 216, 207, 0.3),
+        inset 0 0 20px rgba(153, 216, 207, 0.1);
+}
+
+#nav-link-1:hover, #nav-link-4:hover, #nav-link-5:hover {
+    border-color: rgba(153, 216, 207, 0.6);
+    box-shadow: 
+        0 0 25px rgba(153, 216, 207, 0.4),
+        inset 0 0 15px rgba(153, 216, 207, 0.5),
+        inset 0 0 30px rgba(153, 216, 207, 0.2);
+}
+
+/* Specific styles for links 2, 3 (green bubbles: #99D8CF) */
+#nav-link-2, #nav-link-3 {
+    background: radial-gradient(circle at center, rgba(153, 216, 207, 0.5) 0%, rgba(153, 216, 207, 0.2) 70%, rgba(153, 216, 207, 0) 100%);
+    border: 1px solid rgba(153, 216, 207, 0.4);
+    box-shadow: 
+        0 0 15px rgba(153, 216, 207, 0.2),
+        inset 0 0 10px rgba(153, 216, 207, 0.3),
+        inset 0 0 20px rgba(153, 216, 207, 0.1);
+}
+
+#nav-link-2:hover, #nav-link-3:hover {
+    border-color: rgba(153, 216, 207, 0.6);
+    box-shadow: 
+        0 0 25px rgba(153, 216, 207, 0.4),
+        inset 0 0 15px rgba(153, 216, 207, 0.5),
+        inset 0 0 30px rgba(153, 216, 207, 0.2);
+}
+
+
+/* Click Animation: Expand to Fullscreen and Fade */
+.nav-link.expanding-to-fullscreen {
+    z-index: 150 !important;
+    animation: expandToFullscreenAndFade 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes expandToFullscreenAndFade {
+    0% {
+        opacity: 1;
+    }
+    30% { 
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--translate-to-center-x, 0px), var(--translate-to-center-y, 0px)) scale(var(--fullscreen-scale, 1));
+        opacity: 0;
+    }
+}
+
+/* Styles for Fading Out Other Elements During Page Transition */
+body.page-is-transitioning header,
+body.page-is-transitioning .nav-link:not(.expanding-to-fullscreen),
+body.page-is-transitioning #center-logo { /* Add #center-logo here */
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+body.page-is-transitioning .nav-link {
+    pointer-events: none;
+}
+
+#center-logo {
+    position: fixed; /* Position relative to the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-180%, -190%); /* Center it on the screen */
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    z-index: 100; /* Ensure it's on top of nav links and nav-canvas, but below header */
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.fa-folder-open{
+    content:"/f07c";
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.fa-bullseye{
+    content:"/f140";
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.fa-chart-simple{
+    content:"/e473";
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.fa-screwdriver-wrench{
+    content:"/f7d9";
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.fa-paper-plane{
+    content:"/f1d8";
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+
+
+/* Media Query for Small Screens (under 480px width) */
+@media (max-width: 480px) {
+    :root {
+        /* Nav link size (diameter) */
+        --nav-link-size: clamp(80px, 25vmin, 180px);
+        
+        /* Nav link radius for MQ */
+        --nav-link-radius: 130px !important;
+    }
+
+    header {
+        padding: 10px;
+        gap: 5px;
+    }
+
+    #nav-canvas {
+
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: clamp(7px, 2vmin, 13px);
+    }
+
+    .nav-link span {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #center-logo {
+        width: clamp(80px, 20vmin, 150px); /* Adjust size for small screens */
+        transform: translate(-110%, -130%);
+    }
+
+    .fa-folder-open,
+    .fa-bullseye,
+    .fa-chart-simple,
+    .fa-screwdriver-wrench,
+    .fa-paper-plane{
+        font-size: 1.6rem;
+        margin-bottom: 5px;
+    }
+}
+
+/* Styles for the new custom cursor image */
+#custom-cursor-image {
+    position: fixed;
+    width: 32px; /* Set the desired width of your cursor image */
+    height: 32px; /* Set the desired height of your cursor image */
+    /* This transform ensures the center of the image is at the cursor position */
+    transform: translate(-50%, -50%);
+    z-index: 10000; /* Ensure it's above the lines and other content */
+    pointer-events: none; /* So the image itself doesn't intercept mouse events */
+    display: none; /* Initially hidden, will be shown by JS */
+}
+
+
+.cursor-line {
+    position: fixed;
+    background: transparent;
+    z-index: 9999; /* Below the custom cursor image, but above most other content */
+    pointer-events: none;
+    display: none;
+}
+
+#cursor-v-line {
+    width: 1px;
+    height: 100vh;
+    top: 0;
+    border-left: 1px dashed #99D8CF;
+}
+
+#cursor-h-line {
+    height: 1px;
+    width: 100vw;
+    left: 0;
+    border-top: 1px dashed #99D8CF;
+}
+
+body:hover .cursor-line {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
