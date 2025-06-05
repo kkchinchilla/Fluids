@@ -253,6 +253,10 @@ main {
         margin-bottom: 30px;
     }
 
+    .custom-cursor{
+        display: none;
+    }
+
     .text {
         font-size: 12vw;
     }
