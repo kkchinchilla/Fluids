@@ -1,0 +1,290 @@
+/* ... (previous CSS code: body, header, logo, nav, main, hero-text, custom-cursor) ... */
+body {
+    margin: 0;
+    font-family: 'Noto Sans HK', sans-serif;
+    background-color: #fff;
+    color: black;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+header {
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    height: 60px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 70px;
+    position: relative;
+    z-index: 50; /* Nav is above icons and hero text base */
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav li {
+    margin: 5px 8px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 15px 30px;
+    border-radius: 30px;
+    background-color: #009d88;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    display: inline-block;
+    text-align: center;
+}
+
+nav a:hover {
+    background-color: #0047FF; /* Blue hover for nav links */
+    color: white;
+    transform: translateY(-2px);
+    cursor: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    position: relative; /* Important for absolute positioning of icons within main */
+}
+
+/* --- Background Icon Styles --- */
+.icon-float-container {
+    position: absolute;
+    width: 80px; /* Adjust size as needed */
+    height: 80px; /* Adjust size as needed */
+    z-index: 0; /* Behind hero text and nav */
+    pointer-events: none; /* Icons themselves don't capture mouse events */
+}
+
+.icon-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.icon-base {
+    z-index: 1; /* Base image (e.g., teal) */
+}
+
+.icon-reveal {
+    z-index: 2; /* Reveal image (e.g., blue), gets clip-path from JS */
+    /* clip-path will be applied by JavaScript */
+}
+
+/* Positioning for each icon (adjust percentages for desired layout) */
+/* These are based on the visual placement in the screenshot */
+#icon-container-1 { /* Top-left area */
+    top: 20%;
+    left: 15%;
+}
+#icon-container-2 { /* Top-right area */
+    top: 15%;
+    right: 25%;
+}
+#icon-container-3 { /* Middle-right area */
+    top: 48%;
+    right: 8%;
+    /* transform: translateY(-50%); // Use if exact vertical center is needed for this one */
+}
+#icon-container-4 { /* Bottom-left area */
+    bottom: 18%;
+    left: 18%;
+}
+#icon-container-5 { /* Bottom-right area */
+    bottom: 15%;
+    right: 28%;
+}
+
+/* --- End Background Icon Styles --- */
+
+.hero-text-container {
+    position: relative;
+    text-align: center;
+    z-index: 10; /* Above background icons */
+}
+
+.text {
+    font-size: 7vw;
+    font-weight: 900;
+    line-height: 1.05;
+    margin: 0;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.text-white { /* This is the black text */
+    color: #000;
+    position: relative;
+    z-index: 1;
+}
+
+.text-blue { /* This is the blue revealed text */
+    color: #0047FF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* On top of text-white */
+}
+
+.custom-cursor {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background-color: #99D8CF; /* */
+    opacity: 0.5; /* */
+    position: fixed; /* */
+    top: 0; /* */
+    left: 0; /* */
+    transform: translate(-50%, -50%); /* */
+    pointer-events: none; /* */
+    z-index: 1000; /* */
+    
+    /* Added for centering the dot */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* New style for the dot using a pseudo-element */
+.custom-cursor::before {
+    content: "";
+    display: block;
+    width: 12px; /* Diameter for a 2px radius */
+    height: 12px; /* Diameter for a 2px radius */
+    background-color: #009d88; /* Color of the dot */
+    border-radius: 50%; /* Makes it a circle */
+    /* The dot's opacity will be controlled by the parent .custom-cursor's opacity (0.5) */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .icon-float-container {
+        width: 45px;
+        height: 45px;
+    }
+    /* Adjust icon positions for tablets if needed */
+    #icon-container-1 { top: 18%; left: 10%;}
+    #icon-container-2 { top: 12%; right: 20%;}
+    #icon-container-3 { top: 48%; right: 5%;}
+    #icon-container-4 { bottom: 15%; left: 8%;}
+    #icon-container-5 { bottom: 10%; right: 10%;}
+}
+
+
+@media (max-width: 768px) {
+    .text {
+        font-size: 9vw;
+    }
+    nav {
+        padding-top: 50px;
+    }
+    nav a {
+        font-size: 0.95rem;
+        padding: 12px 25px;
+        border-radius: 25px;
+    }
+    nav li {
+        margin: 6px 6px;
+    }
+
+    /* Adjust icons for tablet */
+    .icon-float-container {
+        width: 40px;
+        height: 40px;
+    }
+    #icon-container-1 { top: 15%; left: 8%; }
+    #icon-container-2 { top: 10%; right: 5%; }
+    #icon-container-3 { bottom: 12%; right: 10%; }
+    #icon-container-4 { bottom: 12%; left: 5%; }
+    #icon-container-5 { bottom: 8%; right: 8%; }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 45px;
+    }
+    header {
+        left: 20px;
+        right: 20px;
+        top: 20px;
+    }
+
+    .hero-text-container {
+        margin-top: 100px;
+        margin-bottom: 30px;
+    }
+
+    .text {
+        font-size: 12vw;
+    }
+    nav {
+        padding-top: 40px;
+    }
+    nav ul {
+        width: 200px;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav li {
+        margin: 15px 0;
+        width: 80%;
+        max-width: 300px;
+    }
+    nav a {
+        font-size: 0.9rem;
+        padding: 12px 15px;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 30px;
+    }
+
+    /* Adjust or hide icons for small mobile */
+    .icon-float-container {
+        width: 30px;
+        height: 30px;
+    }
+    #icon-container-1 { top: 40%; left: 10%; }
+    #icon-container-2 { top: 13%; right: 10%; } /* Hide some icons if too cluttered */
+    #icon-container-3 { bottom: 10%; right: 8%; }
+    #icon-container-4 { bottom: 25%; left: 10%; }
+    #icon-container-5 { bottom: 10%; right: 12%; }
+}
