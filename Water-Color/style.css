@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;500;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Noto Sans HK', sans-serif;
+    color: #333;
+    overflow: hidden; /* Important to prevent scrollbars from canvas/layout shifts */
+}
+
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden; /* Crucial for positioning canvas correctly */
+    /* cursor: none; */ /* Cursor will now be default */
+}
+
+/* Styling for the canvas element */
+#watercolorCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 1; /* Canvas is above the background image */
+    /* background-color: transparent; Initially filled by JS */
+}
+
+/* Ensure header and main content are above the canvas */
+header {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 2; /* Above canvas */
+    display: flex;
+    align-items: center;
+}
+
+main {
+    position: relative; /* Needs a position for z-index to work reliably against absolute canvas */
+    z-index: 2; /* Above canvas */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.location-text {
+    font-size: 0.9em;
+    margin-right: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.location-button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    font-family: 'Noto Sans HK', sans-serif;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #333;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+.content-left {
+    flex-basis: 55%;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo {
+    width: 420px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.content-left p {
+    font-family: 'Noto Sans HK', sans-serif;
+    font-size: 1.05em;
+    color: #4a4a4a;
+    line-height: 1.7;
+    max-width: 500px;
+    font-weight: 400;
+}
+
+
+.content-right {
+    flex-basis: 35%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.content-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.content-right li {
+    margin-bottom: 45px;
+    position: relative;
+    padding-left: 40px;
+}
+
+.content-right li:last-child {
+    margin-bottom: 0;
+}
+
+.content-right li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    top: 0px;
+    color: #505050;
+    font-weight: 500;
+    font-size: 1.4em;
+}
+
+.content-right a {
+    font-family: 'Noto Sans HK', sans-serif;
+    text-decoration: none;
+    color: #3a3a3a;
+    font-size: 1.4em;
+    font-weight: 500;
+    /* Ensure links are clickable */
+    position: relative; /* Helps with clickability over canvas if any overlap issues */
+    z-index: 3; /* Make sure links are definitely on top */
+}
+
+.content-right a:hover {
+    color: #fff;
+}
+
+/* Make sure the base styles for the links and dashes include a transition for smooth hover */
+
+#normal-content-layer .content-right li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    top: 0px; /* Adjust if your vertical alignment is different */
+    font-weight: 500;
+    font-size: 1.4em; /* Or your existing size */
+    color: #505050;   /* Original dark color for the dash */
+    transition: color 0.25s ease-in-out; /* Smooth transition for color change */
+}
+
+#normal-content-layer .content-right a {
+    font-family: 'Noto Sans HK', sans-serif; /* Or your existing font */
+    text-decoration: none;
+    font-size: 1.4em; /* Or your existing size */
+    font-weight: 500; /* Or your existing weight */
+    color: #3a3a3a;   /* Original dark color for the link text */
+    position: relative; /* If needed for z-index or other positioning */
+    transition: color 0.25s ease-in-out; /* Smooth transition for color change */
+}
+
+/* NEW HOVER STYLES for links within #normal-content-layer */
+/* When hovering over the list item (li), change color of child 'a' and its own '::before' */
+
+#normal-content-layer .content-right li:hover > a {
+    color: #FFFFFF; /* Change link text to white on hover */
+}
+
+#normal-content-layer .content-right li:hover::before {
+    color: #FFFFFF; /* Change dash to white on hover */
+}
+
+
+/* Responsive adjustments (keeping them brief) */
+@media (max-width: 992px) {
+    .logo { width: 320px; }
+    .content-right a { font-size: 1.3em; }
+}
+
+@media (max-width: 768px) {
+    main { flex-direction: column; align-items: center; text-align: center; }
+    .logo { width: 400px; margin-top:100px; margin-bottom: 10px;}
+    .content-right { justify-content: center; }
+    .content-right ul { display: inline-block; }
+    .content-right li { text-align: left; }
+    .content-right a { font-size: 1.25em; }
+    .content-left {
+        align-items: center;
+        max-height: 400px;
+        margin-bottom: 0px;
+        padding-right: 0px;
+    }
+    .content-left p {
+        margin-bottom: 70px;
+    }
+    .content-right { font-size: 1em; margin-top: 0px; padding-bottom: 100px;}
+}
+
+@media (max-width: 480px) {
+    .logo { width: 300px; margin-top:120px; margin-bottom: 10px;}
+    .content-left {
+        max-height: 400px;
+        margin-bottom: 0px;
+        padding-right: 0px;
+    }
+    .content-left p {
+        font-size: 0.8em;
+        margin-bottom: 30px;
+        max-width: 300px;
+    }
+    .content-right { font-size: 0.9em; margin-top: 0px; padding-bottom: 100px;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
