@@ -28,7 +28,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: 1; /* Canvas is above the background image */
     /* background-color: transparent; Initially filled by JS */
 }
