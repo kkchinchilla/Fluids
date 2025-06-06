@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluids Control</title>
+  <link rel="icon" type="image/x-icon" href="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="https://use.typekit.net/dgx7nvl.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Lexend:wght@100..900&family=Zen+Old+Mincho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* General Styles */
+body {
+  margin: 0;
+  font-family: "Mukta", sans-serif;
+}
+
+/* Top Bar */
+.top-bar {
+  background-color: #009d88;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  font-size: 14px;
+  color: #fff;
+  position: relative;
+  max-height: 50px;
+}
+
+.top-bar p {
+  padding-right: 25px;
+  font-size: 1rem;
+  position: absolute;
+  right: 10px;
+}
+
+.top-bar h4 {
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.top-bar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Navigation */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  z-index: 1000;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 30px 3px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position:relative;
+  box-sizing: border-box; 
+}
+
+.main-nav ul {
+  padding: 10px 0 10px 0;
+}
+
+.logo img {
+  width: 3.2rem;
+  height: auto;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #3e3a39;
+  font-size: 1.2rem;
+  transition: color 0.3s ease; /* Added for smooth color transition */
+}
+
+/* ADDED: Change text color on hover for main navigation links */
+.nav-links a:hover {
+  color: #009d88; 
+}
+
+.nav-icons a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #3e3a39;
+  font-size: 18px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: fixed; 
+  top: 120px; 
+  left: 0;
+  width: 100vw;
+  background: white;
+  padding: 30px 0;
+  display: none; 
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+}
+
+.dropdown-columns {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  gap: 40px;
+}
+
+.dropdown-columns ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dropdown-columns ul li {
+  margin: 10px 0;
+}
+
+/* Hero Section Carousel */
+.hero {
+  display: flex;
+  height: 100vh;
+  padding: 0;
+  text-align: left;
+  justify-content: left;
+  margin-top: 60px; 
+  position: relative;
+  overflow: hidden; 
+}
+
+.hero-content {
+  text-align: left;
+  justify-content: left;
+  transform: translateY(-30px);
+}
+
+.hero-content p {
+  padding-top: 10px;
+  padding-left: 5px;
+  text-align: left;
+  max-width: 600px;
+}
+
+.carousel-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: left;
+  justify-content: left;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out; 
+  display: flex; 
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left:80px;
+  box-sizing: border-box;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-slide .hero-content {
+  max-width: 90%; 
+}
+
+.carousel-slide .hero-content h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color:#fff;
+  font-family: "Lexend", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-slide .hero-content p {
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+.carousel-slide .hero-content button {
+  padding: 12px 25px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.hero-chevron {
+  font-size: 24px;
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+  position: absolute;
+  bottom: 5vh; 
+  left: 50%;
+  transform: translateX(-50%); 
+  z-index: 10; 
+}
+
+.fa-chevron-down {
+  content: "\f077";
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 30px;
+  filter: drop-shadow(1px 1px 10px #000);
+}
+
+.fa-trophy {
+  content: "\f091";
+  font-size: 1rem;
+  margin-right: 10px;
+  color: #fff;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
+}
+
+/* Highlight Section */
+.highlight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 40px 0 40px;
+  background-color: #fff;
+}
+
+.highlight-content {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  width: 100%;
+  gap: 10px;
+}
+
+.highlight-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 0;
+}
+
+.highlight-text {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.highlight-text a:hover {
+  opacity: 0.8;
+}
+
+.highlight-text h2, .info-cards-section h2 {
+  color: #3e3a39;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  margin-block-start: 0;
+  font-weight: 600;
+}
+
+.highlight-text p {
+  color: #3e3a39;
+  font-size: 1.3rem;
+  line-height: 2;
+  margin-bottom: 20px;
+}
+
+.highlight-text a {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  font-weight: 500;
+  color: #3e3a39;
+}
+
+.highlight-text img {
+  width: 28px;
+  height: auto;
+  margin-right: 10px;
+  transform: translateY(7px);
+}
+
+/* Footer */
+.site-footer {
+  background-color: #009d88;
+  padding: 30px 40px 20px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h4 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a,
+.footer-column p a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-column p a:hover,
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+.newsletter-form {
+  display: flex;
+  border-bottom: 1px solid #fff;
+  max-width: 350px;
+}
+
+.newsletter-form input {
+  border: none;
+  background: transparent;
+  padding: 8px;
+  width: 100%;
+  font-size: 14px;
+  color: #fff;
+}
+
+input::placeholder {
+  opacity: 0.5;
+  color: #fff;
+}
+
+.newsletter-form button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px;
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid #fff;
+  font-size: 13px;
+}
+
+/* Styles for the Showroom (Partners) Carousel */
+
+
+.showroom-remodel {
+  padding: 150px 40px 100px 40px; /* Keep existing padding or adjust as preferred */
+  background-color: #fff; /* Keep existing background */
+}
+
+.showroom-carousel-container {
+    width: 90%;
+    max-width: 1200px; /* Or adjust to your site's content width */
+    overflow: hidden;
+    margin: 20px auto 40px auto; /* Centered, with margin top/bottom */
+    position: relative;
+}
+
+.showroom-carousel-track {
+    display: flex;
+    /* Card width (280px) + gap (20px) = 300px. Total 8 cards (4 original + 4 duplicate) */
+    width: calc(300px * 8);
+    animation: scroll-showroom 166s linear infinite; /* Adjust duration for speed */
+    gap: 20px;
+}
+
+.showroom-card {
+    background-color: #ffffff; /* White card background */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    padding: 10px; /* Padding around the image within the card */
+    width: 280px; /* Fixed width for each card */
+    height: auto; /* Auto height based on content, or set a fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.showroom-card img {
+    max-width: 100%;
+    max-height: 180px; /* Max height for images to maintain some uniformity, adjust as needed */
+    object-fit: contain; /* Use 'contain' to see the whole image, 'cover' to fill */
+    border-radius: 4px; /* Optional: if images themselves should have rounded corners */
+}
+
+/* Pause animation on hover (optional) */
+.showroom-carousel-container:hover .showroom-carousel-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-showroom {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* (Card width (280px) + gap (20px)) * number of ORIGINAL cards (4) */
+        transform: translateX(calc(-300px * 38));
+    }
+}
+
+
+.remodel-gallery {
+  display: none;
+}
+
+.showroom-remodel > a { /* Using '>' for specificity, assuming 'a' is direct child or after carousel */
+  font-weight: 500;      /* Matches highlight-text a */
+  font-size: 1.2rem;     /* Matches highlight-text a */
+  color: #3e3a39;        /* Matches highlight-text a */
+  text-decoration: underline; /* CHANGED to match highlight-text a */
+  
+  /* New/adjusted styles for alignment and block behavior */
+  display: block; /* Ensure it's a block for margin auto */
+  max-width: 1200px; /* Align with carousel container width */
+  width: 90%;      /* Consistent with carousel container width behavior */
+  margin-left: auto;  /* Center the block of the link */
+  margin-right: auto; /* Center the block of the link */
+  text-align: center;   /* Align text within the block to the left */
+  margin-top: 20px; /* Keeps space after the carousel, similar to highlight section spacing */
+}
+
+.showroom-remodel a:hover {
+  opacity: 0.8;
+}
+
+.showroom-remodel h2, .info-cards-section h2 {
+  color: #3e3a39; /* Matches highlight-text h2 */
+  font-size: 2.2rem; /* Matches highlight-text h2 */
+  font-weight: 600; /* Adjusted from 800 to be closer to highlight-text h2 appearance */
+  margin-block-start: 0.2rem; /* Matches highlight-text h2 top margin */
+  margin-bottom: 20px; /* Matches highlight-text h2 bottom margin, creates space before carousel */
+  
+  /* New styles for alignment and block behavior */
+  display: block; /* Ensure it's a block for margin auto to work */
+  max-width: 1200px; /* Align with carousel container width */
+  width: 90%;      /* Consistent with carousel container width behavior */
+  margin-left: auto;  /* Center the block of the h2 */
+  margin-right: auto; /* Center the block of the h2 */
+  text-align: center;   /* Align text within the block to the left */
+}
+
+/* Scroll to Top */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #009d88;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 999;
+  display: none; 
+  transition: opacity 0.3s ease;
+}
+
+.fa-chevron-up{
+  content: "\f077";
+  font-size: 10px;
+  color: #fff;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.fa-bars {
+  content: "\f0c9";
+  font-size: 25px;
+  color: #000;
+}
+
+@media (max-width: 1000px){
+
+  .highlight {
+    padding-top: 60px; 
+  }
+
+  .highlight-content{
+    flex-direction: column;
+  }
+  .top-bar h4 {
+    display: none;
+  }
+  .top-bar {
+    height: 50px;
+  }
+  .showroom-remodel {
+    padding-top: 100px;
+  }
+}
+
+@media (max-width: 780px) {
+
+  .hero {
+    margin-top: 60px; 
+  }
+  .carousel-slide .hero-content h1 {
+    font-size: 2.5rem; 
+    transform: translateY(0); 
+  }
+  .hero-chevron {
+    left: 50%; 
+    transform: translateX(-50%);
+    bottom: 3vh;
+  }
+   @keyframes bounce { 
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  .highlight {
+    padding-top: 100px;
+  }
+
+  .showroom-remodel {
+    padding: 60px 40px 80px 40px;
+  }
+
+  .showroom-card {
+        width: 220px; /* Adjust card width for smaller screens */
+        padding: 8px;
+    }
+    .showroom-card img {
+        max-height: 150px; /* Adjust image max height */
+    }
+    .showroom-carousel-track {
+        display: flex;
+        width: calc(300px * 38); /* UPDATED: 300px * (19 original + 19 duplicate) */
+        animation: scroll-showroom 166s linear infinite; /* Consider increasing duration (see note below) */
+        gap: 20px;
+    }
+    @keyframes scroll-showroom { /* Re-declare for the new values if calc() isn't overridden directly */
+      0% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(calc(-300px * 19));
+      }
+    }
+
+  .remodel-gallery img {
+    max-width: 180px;
+  }
+  .remodel-gallery {
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none; 
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 60px; 
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.active { 
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 20px;
+  }
+  
+  .nav-links.active .dropdown-menu {
+    position: static; 
+    width: auto;
+    box-shadow: none;
+    padding: 10px 0 25px 20px; 
+  }
+
+  .nav-icons {
+    display: none;
+  }
+
+  .highlight {
+    padding: 50px 40px 0 40px;
+  }
+}
+
+@media (max-width: 480px) { 
+  .carousel-slide .hero-content h1 {
+    font-size: 2rem; 
+  }
+  .hero-chevron {
+    left: 50%; 
+    transform: translateX(-50%);
+  }
+
+  .hero-content {
+    transform: translateY(10px);
+  }
+
+  .carousel-slide .hero-content p {
+    font-size: 1.2rem;
+  } 
+
+  @keyframes bounce { 
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(5px); }
+  }
+
+  .highlight-text p {
+    font-size: 0.9rem;
+  }
+
+  .highlight-text h2, .info-cards-section h2 {
+    font-size: 28px;
+  }
+
+  .highlight-text a {
+    font-size: 1rem;
+  }
+
+  .showroom-remodel h2 {
+    font-size: 28px;
+  }
+
+  .showroom-remodel {
+    padding: 10px 40px 80px 40px;
+  }
+
+  .remodel-gallery img {
+    max-width: 150px;
+  }
+  .remodel-gallery {
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+  .showroom-remodel a {
+    font-size: 1rem;
+  }
+
+    .showroom-card {
+        width: 160px; /* Further adjust card width for mobile */
+        padding: 6px;
+    }
+    .showroom-card img {
+        max-height: 100px; /* Adjust image max height */
+    }
+    .showroom-carousel-track {
+        /* Card width (160px) + gap (10px) = 170px */
+        width: calc(170px * 38);
+        gap: 10px; /* Adjust gap */
+        animation-duration: 80s; /* Optionally adjust speed */
+    }
+
+    @keyframes scroll-showroom {  /* Re-declare for the new values */
+      0% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(calc(-170px * 19));
+      }
+    }
+    /* Adjusting existing .showroom-remodel padding for consistency if needed */
+    .showroom-remodel {
+      padding: 40px 15px; /* Example adjustment */
+      margin-top: 0; /* Reduce top margin if .showroom-remodel h2 margin-top is too much */
+    }
+    .showroom-remodel h2 {
+        margin-top: 20px; /* Reduce top margin on h2 if needed for smaller screens */
+    }
+}
+
+/* Info Cards Section - (base styles from previous steps) */
+.info-cards-section {
+  padding: 70px 20px;
+  background-color: #fff;
+}
+
+.info-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.info-card {
+  background-color: #ffffff; /* This remains the default static background */
+  border-radius: 8px;
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.1);
+  padding: 30px 25px;
+  text-align: left;
+  flex: 1 1 calc(25% - 25px);
+  min-width: 260px;
+  box-sizing: border-box;
+  /* MODIFIED for new hover effect: */
+  position: relative;   /* Essential for positioning the pseudo-element */
+  overflow: hidden;     /* Ensures the pseudo-element doesn't spill out */
+  z-index: 1;           /* Ensures card itself is above other static page elements if needed */
+  /* REMOVE direct background-color transition if it was on .info-card itself */
+}
+
+/* NEW: Pseudo-element for the background fill animation */
+.info-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0; /* Starts with no height, so it's hidden */
+  background-color: rgb(0, 157, 136);
+  z-index: -1; /* Positioned behind the card's actual content */
+  transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth fill animation */
+}
+
+/* MODIFIED: Card content elements to ensure they are above the ::before pseudo-element */
+.info-card .info-card-icon,
+.info-card h3,
+.info-card p {
+  position: relative; /* Required to use z-index effectively on these elements */
+  z-index: 1;         /* Ensures content is above the filling background */
+}
+
+.info-card-icon { /* Existing style, ensure 'position' and 'z-index' from above are applied or combined */
+  margin-bottom: 18px;
+}
+
+.info-card-icon i {
+  font-size: 2rem;
+  color: rgb(0,157,136);
+  /* MODIFIED: Add a slight delay to color transition so background appears first */
+  transition: color 0.25s ease-in-out 0.1s;
+}
+
+.info-card h3 {
+  font-family: "Mukta", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #3e3a39;
+  margin-top: 0;
+  margin-bottom: 12px;
+  /* MODIFIED: Add a slight delay to color transition */
+  transition: color 0.25s ease-in-out 0.1s;
+}
+
+.info-card p {
+  font-family: "Mukta", sans-serif;
+  font-size: 1rem;
+  color: #3e3a39;
+  line-height: 1.65;
+  margin-bottom: 0;
+  /* MODIFIED: Add a slight delay to color transition */
+  transition: color 0.25s ease-in-out 0.1s;
+}
+
+/* HOVER EFFECTS */
+.info-card:hover::before {
+  height: 100%; /* Makes the pseudo-element fill the card from bottom to top */
+}
+
+.info-card:hover .info-card-icon i,
+.info-card:hover h3,
+.info-card:hover p {
+  color: #ffffff; /* Change text and icon color to white for contrast */
+}
+
+/* Responsive adjustments for Info Cards (from previous step) */
+@media (max-width: 992px) {
+  .info-card {
+    flex-basis: calc(50% - 25px);
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .info-cards-section {
+    padding: 50px 15px;
+  }
+  .info-cards-container {
+    gap: 20px;
+  }
+  .info-card {
+    flex-basis: 100%;
+    min-width: unset;
+  }
+  .info-card-icon i {
+    font-size: 2rem;
+  }
+  .info-card h3 {
+    font-size: 1.2rem;
+  }
+  .info-card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* News Carousel Section */
+.news-carousel-section {
+  padding: 100px 0 10px 0;
+  background-color: #fff;
+}
+
+.news-carousel-section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #3e3a39;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* NEW: Wrapper for carousel and navigation */
+.news-carousel-wrapper {
+  position: relative;
+  max-width: 1300px; /* Max width to comfortably fit 3 cards + gaps + nav space */
+  margin: 0 auto;
+  padding: 0 50px; /* Add padding to make space for absolute positioned nav arrows */
+  box-sizing: border-box;
+}
+
+.news-carousel-container {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padd-left: 15px;
+  padding-right: 15px;
+  width: 100%; /* Takes width from wrapper */
+  /* max-width: 1300px; /* Max width is now on wrapper */
+  /* margin: 0 auto; /* Centering is handled by wrapper */
+  overflow: hidden;
+  position: relative;
+}
+
+.news-carousel-track {
+  display: flex;
+  /* REMOVE width: calc(410px * 12); -- Width will be natural width of 6 cards */
+  /* REMOVE animation: scroll-news ... ; */
+  gap: 30px;
+  transition: transform 0.5s ease-in-out; /* For smooth manual scrolling */
+}
+
+/* .news-card styles remain largely the same (width, height, appearance) */
+.news-card {
+  width: 380px;
+  height: 380px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  flex-shrink: 0; /* Important for flex items in a scrolling container */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.news-card::after { /* Gradient overlay styles remain the same */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top,
+    rgba(62, 58, 57, 0.8) 10%,
+    rgba(62, 58, 57, 0.6) 40%,
+    rgba(62, 58, 57, 0.3) 70%,
+    rgba(62, 58, 57, 0.1) 100%
+  );
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* news-card-content, -meta, -title, -excerpt, -readmore styles remain the same */
+.news-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.news-card-meta {
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  text-shadow: 1px 1px 12px #3e3a39;
+}
+
+.news-card-title {
+  font-family: "Mukta", serif;
+  font-size: 1.6rem;
+  font-weight: normal;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  margin-top: 0;
+  text-shadow: 1px 1px 12px #3e3a39;
+}
+
+.news-card-excerpt {
+  font-family: "Mukta", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 12px #3e3a39;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(0.9rem * 1.6 * 3);
+}
+
+.news-card-readmore {
+  font-family: "Mukta", sans-serif;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: opacity 0.2s ease;
+  text-shadow: 1px 1px 12px #3e3a39;
+}
+
+.news-card-readmore i {
+  margin-left: 5px;
+  transition: transform 0.2s ease;
+}
+
+.news-card-readmore:hover {
+  opacity: 0.8;
+}
+
+.news-card-readmore:hover i {
+  transform: translateX(3px);
+}
+
+
+/* REMOVE Pause animation on hover */
+/* .news-carousel-container:hover .news-carousel-track {
+  animation-play-state: paused;
+} */
+
+/* REMOVE @keyframes scroll-news */
+/* @keyframes scroll-news { ... } */
+
+
+/* NEW Styles for Carousel Navigation Buttons */
+.news-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent; 
+  border: none;
+  color: #333;
+  font-size: 1.5rem; /* Size of the chevron icon */
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  width: 45px; /* Fixed width */
+  height: 45px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-carousel-nav.prev {
+  transform: translateY(-50%);
+  left: 0px; /* Position inside the wrapper's padding */
+}
+
+.news-carousel-nav.next {
+  transform: translateY(-50%);
+  right: 0px; /* Position inside the wrapper's padding */
+}
+
+.news-carousel-nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.news-carousel-indicators {
+  text-align: center;
+  margin-top: 25px; /* Space above the dots */
+  display: flex; /* Use flex for alignment if needed */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow dots to wrap if many */
+}
+
+.indicator-dot {
+  background-color: #ccc; /* Default color for dots */
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /* Make them circular */
+  margin: 0 5px;    /* Space between dots */
+  padding: 0;       /* Remove default button padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.indicator-dot.active {
+  background-color: #009d88; /* Active dot color (your site's primary green) */
+  width: 10px; /* Optional: make active dot slightly larger */
+  height: 10px;
+}
+
+
+/* Responsive adjustments for News Carousel */
+@media (max-width: 1200px) {
+  .news-carousel-wrapper {
+     /* max-width: initial;
+     padding: 0 40px; */
+  }
+}
+
+@media (max-width: 860px) {
+    .news-card {
+        width: 320px; /* Keep card width consistent for JS calculation for now */
+        height: 320px;
+    }
+    .news-carousel-wrapper {
+      padding: 0 40px; /* Adjust space for arrows */
+    }
+    .news-carousel-nav {
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+    }
+    .news-carousel-nav.prev { left: -5px; } /* Adjust if wrapper padding is smaller */
+    .news-carousel-nav.next { right: -5px; }
+    .news-carousel-nav {
+      display: none; /* Hide chevron navigation buttons */
+    }
+    .news-carousel-wrapper {
+      padding: 0 15px; /* Reduce side padding when chevrons are hidden */
+    }
+    .indicator-dot { /* Slightly smaller dots on mobile */
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+    }
+    .indicator-dot.active {
+      width: 10px;
+      height: 10px;
+    }
+    .news-carousel-indicators {
+      margin-top: 20px;
+    }
+}
+
+
+@media (max-width: 700px) {
+  .news-carousel-container {
+    /* width: 100%; */ /* Container takes full width of wrapper */
+  }
+   .news-carousel-wrapper {
+    padding: 0 10px; /* Less space for arrows needed as they might be smaller or closer */
+   }
+  .news-card {
+    width: 280px; /* Example smaller card width for single display focus, adjust as needed */
+    height: 280px;
+  }
+   .news-carousel-nav {
+      width: 35px;
+      height: 35px;
+      font-size: 1.1rem;
+      /* Adjust top position slightly if card height changes significantly */
+    }
+    .news-carousel-nav.prev { left: -15px; } /* Bring arrows closer or overlay slightly if space is tight */
+    .news-carousel-nav.next { right: -15px; }
+}
+
+/* Stats Section */
+.stats-section {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  padding: 40px 40px 20px 40px;
+  background-color: #e5f5f3; /* Consistent with other content sections */
+  text-align: center;
+}
+
+
+.stats-container {
+  display: flex;
+  justify-content: space-around; /* Distributes items evenly */
+  align-items: flex-start; /* Aligns items to the top */
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  flex: 1; /* Allows items to grow and shrink */
+  min-width: 200px; /* Minimum width before wrapping */
+  margin: 20px 10px; /* Spacing around each item */
+  text-align: center;
+}
+
+.stat-number {
+  font-family: "Mukta", sans-serif; /* Using Lexend as seen in Hero H1 */
+  font-size: 2.5rem;
+  font-weight: 600; /* Bold */
+  color: #3e3a39; /* Dark text color */
+  display: block;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: "Mukta", sans-serif; /* Using Mukta as seen in body text */
+  font-size: 1.2rem;
+  color: #555; /* Slightly lighter text for the label */
+  line-height: 1;
+}
+
+.stat-suffix {
+  font-family: "Mukta", sans-serif; /* Or match the number's font */
+  font-size: 0.6em;   /* Makes it 50% of the parent (.stat-number) font size. Adjust as needed. */
+  font-weight: 600;   /* Slightly less bold or match the number's weight (e.g., 700) */
+  color: #3e3a39;     /* Same color as the number or a preferred one */
+  margin-left: 10px;  /* Space between the number and the "+". Adjust as needed. */
+  /* Optional: Adjust vertical alignment if needed, though baseline should generally work */
+   vertical-align: middle;  
+}
+
+/* Responsive adjustments for stats section */
+@media (max-width: 992px) {
+  .stat-item {
+    min-width: calc(50% - 40px); /* Two items per row */
+  }
+}
+
+@media (max-width: 576px) {
+  .stats-section {
+    padding: 30px 20px 15px 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .stat-item {
+    min-width: 100%; /* One item per row */
+    margin: 20px 0;
+  }
+  .stat-number {
+    font-size: 2rem;
+    line-height: 0.7;
+  }
+  .stat-label {
+    font-size: 0.9rem;
+  }
+}
+  </style>
+
+</head>
+<body>
+  <header>
+
+  </header>
+
+  <section class="hero">
+    <div class="carousel-container"> 
+      <div class="carousel-slide active" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/hero-quality.jpg');">
+        <div class="hero-content">
+          <h1>World-Class Quality</h1>
+          <p>Meticulously engineered quality for durable, reliable fluid control systems, ensuring your operational excellence.</p>
+        </div>
+      </div>
+      <div class="carousel-slide" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/hero-service.jpg');">
+        <div class="hero-content">
+          <h1>World-Class Service</h1>
+          <p>Dedicated service ensuring your fluid systems achieve peak performance and lasting reliability with expert support.</p>
+          </div>
+      </div>
+      <div class="carousel-slide" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/hero-products.jpg');">
+        <div class="hero-content">
+          <h1>World-Class Products</h1>
+          <p>Advanced valves, instruments, and systems: innovative fluid control products for your operational efficiency and success.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-chevron" onclick="scrollToNextSection()">
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <section class="info-cards-section">
+    <h2>Our Products</h2>
+    <div class="info-cards-container">
+      <div class="info-card">
+        <div class="info-card-icon">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+        </div>
+        <h3>Valves</h3>
+        <p>Essential components for precise fluid control, regulation, and safety in diverse industrial processes.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <i class="fa-solid fa-ruler"></i>
+        </div>
+        <h3>Instruments</h3>
+        <p>Sophisticated devices for accurate measurement, monitoring, and control of critical process variables.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <i class="fa-solid fa-gear"></i>
+        </div>
+        <h3>Systems</h3>
+        <p>Comprehensive engineered solutions and integrated fluid handling systems for optimized operational performance.
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <i class="fa-solid fa-circle-user"></i>
+        </div>
+        <h3>Brands</h3>
+        <p>Access products from globally recognized manufacturers, offering a wide selection of trusted fluid control technologies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-item">
+        <span class="stat-number" data-target="31">0</span>
+        <p class="stat-label">Years</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="521">0</span>
+        <p class="stat-label">Projects</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="1536">0</span>
+        <p class="stat-label">Clients</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="80" data-suffix="+">0</span>
+        <p class="stat-label">Workers</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlight">
+    <div class="highlight-content">
+      <div class="highlight-image">
+        <img src="images/professional.jpg" alt="Professional Services" />
+      </div>
+      <div class="highlight-text">
+        <h2>Professional Services</h2>
+        <p>
+          <img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/icon-1.svg">Dust explosion preventing & fire detection system <br>
+          <img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/icon-2.svg">Vibrating condition monitoring solution<br>
+          <img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/icon-3.svg">Pressure relief & protection solution<br>
+          <img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/icon-4.svg">Valve automation service<br>
+          <img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/icon-5.svg">Valve diagnosis evaluation<br>
+        </p>
+        <a href="#">View More →</a>
+      </div>
+    </div>
+  </section>
+
+<section class="news-carousel-section">
+    <h2>Learn & Discover</h2>
+    <div class="news-carousel-wrapper">
+      <button class="news-carousel-nav prev" aria-label="Previous set of news">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="news-carousel-container">
+        <div class="news-carousel-track">
+          <div class="news-card" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/post-1.jpg');">
+            <div class="news-card-content">
+              <div class="news-card-meta">
+                <span class="news-card-date">Mar 07, 2023</span>
+              </div>
+              <h3 class="news-card-title">Vision Turbine Meters: Industry Uses</h3>
+              <p class="news-card-excerpt">Suits low-viscosity (≤16 cSt) liquids non-corrosive to internal components.</p>
+              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="news-card" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/post-2.jpg');">
+            <div class="news-card-content">
+              <div class="news-card-meta">
+                <span class="news-card-date">Mar 07, 2023</span>
+              </div>
+              <h3 class="news-card-title">Vision Turbine Meters: Operation & Benefits</h3>
+              <p class="news-card-excerpt">Liquid spins turbine; sensor pulses (K-factor) are proportional to flow rate.</p>
+              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="news-card" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/post-3.jpg');">
+            <div class="news-card-content">
+              <div class="news-card-meta">
+                <span class="news-card-date">Mar 02, 2023</span>
+              </div>
+              <h3 class="news-card-title">Vision Turbine Meter: Swiss Precision</h3>
+              <p class="news-card-excerpt">Turbine flowmeter's rotor vanes convert fluid energy into rotational energy.</p>
+              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="news-card" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/post-4.jpg');">
+            <div class="news-card-content">
+              <div class="news-card-meta">
+                <span class="news-card-date">Mar 02, 2023</span>
+              </div>
+              <h3 class="news-card-title">Oval Gear Meters: Designed for High Quality and Precision</h3>
+              <p class="news-card-excerpt">Oval gears rotate, displacing fixed fluid volumes, measuring total flow.</p>
+              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="news-card" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/post-5.jpg');">
+            <div class="news-card-content">
+              <div class="news-card-meta">
+                <span class="news-card-date">Mar 02, 2023</span>
+              </div>
+              <h3 class="news-card-title">Electromagnetic Meters: Top Liquid Choice</h3>
+              <p class="news-card-excerpt">Electromagnetic meter: conductive liquid in field creates voltage proportional to velocity.</p>
+              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="news-card" style="background-image: url('https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/post-6.jpg');">
+            <div class="news-card-content">
+              <div class="news-card-meta">
+                <span class="news-card-date">Mar 02, 2023</span>
+              </div>
+              <h3 class="news-card-title">Hedland Flow Meters: High Performance, Low Cost</h3>
+              <p class="news-card-excerpt">Badger Meter's Hedland® series: built for demanding multi-industry applications.</p>
+              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="news-carousel-nav next" aria-label="Next set of news">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="news-carousel-indicators">
+        </div>
+    </div>
+  </section>
+
+  <section class="showroom-remodel">
+    <h2>Our Partners</h2>
+    <div class="showroom-carousel-container">
+      <div class="showroom-carousel-track">
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/1.jpg" alt="Partner 1"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/2.jpg" alt="Partner 2"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/3.jpg" alt="Partner 3"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/4.jpg" alt="Partner 4"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/5.jpg" alt="Partner 5"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/6.jpg" alt="Partner 6"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/7.jpg" alt="Partner 7"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/8.jpg" alt="Partner 8"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/9.jpg" alt="Partner 9"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/10.jpg" alt="Partner 10"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/11.jpg" alt="Partner 11"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/12.jpg" alt="Partner 12"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/13.jpg" alt="Partner 13"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/14.jpg" alt="Partner 14"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/15.jpg" alt="Partner 15"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/16.jpg" alt="Partner 16"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/17.jpg" alt="Partner 17"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/18.jpg" alt="Partner 18"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/19.jpg" alt="Partner 19"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/1.jpg" alt="Partner 1"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/2.jpg" alt="Partner 2"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/3.jpg" alt="Partner 3"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/4.jpg" alt="Partner 4"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/5.jpg" alt="Partner 5"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/6.jpg" alt="Partner 6"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/7.jpg" alt="Partner 7"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/8.jpg" alt="Partner 8"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/9.jpg" alt="Partner 9"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/10.jpg" alt="Partner 10"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/11.jpg" alt="Partner 11"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/12.jpg" alt="Partner 12"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/13.jpg" alt="Partner 13"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/14.jpg" alt="Partner 14"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/15.jpg" alt="Partner 15"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/16.jpg" alt="Partner 16"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/17.jpg" alt="Partner 17"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/18.jpg" alt="Partner 18"></div>
+        <div class="showroom-card"><img src="https://kkchinchilla.github.io/Fluids/Folder-Fetch/images/19.jpg" alt="Partner 19"></div>
+      </div>
+    </div>
+    <a href="#">View More →</a>
+  </section>
+
+
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h4>HQ Taipei</h4>
+        <ul>
+          <li><a href="#">21F., No.65, Sec. 2, Dunhua S. Rd., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)</a></li>
+          <li><a href="#">TEL : 02-27093389</a></li>
+          <li><a href="#">FAX : 02-27093385</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Branch Kaohsiung</h4>
+        <ul>
+          <li><a href="#">11F.-1, No.439, Dashun 1st Rd., Gushan Dist., Kaohsiung City 804, Taiwan (R.O.C.)</a></li>
+          <li><a href="#">TEL : 07-5554485</a></li>
+          <li><a href="#">FAX : 07-5554487</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>RenWu Service Center</h4>
+        <ul>
+          <li><a href="#">No. 321, Sec. 2, Wenxue Rd., Renwu Dist., Kaohsiung City 814015 , Taiwan (R.O.C.)</a></li>
+          <li><a href="#">TEL : 07-3730000</a></li>
+          <li><a href="#">FAX : 07-3730579</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Email</h4>
+        <ul>
+          <li><a href="#">fluidscontrol@fluids.com.tw</a></li>
+        </ul>
+      </div>
+
+      <!-- <div class="footer-column">
+        <h4>Contact Us</h4>
+        <form class="newsletter-form">
+          <input type="email" placeholder="your-email@example.com" style="color:#fff" />
+          <button type="submit">→</button>
+        </form>
+      </div> -->
+    </div>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fa-solid fa-chevron-up"></i></button>
+
+    <div class="footer-bottom">
+      <p>© 2025. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  // --- Hero Carousel Logic ---
+  const carouselSlides = document.querySelectorAll('.carousel-container .carousel-slide');
+  let currentSlide = 0;
+  const intervalTime = 4000; // Time between slides in milliseconds (e.g., 4 seconds)
+  let carouselInterval;
+
+  function showSlide(index) {
+    carouselSlides.forEach((slide) => {
+      slide.classList.remove('active');
+    });
+    if (carouselSlides[index]) { // Check if the slide exists
+        carouselSlides[index].classList.add('active');
+    } else {
+        // Fallback or error handling if index is out of bounds
+        console.error("Carousel slide index out of bounds:", index);
+        currentSlide = 0; // Reset to first slide
+        if (carouselSlides[0]) carouselSlides[0].classList.add('active');
+    }
+  }
+
+  function nextSlide() {
+    if (carouselSlides.length === 0) return; // Do nothing if no slides
+    currentSlide = (currentSlide + 1) % carouselSlides.length;
+    showSlide(currentSlide);
+  }
+
+  function startCarousel() {
+    if (carouselSlides.length === 0) return;
+    // Clear existing interval to prevent multiple timers if called again for any reason
+    clearInterval(carouselInterval);
+    carouselInterval = setInterval(nextSlide, intervalTime);
+  }
+
+  // Initialize carousel
+  if (carouselSlides.length > 0) {
+    showSlide(currentSlide); // Show the first slide immediately
+    startCarousel(); // Start autoplay
+
+    // Optional: Pause on hover over the carousel container - This logic is now fully disabled
+    // const carouselContainer = document.querySelector('.carousel-container');
+    // if (carouselContainer) {
+      // carouselContainer.addEventListener('mouseenter', () => {
+      //   clearInterval(carouselInterval); // Pause autoplay
+      // });
+      // carouselContainer.addEventListener('mouseleave', () => {
+      //   startCarousel(); // Resume autoplay
+      // });
+    // }
+  }
+  // --- End Hero Carousel Logic ---
+
+
+  // --- Dropdown Menu Logic (existing) ---
+  const dropdownLiElements = document.querySelectorAll('.nav-links > li.dropdown');
+  const navLinksContainer = document.querySelector('.nav-links');
+
+  dropdownLiElements.forEach(dropdownLi => {
+    const mainLink = dropdownLi.querySelector('a');
+    const menu = dropdownLi.querySelector('.dropdown-menu');
+    let hideTimeoutId = null;
+
+    if (menu) {
+      // Desktop Hover Logic
+      const showMenuDesktop = () => {
+        if (hideTimeoutId) {
+          clearTimeout(hideTimeoutId);
+          hideTimeoutId = null;
+        }
+        if (window.innerWidth > 780) {
+          menu.style.display = 'block';
+        }
+      };
+
+      const startHideTimerDesktop = () => {
+        if (hideTimeoutId) {
+          clearTimeout(hideTimeoutId);
+        }
+        if (window.innerWidth > 780) {
+          hideTimeoutId = setTimeout(() => {
+            menu.style.display = 'none';
+          }, 250);
+        }
+      };
+
+      dropdownLi.addEventListener('mouseenter', showMenuDesktop);
+      dropdownLi.addEventListener('mouseleave', startHideTimerDesktop);
+      menu.addEventListener('mouseenter', showMenuDesktop);
+      menu.addEventListener('mouseleave', startHideTimerDesktop);
+
+      // Mobile Click Logic
+      if (mainLink) {
+        mainLink.addEventListener('click', function(event) {
+          if (window.innerWidth <= 780 && navLinksContainer && navLinksContainer.classList.contains('active')) {
+            event.preventDefault();
+
+            const isMenuOpen = menu.style.display === 'block';
+
+            dropdownLiElements.forEach(otherDropdownLi => {
+              const otherMenu = otherDropdownLi.querySelector('.dropdown-menu');
+              if (otherMenu && otherMenu !== menu) {
+                otherMenu.style.display = 'none';
+              }
+            });
+            menu.style.display = isMenuOpen ? 'none' : 'block';
+          }
+        });
+      }
+    }
+  });
+  // --- End Dropdown Menu Logic ---
+
+  // Scroll to next section from hero chevron
+  const heroChevron = document.querySelector('.hero-chevron');
+  if (heroChevron) {
+    heroChevron.addEventListener('click', scrollToNextSection);
+  }
+
+  // Scroll to Top Button
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (scrollTopBtn) {
+        scrollTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+      }
+    });
+  }
+});
+
+// Function to scroll to the next section
+function scrollToNextSection() {
+  const heroSection = document.querySelector('.hero');
+  let nextSectionElement = document.querySelector('.showroom-remodel');
+
+  if (heroSection) {
+      let sibling = heroSection.nextElementSibling;
+      while(sibling) {
+          if (sibling.tagName === 'SECTION') {
+              nextSectionElement = sibling;
+              break;
+          }
+          sibling = sibling.nextElementSibling;
+      }
+  }
+
+  if (nextSectionElement) {
+    nextSectionElement.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// Function to scroll to top (globally available for HTML onclick)
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Function to toggle mobile menu (globally available for HTML onclick)
+function toggleMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  if (navLinks) {
+    navLinks.classList.toggle('active');
+
+    if (!navLinks.classList.contains('active')) {
+        const allDropdownMenus = document.querySelectorAll('.nav-links .dropdown-menu');
+        allDropdownMenus.forEach(menu => {
+            menu.style.display = 'none';
+        });
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // ... (your existing script.js code like hero carousel, dropdowns, etc.)
+
+  // --- News Carousel Logic ---
+  const newsCarousel = document.querySelector('.news-carousel-section');
+  if (newsCarousel) {
+    const track = newsCarousel.querySelector('.news-carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = newsCarousel.querySelector('.news-carousel-nav.next');
+    const prevButton = newsCarousel.querySelector('.news-carousel-nav.prev');
+    const container = newsCarousel.querySelector('.news-carousel-container');
+    const indicatorsContainer = newsCarousel.querySelector('.news-carousel-indicators');
+
+    let cardWidth = 0;
+    let cardsInView = 0;
+    let currentIndex = 0;
+    let gap = 0;
+    let totalSlides = slides.length;
+
+    // Variables for touch dragging
+    let isDragging = false;
+    let startX;
+    let initialTrackTranslateX; // To store the track's translateX at the start of a drag
+
+    function calculateDimensions() {
+      if (slides.length === 0) return;
+
+      const trackStyle = getComputedStyle(track);
+      gap = parseFloat(trackStyle.gap) || 30;
+
+      cardWidth = slides[0].offsetWidth; // Includes padding & border, not margin
+
+      if (window.innerWidth < 700) {
+          cardsInView = 1;
+      } else if (window.innerWidth < 860) {
+          cardsInView = 2;
+      } else {
+          cardsInView = 3;
+      }
+      cardsInView = Math.max(1, Math.min(cardsInView, totalSlides));
+    }
+
+    // Helper function to get the current numerical translateX value
+    function getCurrentTranslateX() {
+        const style = window.getComputedStyle(track);
+        const matrix = new DOMMatrixReadOnly(style.transform); // Use DOMMatrixReadOnly
+        return matrix.m41; // This is the translateX value
+    }
+
+    function updateCarouselPosition() {
+      const amountToTranslate = currentIndex * (cardWidth + gap);
+      track.style.transform = `translateX(-${amountToTranslate}px)`;
+    }
+
+    function updateNavButtons() {
+      if (!prevButton || !nextButton) return;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = totalSlides === 0 || currentIndex >= totalSlides - cardsInView;
+    }
+
+    function setupIndicators() {
+      if (!indicatorsContainer) return;
+      indicatorsContainer.innerHTML = '';
+      const numIndicators = totalSlides > 0 ? Math.max(1, totalSlides - cardsInView + 1) : 0;
+
+      if (numIndicators <= 1 && totalSlides > 0) {
+          indicatorsContainer.style.display = 'none';
+          return;
+      }
+      indicatorsContainer.style.display = 'flex';
+
+      for (let i = 0; i < numIndicators; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('indicator-dot');
+        dot.setAttribute('aria-label', `Go to news group ${i + 1}`);
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarouselPosition();
+          updateNavButtons();
+          updateActiveIndicator();
+        });
+        indicatorsContainer.appendChild(dot);
+      }
+    }
+
+    function updateActiveIndicator() {
+      if (!indicatorsContainer) return;
+      const dots = indicatorsContainer.querySelectorAll('.indicator-dot');
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function handleResize() {
+      const oldCardsInView = cardsInView;
+      calculateDimensions();
+
+      if (currentIndex > totalSlides - cardsInView) {
+          currentIndex = Math.max(0, totalSlides - cardsInView);
+      }
+
+      if (oldCardsInView !== cardsInView || indicatorsContainer.children.length === 0 ||
+          indicatorsContainer.children.length !== (totalSlides > 0 ? Math.max(1, totalSlides - cardsInView + 1) : 0) ) {
+          setupIndicators();
+      }
+
+      updateCarouselPosition();
+      updateNavButtons();
+      updateActiveIndicator();
+    }
+
+    if (slides.length > 0) {
+      // Click listeners for chevrons
+      nextButton.addEventListener('click', () => {
+        if (currentIndex < totalSlides - cardsInView) {
+          currentIndex++;
+          updateCarouselPosition();
+          updateNavButtons();
+          updateActiveIndicator();
+        }
+      });
+
+      prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarouselPosition();
+          updateNavButtons();
+          updateActiveIndicator();
+        }
+      });
+
+      // --- NEW: Touch Event Listeners for Dragging ---
+      track.addEventListener('touchstart', (e) => {
+        // Enable dragging only on smaller screens (where chevrons are hidden)
+        // and if there are actually more slides than can be viewed at once.
+        if (window.innerWidth >= 780 || totalSlides <= cardsInView) {
+          isDragging = false; // Ensure isDragging is false if conditions not met
+          return;
+        }
+        isDragging = true;
+        startX = e.touches[0].pageX;
+        initialTrackTranslateX = getCurrentTranslateX(); // Get current numerical translateX
+        track.style.transition = 'none'; // Disable CSS transition during drag for direct feedback
+      }, { passive: true }); // passive: true for better scroll performance if not calling preventDefault
+
+      track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        // If you want to prevent vertical page scroll while dragging horizontally:
+        // You might need more complex logic to detect swipe angle first and set passive: false.
+        // For this version, we'll keep it simple.
+        const currentX = e.touches[0].pageX;
+        const deltaX = currentX - startX;
+        track.style.transform = `translateX(${initialTrackTranslateX + deltaX}px)`;
+      });
+
+      track.addEventListener('touchend', () => {
+        if (!isDragging) return; // Only proceed if a drag was initiated under valid conditions
+        isDragging = false;
+        track.style.transition = 'transform 0.5s ease-in-out'; // Re-enable CSS transition for snapping
+
+        const finalTranslateX = getCurrentTranslateX();
+        const draggedDistance = finalTranslateX - initialTrackTranslateX;
+        const cardWidthWithGap = cardWidth + gap;
+        const dragThreshold = 20; // Minimum drag in pixels to be considered more than a tap/tiny move
+
+        if (Math.abs(draggedDistance) < dragThreshold) {
+            // If drag was very small, snap back to the current index's position
+            updateCarouselPosition(); // Uses the unchanged currentIndex
+            return;
+        }
+
+        // Calculate the ideal target index based on the final dragged position
+        // Target index is how many full cardWidthsWithGap the track has moved from its 0 position
+        let targetIndex = Math.round(Math.abs(finalTranslateX) / cardWidthWithGap);
+
+        // Clamp the targetIndex to be within valid bounds
+        currentIndex = Math.max(0, Math.min(targetIndex, totalSlides - cardsInView));
+
+        updateCarouselPosition(); // Snap to the new currentIndex
+        updateNavButtons();
+        updateActiveIndicator();
+      });
+      // --- End Touch Event Listeners ---
+
+      window.addEventListener('resize', handleResize);
+      handleResize(); // Initial setup
+    } else {
+        if(nextButton) nextButton.style.display = 'none';
+        if(prevButton) prevButton.style.display = 'none';
+        if(indicatorsContainer) indicatorsContainer.style.display = 'none';
+    }
+  }
+  // --- End News Carousel Logic ---
+});
+
+// Number counting animation for Stats Section
+document.addEventListener('DOMContentLoaded', () => {
+  const statsSection = document.querySelector('.stats-section');
+
+  if (statsSection) {
+    let animationHasRun = false; // Flag to ensure animation runs only once
+
+    const animateValue = (element, start, end, duration) => {
+      let startTime = null;
+      const suffixText = element.dataset.suffix || ""; // Get the suffix text (e.g., "+")
+
+      // Clear any existing suffix span and set initial text content for the number
+      const existingSuffix = element.querySelector('.stat-suffix');
+      if (existingSuffix) {
+        existingSuffix.remove();
+      }
+      element.textContent = start; // Initialize with the start number
+
+      const step = (currentTime) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const currentValue = Math.floor(progress * (end - start) + start);
+
+        // Update only the number part. We'll ensure element.textContent holds the number.
+        // If a suffix was there from a previous run (though unlikely with current logic),
+        // setting textContent directly here will clear it before appending a new one.
+        element.textContent = currentValue;
+
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          element.textContent = end; // Set final number
+          if (suffixText) {
+            const suffixSpan = document.createElement('span');
+            suffixSpan.className = 'stat-suffix';
+            suffixSpan.textContent = suffixText;
+            element.appendChild(suffixSpan); // Append the styled suffix span
+          }
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Check if the element is intersecting and if the animation hasn't run yet
+        if (entry.isIntersecting && !animationHasRun) {
+          const statNumbers = statsSection.querySelectorAll('.stat-number');
+          statNumbers.forEach(numberElement => {
+            const target = parseInt(numberElement.dataset.target, 10);
+            animateValue(numberElement, 0, target, 700); // 700ms duration
+          });
+          animationHasRun = true; // Set flag to true after animation starts
+          observer.unobserve(statsSection); // Optional: stop observing after animation
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% of the element is visible
+    });
+
+    observer.observe(statsSection);
+  }
+});
+  </script>
+</body>
+</html>
