@@ -1,0 +1,222 @@
+/* Define color variables and animation timing for easy reuse */
+:root {
+    --c1: #1AA794;
+    --c2: #4DBBAC;
+    --c3: #7FCEC3;
+    --timing: 0.5s; /* Animation speed */
+}
+
+body {
+    font-family: 'Noto Sans HK', sans-serif;
+    margin: 0;
+    background-color: #ffffff;
+    color: #333;
+    /* Hide scrollbars during transitions */
+    overflow: hidden; 
+}
+
+.page-wrapper {
+    position: relative;
+    height: 100vh;
+}
+
+header {
+    position: absolute;
+    width: calc(100% - 80px); /* Full width minus padding */
+    padding: 20px 40px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end; /* Aligns location button to the right */
+}
+
+/* Initial state of the logo: centered */
+.logo {
+    position: absolute;
+    left: 50%;
+    top: 300px;
+    transform: translate(-50%, -50%); /* Centering trick */
+    width: 500px;
+    transition: all var(--timing) ease-in-out;
+}
+
+.tagline {
+    padding:0;
+    margin-right: 8px;
+    margin-block-start: 5px;
+    margin-block-end: 0;
+    font-size: 0.8rem;
+}
+
+.location {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 3px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* Initial state of the folders container */
+.folders {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 45%;
+    z-index: 10;
+    transition: all var(--timing) ease-in-out;
+}
+
+.folder {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 15px 35px;
+    margin: 0 5px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    transition: all var(--timing) ease-in-out;
+    position: relative; 
+}
+
+.folder::after {
+    border-radius: 10px 0 0 10px;
+}
+
+/* Individual vertical positioning and z-index for stacking. */
+.folder:nth-child(1) { background-color: var(--c1); transform: translateY(0px);   z-index: 1; }
+.folder:nth-child(2) { background-color: var(--c2); transform: translateY(20px);  z-index: 2; }
+.folder:nth-child(3) { background-color: var(--c3); transform: translateY(40px);  z-index: 3; }
+.folder:nth-child(4) { background-color: var(--c2); transform: translateY(60px);  z-index: 4; }
+.folder:nth-child(5) { background-color: var(--c1); transform: translateY(80px);  z-index: 5; }
+
+/* Individual horizontal positioning and z-index for stacking. */
+.folder:nth-child(1)::after { background-color: var(--c1); transform: translateX(-50vw);   }
+.folder:nth-child(2)::after { background-color: var(--c2); transform: translateX(-50vw);  }
+.folder:nth-child(3)::after { background-color: var(--c3); transform: translateX(-60vw);  }
+.folder:nth-child(4)::after { background-color: var(--c2); transform: translateX(-80vw);  }
+.folder:nth-child(5)::after { background-color: var(--c1); transform: translateX(-100vw);  }
+
+/* Add the horizontal lines below each folder tab */
+.folder::after {
+    content: '';
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150vw;
+    height: 30px;
+    z-index: -1; 
+    margin-top: -20px; /* Overlap with the tab bottom for a seamless look */
+    transition: opacity var(--timing) ease-in-out;
+}
+
+/* Define the colors for each line to match their parent tab */
+.folder:nth-child(1)::after { background-color: var(--c1); }
+.folder:nth-child(2)::after { background-color: var(--c2); }
+.folder:nth-child(3)::after { background-color: var(--c3); }
+.folder:nth-child(4)::after { background-color: var(--c2); }
+.folder:nth-child(5)::after { background-color: var(--c1); }
+
+/* Initial state of the content area */
+#content {
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    width: 100vw;
+    background: white;
+    z-index: 0; /* The content area has a z-index of 50 */
+    transition: all var(--timing) ease-in-out;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* --- STYLES FOR THE OPENED STATE --- */
+
+body.open .logo {
+    top: 40px;
+    left: 130px;
+    width: 230px;
+    transform: translate(-50%, -50%);
+}
+
+body.open .folders {
+    top: 80px;
+    z-index: 70; /* Raise z-index above the content area (50) to fix overlap */
+}
+
+body.open .folder {
+    position: absolute;
+    z-index: 60; 
+    border-radius: 6px;
+    padding: 10px 25px;
+}
+
+/* NEW: Animation logic for smooth transitions.
+  - Links in the top bar (.move-up) will keep their relative staggering.
+  - Links in the bottom bar (.move-down) will smoothly animate to the bottom
+    of the screen using a calculated translateY transform.
+*/
+
+/* No override is needed for .move-up, they keep their initial transform. */
+
+/* Animate .move-down folders to the bottom of the viewport using a large transform. */
+body.open .folder:nth-child(1).move-down { transform: translateY(calc(100vh - 215px)); }
+body.open .folder:nth-child(2).move-down { transform: translateY(calc(100vh - 195px)); }
+body.open .folder:nth-child(3).move-down { transform: translateY(calc(100vh - 175px)); }
+body.open .folder:nth-child(4).move-down { transform: translateY(calc(100vh - 155px)); }
+body.open .folder:nth-child(5).move-down { transform: translateY(calc(100vh - 135px)); }
+
+
+/* Precisely calculated top and height for the content area */
+body.open #content {
+    top: 155px;
+    height: calc(100vh - 300px); /* 100vh - top bar space - bottom bar space */
+}
+
+
+
+@media (max-width: 800px){
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        width: 300px;
+    }
+
+    .folders{
+        flex-direction: column;
+        top: 200px;
+    }
+
+    .folder:nth-child(1) { background-color: var(--c1); transform: translateY(20px);   z-index: 1; }
+    .folder:nth-child(2) { background-color: var(--c2); transform: translateY(60px);  z-index: 2; }
+    .folder:nth-child(3) { background-color: var(--c3); transform: translateY(100px);  z-index: 3; }
+    .folder:nth-child(4) { background-color: var(--c2); transform: translateY(140px);  z-index: 4; }
+    .folder:nth-child(5) { background-color: var(--c1); transform: translateY(180px);  z-index: 5; }
+
+    .folder:nth-child(1)::after { background-color: var(--c1); display: none;}
+    .folder:nth-child(2)::after { background-color: var(--c2); display: none;}
+    .folder:nth-child(3)::after { background-color: var(--c3); display: none;}
+    .folder:nth-child(4)::after { background-color: var(--c2); display: none;}
+    .folder:nth-child(5)::after { background-color: var(--c1); display: none;}
+}
+
+/*@media (max-width: 600px){
+    .folder:nth-child(1)::after { background-color: var(--c1); transform: translateX(-20vw);   }
+    .folder:nth-child(2)::after { background-color: var(--c2); transform: translateX(-30vw);  }
+    .folder:nth-child(3)::after { background-color: var(--c3); transform: translateX(-70vw);  }
+    .folder:nth-child(4)::after { background-color: var(--c2); transform: translateX(-100vw);  }
+    .folder:nth-child(5)::after { background-color: var(--c1); transform: translateX(-120vw);  }
+}*/
+
+
+
+
+
