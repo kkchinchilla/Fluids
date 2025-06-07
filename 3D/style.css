@@ -1,0 +1,109 @@
+body {
+	margin: 0;
+	font-family: "Noto Sans HK", sans-serif;
+	background-color: #3e3a39;
+}
+
+.location {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 2; /* Above canvas */
+    display: flex;
+    align-items: center;
+}
+
+.location-text {
+    font-size: 0.9em;
+    margin-right: 8px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.location-button {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    font-family: 'Noto Sans HK', sans-serif;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+header {
+	margin-top: 3em;
+	text-align: center;
+	color: #3e3a39;
+}
+
+.head-section {
+	position:absolute;
+	top: 33%;
+	left: 10%;
+	text-align: left;
+	color: #fff;
+	text-shadow: #221e1d 1px 0 20px;
+	z-index: 1000;
+}
+
+.head-section h1 {
+	font-family: "Mukta", sans-serif;
+	color: #fff;
+	font-size: 5em;
+	font-weight: 900;
+	line-height: 1;
+	margin-block-end: 0;
+}
+
+.head-section p {
+	font-size: 1.2rem;
+	font-weight: 400;
+	max-width: 80%;
+}
+
+.logo{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+
+.logo img {
+	width: 300px;
+}
+
+#container3D canvas {
+	width: 100vw !important;
+	height: 100vh !important;
+	position: absolute; /* This takes the canvas out of the normal document flow */
+	top: 0;
+	left: 0;
+	transform: translateY(-100px);
+}
+
+
+@media (max-width: 768px){
+	.head-section {
+		top: 16%;
+		left: 10%;
+	}
+
+	.head-section h1{
+		font-size: 2em;
+	}
+
+	.head-section p {
+		font-size: 1rem;
+	}
+
+	.logo img {
+		width: 200px;
+	}
+	#container3D {
+		transform: scale(0.7);
+	}
+	#container3D canvas{
+		transform: translateY(-300px);
+	}
+}
