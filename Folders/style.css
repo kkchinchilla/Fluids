@@ -80,6 +80,7 @@ header {
     cursor: pointer;
     transition: all var(--timing) ease-in-out;
     position: relative; 
+    top: 0; /* Set initial top position for animation */
 }
 
 .folder::after {
@@ -216,7 +217,31 @@ body.open #content {
     .folder:nth-child(5)::after { background-color: var(--c1); transform: translateX(-120vw);  }
 }*/
 
+/* --- HOVER BOUNCE EFFECT (REVISED) --- */
 
+/* 1. Define the keyframes for the bounce animation with reduced scale */
+@keyframes bounce-up {
+    0%, 100% {
+        top: 0;
+    }
+    20% {
+        top: -10px; /* Main bounce */
+    }
+    40% {
+        top: 0;
+    }
+    60% {
+        top: -5px; /* Second bounce */
+    }
+    80% {
+        top: 0;
+    }
+    90% {
+        top: -2px; /* Third bounce */
+    }
+}
 
-
-
+/* 2. Apply the faster animation on hover to any folder that is NOT active */
+.folder:not(.active):hover {
+    animation: bounce-up 0.8s ease-out;
+}
