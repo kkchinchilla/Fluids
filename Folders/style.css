@@ -245,3 +245,225 @@ body.open #content {
 .folder:not(.active):hover {
     animation: bounce-up 0.8s ease-out;
 }
+
+
+
+
+
+
+
+/* Chatbot Container */
+    .chatbot-container {
+      position: fixed;
+      bottom: 80px;
+      /* 調整氣泡按鈕上方的位置 */
+      right: 20px;
+      width: 320px;
+      /* 聊天視窗寬度 */
+      height: 450px;
+      /* 聊天視窗高度 */
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      font-family: 'Noto Sans HK', sans-serif;
+      /* 使用您引入的字體 */
+      transition: transform 0.3s ease-in-out;
+      transform: translateY(100vh);
+      /* 預設隱藏在視窗外 */
+    }
+
+    .chatbot-container.active {
+      transform: translateY(0);
+      /* 顯示聊天視窗 */
+    }
+
+    /* Chatbot Header */
+    .chatbot-header {
+      background-color: #009d88;
+      /* 主題顏色 */
+      color: white;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .chatbot-header .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* Chatbot Messages Area */
+    .chatbot-messages {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #f7f7f7;
+    }
+
+    /* Message Bubbles */
+    .message {
+      display: flex;
+      margin-bottom: 10px;
+      align-items: flex-start;
+      /* Align items to the top for consistent avatar positioning */
+    }
+
+    .user-message {
+      justify-content: flex-end;
+    }
+
+    .bot-message {
+      justify-content: flex-start;
+    }
+
+    .message .avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+      flex-shrink: 0;
+      /* Prevent avatar from shrinking */
+      font-size: 0.9em;
+    }
+
+    .user-message .avatar {
+      background-color: #0481db;
+      /* User avatar color */
+      margin-left: 10px;
+      order: 2;
+      /* Place avatar on the right for user messages */
+    }
+
+    .bot-message .avatar {
+      background-color: #009d88;
+      /* Bot avatar color */
+      margin-right: 10px;
+      order: 1;
+      /* Place avatar on the left for bot messages */
+    }
+
+    .message p {
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 18px;
+      line-height: 1.4;
+      word-wrap: break-word;
+      /* Allow long words to break */
+      white-space: pre-wrap;
+      /* Preserve whitespace and allow wrapping */
+      order: 1;
+      /* Default order for message bubble */
+    }
+
+    .user-message p {
+      background-color: #0481db;
+      /* 用戶訊息泡泡顏色 */
+      color: white;
+      border-bottom-right-radius: 4px;
+      /* 右下角稍微方正 */
+    }
+
+    .bot-message p {
+      background-color: #e2e8f0;
+      /* AI 訊息泡泡顏色 */
+      color: #333;
+      border-bottom-left-radius: 4px;
+      /* 左下角稍微方正 */
+    }
+
+    /* Input Area */
+    .chatbot-input-area {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid #eee;
+      background-color: #fff;
+      align-items: flex-end;
+    }
+
+    .chatbot-input-area textarea {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 8px;
+      opacity: 0.4;
+      resize: none;
+      /* 禁止調整大小 */
+      overflow: hidden;
+      /* 防止滾動條 */
+      margin-right: 10px;
+      font-size: 0.95rem;
+      font-family: 'Noto Sans HK', sans-serif;
+    }
+
+    .chatbot-input-area button {
+      background-color: #009d88;
+      /* 發送按鈕顏色 */
+      color: white;
+      max-height: 50px;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 30px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: background-color 0.3s;
+      font-family: 'Noto Sans HK', sans-serif;
+    }
+
+    .chatbot-input-area button:hover {
+      background-color: #4DBBAC;
+    }
+
+    .chatbot-input-area button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    /* Chatbot Bubble Button */
+    .chatbot-bubble-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #009d88;
+      /* 氣泡按鈕顏色 */
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      transition: background-color 0.3s;
+    }
+
+    .chatbot-bubble-button:hover {
+      background-color: #4DBBAC;
+    }
+
+
+
+
+
+
+
