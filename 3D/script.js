@@ -101,3 +101,40 @@ document.onmousemove = (e) => {
 
 //Start the 3D rendering
 animate();
+
+// --- START: UPDATED NAVIGATION BAR SCRIPT ---
+const navItems = document.querySelectorAll('.nav-item');
+const backgroundCircle = document.querySelector('.nav-background-circle');
+const navList = document.querySelector('.nav-list');
+
+// Define a fixed size for the circle
+const circleSize = 130; // Circle will be 80px in diameter
+
+function handleMouseEnter(e) {
+    const link = e.currentTarget.querySelector('a');
+    const linkRect = link.getBoundingClientRect();
+    const navListRect = navList.getBoundingClientRect();
+
+    // The old dynamic size calculation is removed.
+    // We now use our fixed circleSize to calculate the left position.
+    const left = linkRect.left - navListRect.left + (linkRect.width / 2) - (circleSize / 2);
+    
+    // Apply styles to the circle using our fixed size
+    backgroundCircle.style.width = `${circleSize}px`;
+    backgroundCircle.style.height = `${circleSize}px`;
+    backgroundCircle.style.left = `${left}px`;
+    backgroundCircle.style.opacity = '0.2';
+    backgroundCircle.style.transform = 'translateY(-50%) scale(1)';
+}
+
+function handleMouseLeave() {
+    backgroundCircle.style.opacity = '0';
+    backgroundCircle.style.transform = 'translateY(-50%) scale(0.5)';
+}
+
+navItems.forEach(item => {
+    item.addEventListener('mouseenter', handleMouseEnter);
+});
+
+navList.addEventListener('mouseleave', handleMouseLeave);
+// --- END: UPDATED NAVIGATION BAR SCRIPT ---

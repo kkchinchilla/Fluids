@@ -1,3 +1,4 @@
+/* --- EXISTING STYLES --- */
 body {
 	margin: 0;
 	font-family: "Noto Sans HK", sans-serif;
@@ -82,10 +83,9 @@ header {
 	transform: translateY(-100px);
 }
 
-
 @media (max-width: 768px){
 	.head-section {
-		top: 16%;
+		top: 20%;
 		left: 10%;
 	}
 
@@ -104,6 +104,187 @@ header {
 		transform: scale(0.7);
 	}
 	#container3D canvas{
-		transform: translateY(-300px);
+		transform: translateY(-100px);
+	}
+}
+
+
+/* --- NAVIGATION BAR STYLES --- */
+.nav-container {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    margin-bottom: 2em;
+    z-index: 2000;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 15px;
+    display: inline-block;
+    position: relative;
+    z-index: 2; 
+}
+
+.nav-background-circle {
+    position: absolute;
+    top: 50%;
+    background-color: white;
+    opacity: 0;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateY(-50%) scale(0.5);
+    z-index: 1;
+}
+
+.indicator {
+    position: absolute;
+    bottom: 120px; 
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.nav-item:hover .indicator {
+    opacity: 1;
+    visibility: visible;
+    animation: bounce 1s ease-out;
+}
+
+.indicator-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.indicator-arrow {
+    width: 20px; 
+    height: auto; 
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+    65% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    90% {
+        transform: translateX(-50%) translateY(-5px); 
+    }
+}
+
+/* --- START: NEW RESPONSIVE STYLES FOR NAV BAR --- */
+
+@media (max-width: 780px) {
+    .nav-container {
+        /* Adjust spacing for a more compact vertical layout */
+        margin-bottom: 0;
+        padding-bottom: 50px;
+		text-align: left;
+		justify-content: left;
+		align-items: flex-start;
+    }
+
+    .nav-list {
+        /* Change flex direction to stack links vertically */
+        flex-direction: column;
+		text-align: left;
+		justify-content: left;
+		align-items: flex-start;
+    }
+
+    .nav-item a {
+        /* Reduce padding on links for a tighter look */
+        padding: 10px 15px;
+        font-size: 1.2rem;
+    }
+
+    /* Hide the hover effect elements completely */
+    .nav-background-circle,
+    .indicator {
+        display: none;
+    }
+
+	.logo img {
+		width: 180px;
+	}
+
+	.location{
+		top: 10px;
+		right: 10px;
+		font-size: 0.8rem;
+	}
+}
+
+
+@media (max-width: 480px) {
+    .nav-container {
+        /* Adjust spacing for a more compact vertical layout */
+        margin-bottom: 0;
+        padding-bottom: 50px;
+		text-align: left;
+		justify-content: left;
+		align-items: flex-start;
+    }
+
+    .nav-list {
+        /* Change flex direction to stack links vertically */
+        flex-direction: column;
+		text-align: left;
+		justify-content: left;
+		align-items: flex-start;
+    }
+
+    .nav-item a {
+        /* Reduce padding on links for a tighter look */
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+
+    /* Hide the hover effect elements completely */
+    .nav-background-circle,
+    .indicator {
+        display: none;
+    }
+
+	.logo img {
+		width: 180px;
+	}
+
+	.location{
+		top: 10px;
+		right: 10px;
+		font-size: 0.8rem;
 	}
 }
