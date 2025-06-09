@@ -1,0 +1,120 @@
+/*
+ * Styles for Section 1
+ */
+
+/* UPDATED: Added a transform to move the entire block higher */
+#section1 .title-container {
+    text-align: center;
+    transform: translateY(-8vh); /* Shifts the block up by 8% of the viewport height */
+}
+
+#section1 .subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 3vw;
+}
+
+/* --- "Slot Machine" Text Effect --- */
+
+.main-title.slot-machine-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12vw;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    color: #1a1a1a;
+    display: flex;
+    cursor: pointer;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.slot-machine-title .letter {
+    display: inline-block;
+    position: relative;
+    height: 1em;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.slot-machine-title .letter-inner,
+.slot-machine-title .letter::after {
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    transition-delay: calc(var(--delay) * 40ms);
+}
+
+.slot-machine-title .letter-inner {
+    transform: translateY(0%);
+}
+
+.slot-machine-title .letter::after {
+    content: attr(data-letter);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(100%);
+}
+
+/* UPDATED: Reduced width to bring "WEB" and "DESIGN" closer */
+.slot-machine-title .letter-space {
+    display: inline-block;
+    width: 0.3em; /* Decreased from 0.5em */
+}
+
+.slot-machine-title .line-break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+/* --- Hover State Animation --- */
+
+.main-title.slot-machine-title:hover .letter-inner {
+    transform: translateY(-100%);
+}
+
+.main-title.slot-machine-title:hover .letter::after {
+    transform: translateY(0);
+}
+
+/* UPDATED: Final adjustments to width and position */
+.scroll-draw-container {
+    /* Position relative to the .title-container */
+    position: absolute;
+    top: 80%; /* Start at the bottom edge of the title block */
+    left: 50%;
+    transform: translateX(-50%); /* This robustly centers the container */
+
+    /* UPDATED: Width changed to 60vw */
+    width: 60vw;
+    height: 5em; 
+    
+    /* UPDATED: Margin reduced to move it right below the title */
+    margin-top: 2vh; /* Use a small, responsive margin (2% of viewport height) */
+    
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.scroll-draw-container.is-visible {
+    opacity: 1;
+}
+
+/* UPDATED: Path styling as requested */
+#scroll-arrow-svg path {
+    stroke: #1a1a1a;
+    stroke-width: 3px;
+    opacity: 0.7;
+    /* UPDATED: Added !important to ensure the fill is always transparent */
+    fill: none !important;
+    
+    /* This makes the animation start from a "clean" state */
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
