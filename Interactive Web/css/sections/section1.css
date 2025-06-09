@@ -92,7 +92,7 @@
     transform: translateX(-50%); /* This robustly centers the container */
 
     /* UPDATED: Width changed to 60vw */
-    width: 60vw;
+    width: 70vw;
     height: 5em; 
     
     /* UPDATED: Margin reduced to move it right below the title */
