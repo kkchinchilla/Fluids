@@ -64,7 +64,7 @@ App.section1 = {
         // UPDATED: The animation progress calculation is now multiplied by a speed factor.
         // A factor of 1.7 means the animation will finish when you've scrolled ~59%
         // of the way through the section (1 / 1.7 ≈ 0.59), leaving plenty of time to see it.
-        let progress = (-top / scrollableHeightOfSection) * 0.8;
+        let progress = (-top / scrollableHeightOfSection) * 1;
         
         progress = Math.max(0, Math.min(1, progress));
 
