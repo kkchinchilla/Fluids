@@ -5,7 +5,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Manrope', sans-serif;
-    background-color: #F1ECE4;
+    background-color: #fff;
     color: #333;
     overflow-x: hidden;
 }
@@ -19,7 +19,7 @@ body, html {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #E9E1D6;
+    background-color: #F1ECE4;
     padding: 40px;
     box-sizing: border-box;
     display: flex;
@@ -360,21 +360,26 @@ body.dark-mode .progress-ring__percentage { fill: #fff; }
     .nav-links li:not(:last-child)::after { display: none; }
 }
 
-/* --- Social Connect Icons --- */
+/* --- Social Connect Icons (Definitive Version) --- */
 
-/* 1. The main container for positioning */
+/* 1. The container is a large, invisible "stage" for the animation.
+   Crucially, it starts with pointer-events: none so it can't be hovered. */
 .social-connect-container {
     position: fixed;
     bottom: 25px;
     right: 25px;
     z-index: 1000;
-    
-    /* A "stage" large enough for the interaction */
     width: 70px;
     height: 280px; 
+    pointer-events: none; /* The container itself is not interactive initially */
 }
 
-/* 2. The main connect icon, positioned at the bottom of the stage */
+/* When the JS adds .is-active, the container becomes interactive */
+.social-connect-container.is-active {
+    pointer-events: auto;
+}
+
+/* 2. The main connect icon. This is the ONLY initially interactive element. */
 .connect-icon {
     width: 50px;
     height: 50px;
@@ -385,25 +390,25 @@ body.dark-mode .progress-ring__percentage { fill: #fff; }
     align-items: center;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    
+    transition: transform 0.2s ease-in-out;
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    pointer-events: auto; /* Make sure the icon itself is always interactive */
 }
 
 .connect-icon:hover {
     transform: translateX(-50%) scale(1.1);
 }
 
-/* UPDATED: This now correctly targets the <img> tag */
 .connect-icon img {
     width: 24px;
     height: 24px;
 }
 
-/* 3. Base style for ALL social icons */
+/* 3. Base style for ALL individual social icons */
 .social-icon {
     width: 50px;
     height: 50px;
@@ -414,56 +419,43 @@ body.dark-mode .progress-ring__percentage { fill: #fff; }
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #1a1a1a;
     color: white;
-
-    /* Start invisible and ready for animation */
     position: absolute;
     left: 50%;
     opacity: 0;
-    transform: translateX(-50%) scale(0); /* Center horizontally, start scaled to 0 */
+    transform: translateX(-50%) scale(0);
     pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease-out;
 }
 
-/* UPDATED: This now correctly targets the <img> tag */
 .social-icon img {
     width: 24px;
     height: 24px;
 }
 
-/* 4. Set the FINAL vertical position for EACH icon */
-.social-icon.facebook  { bottom: 195px; } /* Top of the stack */
-.social-icon.instagram { bottom: 130px; } /* Middle of the stack */
-.social-icon.linkedin  { bottom: 65px;  } /* Bottom of the stack */
+/* Set the FINAL vertical position for EACH icon */
+.social-icon.facebook  { bottom: 195px; }
+.social-icon.instagram { bottom: 130px; }
+.social-icon.linkedin  { bottom: 65px;  }
 
 
-/* --- The Keyframe Animation (Bounce in size only) --- */
-
+/* --- Keyframe Animation (Bounce in size only) --- */
 @keyframes bounce-in-place {
-    0%   { transform: translateX(-50%) scale(0.3); opacity: 0; }
-    50%  { transform: translateX(-50%) scale(1.15); opacity: 1; }
+    0%   { transform: translateX(-50%) scale(0.3); }
+    50%  { transform: translateX(-50%) scale(1.15); }
     70%  { transform: translateX(-50%) scale(0.9); }
     90%  { transform: translateX(-50%) scale(1.05); }
-    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1); }
 }
 
-/* --- The Hover State (Triggers the animation) --- */
-
-.social-connect-container:hover .social-icon {
-    pointer-events: auto; /* Make them clickable */
-    
-    /* Trigger the bounce animation. 'forwards' makes it stay at the final state. */
+/* --- The Active State (Triggered by JS) --- */
+.social-connect-container.is-active .social-icon {
+    opacity: 1;
+    pointer-events: auto; /* Make them clickable ONLY when active */
     animation: bounce-in-place 0.5s ease-out forwards;
 }
 
-/* Re-ordered the animation-delay to start from the bottom icon */
-.social-connect-container:hover .social-icon.linkedin  { animation-delay: 0s; }      /* Starts first */
-.social-connect-container:hover .social-icon.instagram { animation-delay: 0.1s; }    /* Starts second */
-.social-connect-container:hover .social-icon.facebook  { animation-delay: 0.2s; }    /* Starts last */
+/* Stagger delay when active */
+.social-connect-container.is-active .social-icon.linkedin  { animation-delay: 0s; }
+.social-connect-container.is-active .social-icon.instagram { animation-delay: 0.1s; }
+.social-connect-container.is-active .social-icon.facebook  { animation-delay: 0.2s; }
 
-
-/* --- Dark Mode Styles --- */
-body.dark-mode .connect-icon {
-    background-color: #333;
-}
-
-/* Note: The dark mode style for the icon itself is no longer needed as it's an image.
-   You can add filters here if you want to adjust the image in dark mode, e.g., filter: invert(1); */
