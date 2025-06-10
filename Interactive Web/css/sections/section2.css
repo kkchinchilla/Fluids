@@ -91,7 +91,7 @@
         width: 85vw;
     }
     .marquee-row img {
-    height: 100px;
+    height: 80px;
     margin: 8px 8px;
     flex-shrink: 0;
     opacity: 0.7;
