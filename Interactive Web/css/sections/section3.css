@@ -1,0 +1,51 @@
+/*
+ * Styles for Section 3
+ */
+
+/* 1. Position the content block in the top-right */
+#section3 {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: flex-start;
+    
+    /* UPDATED: Changed padding to create a fixed 30px right margin */
+    padding: 10vh 10vw 10vh 8vw;
+
+    /* UPDATED: Changed background color */
+    background-color: #F1ECE4;
+}
+
+/* 2. Style the container for the text */
+#section3 .content-wrapper {
+    max-width: 60ch; /* Same max-width as Section 2 for consistency */
+    
+    /* This right-aligns all the text inside the block */
+    text-align: right;
+}
+
+/* 3. Style the main title (same as Section 2) */
+#section3 .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8vw;
+    color: #1a1a1a;
+    line-height: 0.95;
+    margin-right: 10vw;
+    text-align: right;
+}
+
+/* 4. Style the paragraph (same as Section 2) */
+#section3 .section-paragraph {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-top: 25px;
+    margin-right: 10vw;
+}
+
+/* 5. Responsive adjustments for smaller screens */
+@media screen and (max-width: 780px) {
+    #section3 .section-title {
+        font-size: 12vw;
+    }
+}

@@ -1,0 +1,99 @@
+/*
+ * Styles for Section 2 (Corrected Vertical Layout)
+ */
+
+/* 1. Main section container now stacks and aligns content to the top-left */
+#section2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8vh;
+    padding: 3vh 8vw; /* Updated to 3vh top padding */
+    background-color: #F1ECE4;
+    overflow: hidden; /* Keep overflow hidden on the section */
+}
+
+
+
+/* --- Top Text Block --- */
+#section2 .mask-container {
+    max-width: 60ch;
+    overflow: hidden;
+}
+
+#section2 .content-wrapper {
+    transform: translateX(-101%);
+    transition: transform 0.9s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+#section2.active .content-wrapper {
+    transform: translateX(0);
+}
+
+#section2 .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8vw;
+    color: #1a1a1a;
+    line-height: 0.95;
+    margin: 0;
+    text-align: left;
+}
+
+#section2 .section-paragraph {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-top: 25px;
+    text-align: left;
+}
+
+
+/* --- Marquee Styles --- */
+.marquee-container {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow-x: hidden; /* Clip the overflowing rows horizontally */
+    transform: translateY(-30px);
+}
+
+.marquee-row {
+    display: flex;
+    flex-shrink: 0;
+    width: fit-content;
+    will-change: transform;
+}
+
+.marquee-row img {
+    height: 140px;
+    margin: 15px 20px;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+
+/* --- Responsive Styling --- */
+@media screen and (max-width: 780px) {
+    #section2 {
+        gap: 5vh; /* Reduce gap on smaller screens */
+    }
+    #section2 .section-title {
+        max-width: 8ch; 
+        font-size: 12vw;
+    }
+    #section2 .section-paragraph {
+        max-width: 90vw;
+    }
+    .marquee-container{
+        width: 85vw;
+    }
+    .marquee-row img {
+    height: 120px;
+    margin: 10px 10px;
+    flex-shrink: 0;
+    opacity: 0.7;
+    }
+}
