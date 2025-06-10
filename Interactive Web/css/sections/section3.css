@@ -65,9 +65,13 @@
     display: block;
 }
 
-#section3 p {
-    max-width: 1000px;
-    margin-right: 10vw;
+#section3 .section-paragraph {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-top: 25px;
+    text-align: left;
 }
 
 #section3 .inline-gif {
@@ -87,8 +91,8 @@
     #section3 .section-title {
         font-size: 12vw;
     }
-    #section3 p {
-        max-width: 400px;
+    #section3 .section-paragraph {
+        max-width: 90vw;
         margin-right: 15vw;
     }
 }
