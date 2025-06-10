@@ -1,5 +1,5 @@
 /*
- * Styles for Section 3 (Updated GIF Layout)
+ * Styles for Section 3 (With Scroll Animation)
  */
 
 #section3 {
@@ -15,17 +15,24 @@
     text-align: left;
 }
 
+
+/* --- Title Animation Setup --- */
+
 #section3 .section-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 8vw;
     color: #1a1a1a;
     line-height: 0.95;
     margin: 0;
-    overflow-wrap: break-word;
     padding-right: 15vw;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+/* NEW: This is the mask for each line */
+#section3 .mask-container-line {
+    overflow: hidden;
 }
 
 /* These rules align the content on each line of the title */
@@ -33,32 +40,46 @@
 #section3 .title-bottom-line {
     display: flex;
     align-items: center;
+    /* Add the transition for the slide effect */
+    transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1);
 }
+
+/* Set the initial "hidden" positions */
+#section3 .title-top-line {
+    transform: translateX(-101%); /* Start off-screen to the left */
+}
+#section3 .title-bottom-line {
+    transform: translateX(101%);  /* Start off-screen to the right */
+}
+
+/* When the section is .active, slide both lines into view */
+#section3.active .title-top-line,
+#section3.active .title-bottom-line {
+    transform: translateX(0);
+}
+
+
+/* --- Other Styles (no changes needed below) --- */
 
 #section3 .title-line {
     display: block;
 }
 
-#section3 p{
+#section3 p {
     max-width: 1000px;
     margin-right: 10vw;
 }
 
-/* Base style for any GIF inside the title */
 #section3 .inline-gif {
     height: 0.8em; 
     width: auto;
 }
-/* Specific margin for the lightbulb */
 #section3 .lightbulb-gif {
     margin-left: 0.25em; 
 }
-/* Specific margin for the clock */
 #section3 .clock-gif {
     margin-right: 0.25em;
 }
-
-
 
 
 /* Responsive adjustments for smaller screens */
@@ -66,10 +87,8 @@
     #section3 .section-title {
         font-size: 12vw;
     }
-    #section3 .floating-gif {
-        display: none;
-    }
-    #section3 p{
+    #section3 p {
         max-width: 400px;
+        margin-right: 15vw;
     }
 }
