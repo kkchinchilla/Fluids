@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5
+        threshold: 0.1
     };
 
     const sectionObserver = new IntersectionObserver((entries, observer) => {
@@ -114,6 +114,22 @@ document.addEventListener('DOMContentLoaded', () => {
              body.classList.add('dark-mode');
          }
      }
+
+    // --- Interactive Social Connect Logic (Definitive Version) ---
+    const connectContainer = document.querySelector('.social-connect-container');
+    const connectIcon = document.querySelector('.connect-icon');
+
+    if (connectContainer && connectIcon) {
+        // START the animation only when the mouse enters the visible icon
+        connectIcon.addEventListener('mouseenter', () => {
+            connectContainer.classList.add('is-active');
+        });
+
+        // END the animation only when the mouse leaves the entire container stage
+        connectContainer.addEventListener('mouseleave', () => {
+            connectContainer.classList.remove('is-active');
+        });
+    }
 
 });
 
