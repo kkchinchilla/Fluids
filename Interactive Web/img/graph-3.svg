@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1010 1010">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #444;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="graph-20">
+    <g id="graph-20-2" data-name="graph-20">
+      <g>
+        <rect class="cls-1" x="6.3" y="197.2" width="113.8" height="31.2"/>
+        <rect class="cls-1" x="6.3" y="386.8" width="113.8" height="31.2"/>
+        <rect class="cls-1" x="6.3" y="576.4" width="113.8" height="31.2"/>
+        <rect class="cls-1" x="6.3" y="766" width="113.8" height="31.2"/>
+      </g>
+      <polygon class="cls-1" points="1003.7 983 47.7 983 47.7 27 78.8 27 78.8 951.8 1003.7 951.8 1003.7 983"/>
+      <rect class="cls-1" x="193.1" y="263.9" width="157.3" height="602.7"/>
+      <rect class="cls-1" x="468.3" y="369.2" width="157.2" height="497.4"/>
+      <rect class="cls-1" x="743.4" y="194.9" width="157.2" height="671.7"/>
+    </g>
+  </g>
+</svg>
