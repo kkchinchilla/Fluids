@@ -72,6 +72,8 @@
     color: #444;
     margin-top: 25px;
     text-align: left;
+    max-width: 45vw;
+    margin-right: 15vw;
 }
 
 #section3 .inline-gif {
