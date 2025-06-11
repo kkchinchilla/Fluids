@@ -9,7 +9,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     gap: 8vh;
-    padding: 3vh 8vw; /* Updated to 3vh top padding */
+    padding: 10vh 8vw; /* Updated to 7vh top padding */
     background-color: #fff;
     overflow: hidden; /* Keep overflow hidden on the section */
 }
