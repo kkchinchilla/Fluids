@@ -1,395 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fluids Control</title>
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link rel="stylesheet" href="https://use.typekit.net/dgx7nvl.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Lexend:wght@100..900&family=Zen+Old+Mincho&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karen Chang - Interactive Web Examples</title>
 
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    
+    <link rel="stylesheet" href="css/sections/section1.css">
+    <link rel="stylesheet" href="css/sections/section2.css">
+    <link rel="stylesheet" href="css/sections/section3.css">
+    <link rel="stylesheet" href="css/sections/section4.css">
+    </head>
 <body>
-  <header>
-    <div class="top-bar">
-      <h4><i class="fa-solid fa-trophy"></i>Your Trusted Partner for Advanced Fluid Control Solutions</h4>
-      <p><a href="https://docs.google.com/presentation/d/1Aep9SpgPAamtbdVjIIy9AWGNb3g6E1W5aBcDHPubuAM/edit?usp=sharing" target="_blank">Eng</a> / <a href="https://docs.google.com/presentation/d/1nZTSa2JbWuy2IQC0wPG5NCC26er5CxdEF7CvAQWAFw4/edit?usp=sharing" target="_blank">繁中</a> / <a href="#">简中</a></p>
-    </div>
-    <nav class="main-nav">
-      <div class="logo"><img src="images/logo_fluids.png" alt="logo"></div>
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </div>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <a href="#" id="about-link">About Us</a>
-          <div class="dropdown-menu" id="about-dropdown">
-            <div class="dropdown-columns">
-              <div>
-                <ul>
-                  <li><a href="#">Company Profile</a></li>
-                  <li><a href="#">Business Philosophy</a></li>
-                  <li><a href="#">Our Customers</a></li>
-                </ul>
-              </div>
+
+    <nav id="side-nav">
+        <div class="nav-header">
+            <div class="logo">Karen Chang©</div>
+            <h1 class="nav-title">INTERACTIVE<br>WEB EXAMPLES</h1>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="https://kkchinchilla.github.io/Fluids/Water-Color/index.html" target="_blank" rel="noopener noreferrer"><span class="char" style="--i: 0;">P</span><span class="char" style="--i: 1;">a</span><span class="char" style="--i: 2;">i</span><span class="char" style="--i: 3;">n</span><span class="char" style="--i: 4;">t</span><span class="char" style="--i: 5;">&nbsp;</span><span class="char" style="--i: 6;">B</span><span class="char" style="--i: 7;">r</span><span class="char" style="--i: 8;">u</span><span class="char" style="--i: 9;">s</span><span class="char" style="--i: 10;">h</span></a></li>
+            <li><a href="https://kkchinchilla.github.io/Fluids/Bubbles/index.html" target="_blank" rel="noopener noreferrer"><span class="char" style="--i: 0;">Z</span><span class="char" style="--i: 1;">o</span><span class="char" style="--i: 2;">o</span><span class="char" style="--i: 3;">m</span><span class="char" style="--i: 4;">e</span><span class="char" style="--i: 5;">d</span><span class="char" style="--i: 6;">-</span><span class="char" style="--i: 7;">I</span><span class="char" style="--i: 8;">n</span><span class="char" style="--i: 9;">&nbsp;</span><span class="char" style="--i: 10;">N</span><span class="char" style="--i: 11;">a</span><span class="char" style="--i: 12;">v</span></a></li>
+            <li><a href="https://kkchinchilla.github.io/Fluids/Video-Cards/index.html" target="_blank" rel="noopener noreferrer"><span class="char" style="--i: 0;">V</span><span class="char" style="--i: 1;">i</span><span class="char" style="--i: 2;">d</span><span class="char" style="--i: 3;">e</span><span class="char" style="--i: 4;">o</span><span class="char" style="--i: 5;">&nbsp;</span><span class="char" style="--i: 6;">B</span><span class="char" style="--i: 7;">a</span><span class="char" style="--i: 8;">c</span><span class="char" style="--i: 9;">k</span><span class="char" style="--i: 10;">g</span><span class="char" style="--i: 11;">r</span><span class="char" style="--i: 12;">o</span><span class="char" style="--i: 13;">u</span><span class="char" style="--i: 14;">n</span><span class="char" style="--i: 15;">d</span><span class="char" style="--i: 16;">s</span></a></li>
+            <li><a href="https://kkchinchilla.github.io/Fluids/Cursor-Mask/index.html" target="_blank" rel="noopener noreferrer"><span class="char" style="--i: 0;">C</span><span class="char" style="--i: 1;">u</span><span class="char" style="--i: 2;">r</span><span class="char" style="--i: 3;">s</span><span class="char" style="--i: 4;">o</span><span class="char" style="--i: 5;">r</span><span class="char" style="--i: 6;">&nbsp;</span><span class="char" style="--i: 7;">M</span><span class="char" style="--i: 8;">a</span><span class="char" style="--i: 9;">s</span><span class="char" style="--i: 10;">k</span></a></li>
+            <li><a href="https://kkchinchilla.github.io/Fluids/3D/index.html" target="_blank" rel="noopener noreferrer"><span class="char" style="--i: 0;">3</span><span class="char" style="--i: 1;">D</span><span class="char" style="--i: 2;">&nbsp;</span><span class="char" style="--i: 3;">B</span><span class="char" style="--i: 4;">e</span><span class="char" style="--i: 5;">h</span><span class="char" style="--i: 6;">a</span><span class="char" style="--i: 7;">v</span><span class="char" style="--i: 8;">i</span><span class="char" style="--i: 9;">o</span><span class="char" style="--i: 10;">r</span><span class="char" style="--i: 11;">s</span></a></li>
+            <li><a href="https://kkchinchilla.github.io/Fluids/Folders/index.html" target="_blank" rel="noopener noreferrer"><span class="char" style="--i: 0;">F</span><span class="char" style="--i: 1;">o</span><span class="char" style="--i: 2;">l</span><span class="char" style="--i: 3;">d</span><span class="char" style="--i: 4;">e</span><span class="char" style="--i: 5;">r</span><span class="char" style="--i: 6;">&nbsp;</span><span class="char" style="--i: 7;">S</span><span class="char" style="--i: 8;">t</span><span class="char" style="--i: 9;">r</span><span class="char" style="--i: 10;">u</span><span class="char" style="--i: 11;">c</span><span class="char" style="--i: 12;">t</span><span class="char" style="--i: 13;">u</span><span class="char" style="--i: 14;">r</span><span class="char" style="--i: 15;">e</span></a></li>
+        </ul>
+
+        <div class="nav-footer-controls">
+            <button id="mode-toggle" aria-label="Toggle Light/Dark Mode">
+                <svg class="light-mode-icon" width="40" height="24" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="20" rx="10" fill="#aaa39d"/><circle cx="12" cy="12" r="8" fill="white"/></svg>
+                <svg class="dark-mode-icon" width="40" height="24" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="38" height="22" rx="11" fill="#333" stroke="white" stroke-width="2"/><circle cx="28" cy="12" r="8" fill="white"/></svg>
+            </button>
+            <div class="scroll-progress-container">
+                <svg class="progress-ring" width="75" height="75"><circle class="progress-ring__track" fill="transparent" r="33.75" cx="37.5" cy="37.5"/><circle class="progress-ring__indicator" fill="transparent" r="33.75" cx="37.5" cy="37.5"/><text class="progress-ring__percentage" x="37.5" y="39.4" text-anchor="middle">0%</text></svg>
             </div>
-          </div>
-        </li>
-        
-        <li class="dropdown">
-          <a href="#" id="project-link">Project Record</a>
-          <div class="dropdown-menu" id="project-dropdown">
-            <div class="dropdown-columns">
-              <div>
-                <ul>
-                  <li><a href="#">2016</a></li>
-                  <li><a href="#">2017</a></li>
-                  <li><a href="#">2018</a></li>
-                  <li><a href="#">2019</a></li>
-                </ul>
-              </div>
-              <div>
-                <ul>
-                  <li><a href="#">2020</a></li>
-                  <li><a href="#">2021</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="#" id="product-link">Products</a>
-          <div class="dropdown-menu" id="product-dropdown">
-            <div class="dropdown-columns">
-              <div>
-                <ul>
-                  <li><a href="#">Valve</a></li>
-                  <li><a href="#">Instrument</a></li>
-                  <li><a href="#">System</a></li>
-                  <li><a href="#">Brand</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="#" id="service-link">Service</a>
-          <div class="dropdown-menu" id="service-dropdown">
-            <div class="dropdown-columns">
-              <div>
-                <ul>
-                  <li><a href="#">Our Services</a></li>
-                  <li><a href="#">Certification</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="#" id="contact-link">Contact Us</a>
-          <div class="dropdown-menu" id="contact-dropdown">
-            <div class="dropdown-columns">
-              <div>
-                <ul>
-                  <li><a href="#">Location</a></li>
-                  <li><a href="#">Inquiry</a></li>
-                  <li><a href="#">Career</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <div class="nav-icons">
-        <a href="https://docs.google.com/presentation/d/1TriZblGfNr0YH7J_MtSlCOFb5r8LIZDVz0keNIlHZmI/edit?slide=id.g35e59f1d5a6_0_18#slide=id.g35e59f1d5a6_0_18" target="_blank"><i class="fa-solid fa-magnifying-glass"></i></a>
-      </div>
+        </div>
     </nav>
-  </header>
 
-  <section class="hero">
-    <div class="carousel-container">
-      <div class="carousel-slide active" style="background-image: url('images/hero-quality.jpg');">
-        <div class="hero-content">
-          <h1>World-Class Quality</h1>
-          <p>Meticulously engineered quality for durable, reliable fluid control systems, ensuring your operational excellence.</p>
-        </div>
-      </div>
-      <div class="carousel-slide" style="background-image: url('images/hero-service.jpg');">
-        <div class="hero-content">
-          <h1>World-Class Service</h1>
-          <p>Dedicated service ensuring your fluid systems achieve peak performance and lasting reliability with expert support.</p>
-          </div>
-      </div>
-      <div class="carousel-slide" style="background-image: url('images/hero-products.jpg');">
-        <div class="hero-content">
-          <h1>World-Class Products</h1>
-          <p>Advanced valves, instruments, and systems: innovative fluid control products for your operational efficiency and success.</p>
-        </div>
-      </div>
-    </div>
-    <div class="hero-chevron" onclick="scrollToNextSection()">
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
-  </section>
-
-  <section class="info-cards-section">
-    <h2>Our Products</h2>
-    <div class="info-cards-container">
-      <div class="info-card">
-        <div class="info-card-icon">
-          <i class="fa-solid fa-screwdriver-wrench"></i>
-        </div>
-        <h3>Valves</h3>
-        <p>Essential components for precise fluid control, regulation, and safety in diverse industrial processes.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-icon">
-          <i class="fa-solid fa-ruler"></i>
-        </div>
-        <h3>Instruments</h3>
-        <p>Sophisticated devices for accurate measurement, monitoring, and control of critical process variables.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-icon">
-          <i class="fa-solid fa-gear"></i>
-        </div>
-        <h3>Systems</h3>
-        <p>Comprehensive engineered solutions and integrated fluid handling systems for optimized operational performance.
-      </div>
-      <div class="info-card">
-        <div class="info-card-icon">
-          <i class="fa-solid fa-circle-user"></i>
-        </div>
-        <h3>Brands</h3>
-        <p>Access products from globally recognized manufacturers, offering a wide selection of trusted fluid control technologies.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats-section">
-    <div class="stats-container">
-      <div class="stat-item">
-        <span class="stat-number" data-target="31">0</span>
-        <p class="stat-label">Years</p>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="521">0</span>
-        <p class="stat-label">Projects</p>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="1536">0</span>
-        <p class="stat-label">Clients</p>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="80" data-suffix="+">0</span>
-        <p class="stat-label">Workers</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="highlight">
-    <div class="highlight-content">
-      <div class="highlight-image">
-        <img src="images/professional.jpg" alt="Professional Services" />
-      </div>
-      <div class="highlight-text">
-        <h2>Professional Services</h2>
-        <p>
-          <img src="images/icon-1.svg">Dust explosion preventing & fire detection system <br>
-          <img src="images/icon-2.svg">Vibrating condition monitoring solution<br>
-          <img src="images/icon-3.svg">Pressure relief & protection solution<br>
-          <img src="images/icon-4.svg">Valve automation service<br>
-          <img src="images/icon-5.svg">Valve diagnosis evaluation<br>
-        </p>
-        <a href="#">View More →</a>
-      </div>
-    </div>
-  </section>
-
-<section class="news-carousel-section">
-    <h2>Learn & Discover</h2>
-    <div class="news-carousel-wrapper">
-      <button class="news-carousel-nav prev" aria-label="Previous set of news">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <div class="news-carousel-container">
-        <div class="news-carousel-track">
-          <div class="news-card" style="background-image: url('images/post-1.jpg');">
-            <div class="news-card-content">
-              <div class="news-card-meta">
-                <span class="news-card-date">Mar 07, 2023</span>
-              </div>
-              <h3 class="news-card-title">Vision Turbine Meters: Industry Uses</h3>
-              <p class="news-card-excerpt">Suits low-viscosity (≤16 cSt) liquids non-corrosive to internal components.</p>
-              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+    <main id="main-container">
+        <section id="section1" class="content-section" data-section="1">
+            <div class="title-container">
+                <p class="subtitle">What is</p>
+                <h1 class="main-title slot-machine-title">
+                    <span class="letter" style="--delay: 0;" data-letter="I"><span class="letter-inner">I</span></span><span class="letter" style="--delay: 1;" data-letter="N"><span class="letter-inner">N</span></span><span class="letter" style="--delay: 2;" data-letter="T"><span class="letter-inner">T</span></span><span class="letter" style="--delay: 3;" data-letter="E"><span class="letter-inner">E</span></span><span class="letter" style="--delay: 4;" data-letter="R"><span class="letter-inner">R</span></span><span class="letter" style="--delay: 5;" data-letter="A"><span class="letter-inner">A</span></span><span class="letter" style="--delay: 6;" data-letter="C"><span class="letter-inner">C</span></span><span class="letter" style="--delay: 7;" data-letter="T"><span class="letter-inner">T</span></span><span class="letter" style="--delay: 8;" data-letter="I"><span class="letter-inner">I</span></span><span class="letter" style="--delay: 9;" data-letter="V"><span class="letter-inner">V</span></span><span class="letter" style="--delay: 10;" data-letter="E"><span class="letter-inner">E</span></span>
+                    <span class="line-break"></span>
+                    <span class="letter" style="--delay: 11;" data-letter="W"><span class="letter-inner">W</span></span><span class="letter" style="--delay: 12;" data-letter="E"><span class="letter-inner">E</span></span><span class="letter" style="--delay: 13;" data-letter="B"><span class="letter-inner">B</span></span>
+                    <span class="letter-space"></span>
+                    <span class="letter" style="--delay: 14;" data-letter="D"><span class="letter-inner">D</span></span><span class="letter" style="--delay: 15;" data-letter="E"><span class="letter-inner">E</span></span><span class="letter" style="--delay: 16;" data-letter="S"><span class="letter-inner">S</span></span><span class="letter" style="--delay: 17;" data-letter="I"><span class="letter-inner">I</span></span><span class="letter" style="--delay: 18;" data-letter="G"><span class="letter-inner">G</span></span><span class="letter" style="--delay: 19;" data-letter="N"><span class="letter-inner">N</span></span>
+                </h1>
             </div>
-          </div>
-          <div class="news-card" style="background-image: url('images/post-2.jpg');">
-            <div class="news-card-content">
-              <div class="news-card-meta">
-                <span class="news-card-date">Mar 07, 2023</span>
-              </div>
-              <h3 class="news-card-title">Vision Turbine Meters: Operation & Benefits</h3>
-              <p class="news-card-excerpt">Liquid spins turbine; sensor pulses (K-factor) are proportional to flow rate.</p>
-              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="scroll-draw-container">
+                <!-- <svg id="scroll-arrow-svg" width="100%" height="100%" viewBox="0 0 2000 280" preserveAspectRatio="none"><path d="M 0 60 Q 50 0, 100 60 T 200 60 T 300 60 T 400 60 T 500 60 T 600 60 T 700 60 T 800 60 T 900 60 T 1000 60 T 1100 60 T 1200 60 T 1300 60 T 1400 60 T 1500 60 T 1600 60 T 1700 60 T 1800 60 T 1900 60 T 2000 60" vector-effect="non-scaling-stroke"/></svg> -->
             </div>
-          </div>
-          <div class="news-card" style="background-image: url('images/post-3.jpg');">
-            <div class="news-card-content">
-              <div class="news-card-meta">
-                <span class="news-card-date">Mar 02, 2023</span>
-              </div>
-              <h3 class="news-card-title">Vision Turbine Meter: Swiss Precision</h3>
-              <p class="news-card-excerpt">Turbine flowmeter's rotor vanes convert fluid energy into rotational energy.</p>
-              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+        </section>
+        
+        <section id="section3" class="content-section" data-section="3">
+            <div class="content-wrapper">
+                <h1 class="section-title">
+                    <div class="mask-container-line">
+                        <span class="title-top-line">
+                            <span class="title-line">MICRO</span>
+                            <img src="img/lightbulb.gif" alt="Lightbulb GIF" class="inline-gif lightbulb-gif">
+                        </span>
+                    </div>
+                    <div class="mask-container-line">
+                        <span class="title-bottom-line">
+                            <img src="img/clock.gif" alt="Clock GIF" class="inline-gif clock-gif">
+                            <span class="title-line">INTERACTIONS</span>
+                        </span>
+                    </div>
+                </h1>
+                <p class="section-paragraph">
+                    Micro-interactions are small, animated responses to user actions, like a button clicking back or a switch sliding. These vital details provide instant feedback, guide users, and add a layer of polish to the experience, making any interface feel more alive and responsive.
+                </p>
+                <img src="img/micro.gif" alt="Micro-interactions GIF" class="section3-bottom-gif">
             </div>
-          </div>
-          <div class="news-card" style="background-image: url('images/post-4.jpg');">
-            <div class="news-card-content">
-              <div class="news-card-meta">
-                <span class="news-card-date">Mar 02, 2023</span>
-              </div>
-              <h3 class="news-card-title">Oval Gear Meters: Designed for High Quality and Precision</h3>
-              <p class="news-card-excerpt">Oval gears rotate, displacing fixed fluid volumes, measuring total flow.</p>
-              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+        </section>
+        <section id="section4" class="content-section" data-section="4">
+            <div class="video-background-wrapper">
+                <video autoplay loop muted playsinline class="background-video">
+                    <source src="https://res.cloudinary.com/dm2dqwjtz/video/upload/q_auto:good/mxcwhwv0n8baydscixsk.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-          </div>
-          <div class="news-card" style="background-image: url('images/post-5.jpg');">
-            <div class="news-card-content">
-              <div class="news-card-meta">
-                <span class="news-card-date">Mar 02, 2023</span>
-              </div>
-              <h3 class="news-card-title">Electromagnetic Meters: Top Liquid Choice</h3>
-              <p class="news-card-excerpt">Electromagnetic meter: conductive liquid in field creates voltage proportional to velocity.</p>
-              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+
+            <div class="mask-container">
+                <div class="content-wrapper">
+                    <h1 class="section-title">IMMERSIVE VISUALS</h1>
+                    <p class="section-paragraph">Video backgrounds and interactive 3D models also contribute to a more captivating visual journey.</p>
+                </div>
             </div>
-          </div>
-          <div class="news-card" style="background-image: url('images/post-6.jpg');">
-            <div class="news-card-content">
-              <div class="news-card-meta">
-                <span class="news-card-date">Mar 02, 2023</span>
-              </div>
-              <h3 class="news-card-title">Hedland Flow Meters: High Performance, Low Cost</h3>
-              <p class="news-card-excerpt">Badger Meter's Hedland® series: built for demanding multi-industry applications.</p>
-              <a href="#" class="news-card-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+        </section>
+
+        <section id="section2" class="content-section" data-section="2">
+            <div class="mask-container">
+                <div class="content-wrapper">
+                    <h1 class="section-title">DYNAMIC CONTENT</h1>
+                    <p class="section-paragraph">Information that changes based on user behavior, preferences, or real-time data. This can include personalized recommendations, live news feeds, or updating charts.</p>
+                </div>
             </div>
-          </div>
+
+            <div class="marquee-container">
+                <div class="marquee-row" id="marquee-row-1">
+                    <img src="img/graph-1.svg" alt="Graph 1"><img src="img/graph-4.svg" alt="Graph 4"><img src="img/graph-10.svg" alt="Graph 10"><img src="img/graph-3.svg" alt="Graph 3"><img src="img/graph-6.svg" alt="Graph 6">
+                    <img src="img/graph-1.svg" alt="" aria-hidden="true"><img src="img/graph-4.svg" alt="" aria-hidden="true"><img src="img/graph-10.svg" alt="" aria-hidden="true"><img src="img/graph-3.svg" alt="" aria-hidden="true"><img src="img/graph-6.svg" alt="" aria-hidden="true">
+                    <img src="img/graph-1.svg" alt="" aria-hidden="true"><img src="img/graph-4.svg" alt="" aria-hidden="true"><img src="img/graph-10.svg" alt="" aria-hidden="true"><img src="img/graph-3.svg" alt="" aria-hidden="true"><img src="img/graph-6.svg" alt="" aria-hidden="true">
+                </div>
+                <div class="marquee-row" id="marquee-row-2">
+                    <img src="img/graph-9.svg" alt="Graph 9"><img src="img/graph-5.svg" alt="Graph 5"><img src="img/graph-7.svg" alt="Graph 7"><img src="img/graph-8.svg" alt="Graph 8"><img src="img/graph-2.svg" alt="Graph 2">
+                    <img src="img/graph-9.svg" alt="" aria-hidden="true"><img src="img/graph-5.svg" alt="" aria-hidden="true"><img src="img/graph-7.svg" alt="" aria-hidden="true"><img src="img/graph-8.svg" alt="" aria-hidden="true"><img src="img/graph-2.svg" alt="" aria-hidden="true">
+                    <img src="img/graph-9.svg" alt="" aria-hidden="true"><img src="img/graph-5.svg" alt="" aria-hidden="true"><img src="img/graph-7.svg" alt="" aria-hidden="true"><img src="img/graph-8.svg" alt="" aria-hidden="true"><img src="img/graph-2.svg" alt="" aria-hidden="true">
+                </div>
+            </div>
+        </section>
+
+        <section id="section5" class="content-section" data-section="5"><h2>Section 5</h2></section>
+    </main>
+    
+    <div class="fixed-search-bar">
+            <div class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            <div class="search-input-wrapper"><input type="text" class="search-input" placeholder="Search..."></div>
         </div>
-      </div>
-      <button class="news-carousel-nav next" aria-label="Next set of news">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-      <div class="news-carousel-indicators">
+
+        <div class="social-connect-container">
+        <div class="connect-icon">
+            <img src="img/share.png" alt="Connect" width="30" height="30">
+        </div>
+        <div class="social-icons">
+            <a href="YOUR_FACEBOOK_LINK" target="_blank" rel="noopener noreferrer" class="social-icon facebook">
+                <img src="img/facebook.png" alt="Facebook" width="30" height="30">
+            </a>
+            <a href="YOUR_INSTAGRAM_LINK" target="_blank" rel="noopener noreferrer" class="social-icon instagram">
+                <img src="img/instagram.png" alt="Instagram" width="30" height="30">
+            </a>
+            <a href="YOUR_LINKEDIN_LINK" target="_blank" rel="noopener noreferrer" class="social-icon linkedin">
+                <img src="img/linkedIn.png" alt="LinkedIn" width="30" height="30">
+            </a>
         </div>
     </div>
-  </section>
 
-  <section class="showroom-remodel">
-    <h2>Our Partners</h2>
-    <div class="showroom-carousel-container">
-      <div class="showroom-carousel-track">
-        <div class="showroom-card"><img src="images/1.jpg" alt="Partner 1"></div>
-        <div class="showroom-card"><img src="images/2.jpg" alt="Partner 2"></div>
-        <div class="showroom-card"><img src="images/3.jpg" alt="Partner 3"></div>
-        <div class="showroom-card"><img src="images/4.jpg" alt="Partner 4"></div>
-        <div class="showroom-card"><img src="images/5.jpg" alt="Partner 5"></div>
-        <div class="showroom-card"><img src="images/6.jpg" alt="Partner 6"></div>
-        <div class="showroom-card"><img src="images/7.jpg" alt="Partner 7"></div>
-        <div class="showroom-card"><img src="images/8.jpg" alt="Partner 8"></div>
-        <div class="showroom-card"><img src="images/9.jpg" alt="Partner 9"></div>
-        <div class="showroom-card"><img src="images/10.jpg" alt="Partner 10"></div>
-        <div class="showroom-card"><img src="images/11.jpg" alt="Partner 11"></div>
-        <div class="showroom-card"><img src="images/12.jpg" alt="Partner 12"></div>
-        <div class="showroom-card"><img src="images/13.jpg" alt="Partner 13"></div>
-        <div class="showroom-card"><img src="images/14.jpg" alt="Partner 14"></div>
-        <div class="showroom-card"><img src="images/15.jpg" alt="Partner 15"></div>
-        <div class="showroom-card"><img src="images/12.jpg" alt="Partner 16"></div>
-        <div class="showroom-card"><img src="images/17.jpg" alt="Partner 17"></div>
-        <div class="showroom-card"><img src="images/18.jpg" alt="Partner 18"></div>
-        <div class="showroom-card"><img src="images/19.jpg" alt="Partner 19"></div>
-        <div class="showroom-card"><img src="images/1.jpg" alt="Partner 1"></div>
-        <div class="showroom-card"><img src="images/2.jpg" alt="Partner 2"></div>
-        <div class="showroom-card"><img src="images/3.jpg" alt="Partner 3"></div>
-        <div class="showroom-card"><img src="images/4.jpg" alt="Partner 4"></div>
-        <div class="showroom-card"><img src="images/5.jpg" alt="Partner 5"></div>
-        <div class="showroom-card"><img src="images/6.jpg" alt="Partner 6"></div>
-        <div class="showroom-card"><img src="images/7.jpg" alt="Partner 7"></div>
-        <div class="showroom-card"><img src="images/8.jpg" alt="Partner 8"></div>
-        <div class="showroom-card"><img src="images/9.jpg" alt="Partner 9"></div>
-        <div class="showroom-card"><img src="images/10.jpg" alt="Partner 10"></div>
-        <div class="showroom-card"><img src="images/11.jpg" alt="Partner 11"></div>
-        <div class="showroom-card"><img src="images/12.jpg" alt="Partner 12"></div>
-        <div class="showroom-card"><img src="images/13.jpg" alt="Partner 13"></div>
-        <div class="showroom-card"><img src="images/14.jpg" alt="Partner 14"></div>
-        <div class="showroom-card"><img src="images/15.jpg" alt="Partner 15"></div>
-        <div class="showroom-card"><img src="images/16.jpg" alt="Partner 16"></div>
-        <div class="showroom-card"><img src="images/17.jpg" alt="Partner 17"></div>
-        <div class="showroom-card"><img src="images/18.jpg" alt="Partner 18"></div>
-        <div class="showroom-card"><img src="images/19.jpg" alt="Partner 19"></div>
-      </div>
-    </div>
-    <a href="#">View More →</a>
-  </section>
-
-
-
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-column">
-        <h4>HQ Taipei</h4>
-        <ul>
-          <li><a href="#">21F., No.65, Sec. 2, Dunhua S. Rd., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)</a></li>
-          <li><a href="#">TEL : 02-27093389</a></li>
-          <li><a href="#">FAX : 02-27093385</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>Branch Kaohsiung</h4>
-        <ul>
-          <li><a href="#">11F.-1, No.439, Dashun 1st Rd., Gushan Dist., Kaohsiung City 804, Taiwan (R.O.C.)</a></li>
-          <li><a href="#">TEL : 07-5554485</a></li>
-          <li><a href="#">FAX : 07-5554487</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>RenWu Service Center</h4>
-        <ul>
-          <li><a href="#">No. 321, Sec. 2, Wenxue Rd., Renwu Dist., Kaohsiung City 814015 , Taiwan (R.O.C.)</a></li>
-          <li><a href="#">TEL : 07-3730000</a></li>
-          <li><a href="#">FAX : 07-3730579</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>Email</h4>
-        <ul>
-          <li><a href="#">fluidscontrol@fluids.com.tw</a></li>
-        </ul>
-      </div>
-
-      <!-- <div class="footer-column">
-        <h4>Contact Us</h4>
-        <form class="newsletter-form">
-          <input type="email" placeholder="your-email@example.com" style="color:#fff" />
-          <button type="submit">→</button>
-        </form>
-      </div> -->
-    </div>
-
-    <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fa-solid fa-chevron-up"></i></button>
-
-    <div class="footer-bottom">
-      <p>© 2025. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="js/sections/section1.js"></script>
+    <script src="js/sections/section2.js"></script>
+    <script src="js/sections/section3.js"></script>
+    <script src="js/sections/section4.js"></script>
+    <script src="js/sections/section5.js"></script>
+    <script src="js/sections/section6.js"></script>
+    <script src="js/sections/section7.js"></script>
+    <script src="js/sections/section8.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
