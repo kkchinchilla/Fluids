@@ -87,9 +87,29 @@
     margin-right: 0.25em;
 }
 
+#section3 .section3-bottom-gif {
+    position: absolute;
+    top: 43vh; /* Distance from the bottom */
+    left: 15vw;
+    transform: translateX(-50%); /* Horizontally center the image */
+    max-width: 70vw; /* Prevent the GIF from being too large */
+    height: auto;
+    border: 1px solid #999;
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width: 1070px){
+    #section3 .section3-bottom-gif{
+        top: 30vh;
+        left: 0;
+        max-width: 60vw;
+    }
+}
+
 
 /* Responsive adjustments for smaller screens */
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 836px) {
     #section3 .section-title {
         font-size: 12vw;
     }
@@ -97,4 +117,21 @@
         max-width: 90vw;
         margin-right: 15vw;
     }
+    #section3 .section3-bottom-gif{
+        transform: translateX(0);
+        max-width: 90vw;
+    }
 }
+
+@media screen and (max-width: 480px){
+    #section3 .section3-bottom-gif{
+        top: 47vh;
+        left: -3vw;
+    }
+}
+
+
+
+
+
+
