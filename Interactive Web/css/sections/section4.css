@@ -1,51 +1,52 @@
 /*
- * Styles for Section 4 (Video Background)
+ * Styles for Section 4 (Final Version)
  */
 
-/* 1. Main section container */
 #section4 {
     display: flex;
-    /* UPDATED: Horizontally centers the content block */
     justify-content: center; 
-    /* UPDATED: Vertically centers the content block */
     align-items: center;
-    
     padding: 10vh 8vw;
     position: relative;
     overflow: hidden;
 }
 
-/* 2. The video background styling */
-#section4 .background-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 0; /* Place it in the far back */
-}
-
-/* 3. NEW: Dark overlay for text readability */
-#section4::before {
-    content: '';
+#section4 .video-background-wrapper {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3); /* 30% black overlay */
-    z-index: 1; /* Sits between the video and the text content */
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden; /* This is essential */
+    object-fit: cover; 
 }
 
-/* 4. Text block container styling */
+#section4 .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    
+    /* This is the key property that removes the grey bars */
+    object-fit: cover; 
+}
+
+/* Ensure the overlay and text container are layered correctly on top */
+#section4::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
 #section4 .mask-container {
     overflow: hidden;
-    /* Add a z-index to ensure it sits on top of the overlay */
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 
 #section4 .content-wrapper {
@@ -57,13 +58,10 @@
     transform: translateX(0);
 }
 
-
-/* --- Text Styling --- */
-
 #section4 .section-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 8vw;
-    color: #fff; /* UPDATED: Text color to white */
+    color: #fff;
     line-height: 0.95;
     margin: 0;
     overflow-wrap: break-word;
@@ -73,11 +71,10 @@
     font-family: 'Manrope', sans-serif;
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #fff; /* UPDATED: Text color to white */
+    color: #fff;
     margin-top: 25px;
     max-width: 45vw;
 }
-
 
 /* --- Responsive Styling --- */
 @media screen and (max-width: 780px) {
