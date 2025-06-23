@@ -1,0 +1,429 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Noto Sans HK', sans-serif;
+    background-color: #0c1014;
+    color: white;
+    min-height: 100vh;
+    position: relative;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 30%, rgba(64, 224, 208, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Vertical lines for desktop view */
+.line-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.line-container::before,
+.line-container::after {
+    content: '';
+    position: absolute;
+    top: 25%;
+    width: 1.5px;
+    height: 50%;
+    background-image: linear-gradient(to bottom, transparent, #7FCEC3 50%, transparent);
+}
+
+.line-container::before {
+    left: 20%;
+}
+
+.line-container::after {
+    right: 20%;
+    background-image: linear-gradient(to bottom, transparent, #D68EAD 50%, transparent);
+}
+
+
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    z-index: 2;
+}
+
+/* Main Logo */
+.logo-container {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    z-index: 100;
+}
+
+.main-logo {
+    width: 200px;
+    height: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.main-logo:hover {
+    opacity: 1;
+}
+
+/* Main container for content */
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* General Navigation Node Styling */
+.nav-node {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+    font-size: 18px;
+    font-weight: 400;
+    animation: float 3s ease-in-out infinite;
+    text-decoration: none;
+    color: white;
+}
+
+/* Targeting only the nodes that are links */
+a.nav-node {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+a.nav-node:hover {
+    opacity: 1;
+}
+
+
+.nav-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+}
+
+.icon-teal {
+    width: 28px;
+    height: 28px;
+}
+
+.icon-teal img {
+    width: 18px;
+    height: auto;
+}
+
+.icon-pink {
+    width: 28px;
+    height: 28px;
+}
+
+.icon-pink img {
+    width: 18px;
+    height: auto;
+}
+
+/* Specific positions for each navigation node on DESKTOP */
+#projects {
+    top: 25%;
+    left: 20%;
+    transform: translateX(-125%);
+    --initial-transform: translateX(-125%);
+    flex-direction: row-reverse; /* [Text] [Icon] */
+}
+#supply {
+    bottom: 25%;
+    left: 20%;
+    transform: translateX(-125%);
+    --initial-transform: translateX(-125%);
+    flex-direction: row-reverse; /* [Text] [Icon] */
+}
+#centrium {
+    top: 25%;
+    right: 20%;
+    transform: translate(115%, -50%);
+    --initial-transform: translate(115%, -50%);
+}
+#marketing {
+    top: 41.67%;
+    right: 20%;
+    transform: translate(125%, -50%);
+    --initial-transform: translate(125%, -50%);
+}
+#maintenance {
+    top: 58.33%;
+    right: 20%;
+    transform: translate(125%, -50%);
+    --initial-transform: translate(125%, -50%);
+}
+#diagnostics {
+    top: 75%;
+    right: 20%;
+    transform: translate(125%, -50%);
+    --initial-transform: translate(125%, -50%);
+}
+
+
+.centrium-logo {
+    width: 28px;
+    height: 28px;
+}
+
+/* Center Content */
+.center-content {
+    text-align: center;
+    max-width: 600px;
+    z-index: 5;
+    position: relative;
+}
+
+.unlock-text {
+    margin-bottom: 40px;
+}
+
+.logo-mark {
+    width: 80px;
+    height: auto;
+    opacity: 0.8;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.main-title {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.title-line {
+    white-space: nowrap;
+}
+
+.main-title .highlight {
+    background: linear-gradient(135deg, #7FCEC3, #009d88);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-bottom: 50px;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: white;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+/* Animated Lines */
+.animated-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.line {
+    position: absolute;
+    background: linear-gradient(to bottom, transparent, rgba(64, 224, 208, 0.3), transparent);
+    width: 1px;
+    animation: moveLine 4s linear infinite;
+}
+
+.line:nth-child(1) {
+    left: 30%;
+    height: 200px;
+    animation-delay: 0s;
+}
+
+.line:nth-child(2) {
+    left: 50%;
+    height: 150px;
+    animation-delay: 1s;
+}
+
+.line:nth-child(3) {
+    left: 70%;
+    height: 180px;
+    animation-delay: 2s;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: var(--initial-transform) translateY(0px); }
+    50% { transform: var(--initial-transform) translateY(-10px); }
+    100% { transform: var(--initial-transform) translateY(0px); }
+}
+
+@keyframes moveLine {
+    0% {
+        top: -200px;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+
+
+/* Responsive Design for Mobile */
+@media (max-width: 1280px) {
+    .line-container, .animated-lines {
+        display: none;
+    }
+
+    .logo-container {
+        position: static;
+        background-color: #1e2328;
+        padding: 20px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .main-logo {
+        width: 160px;
+    }
+
+    .container {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center; /* Center the nav-node blocks */
+        padding-top: 40px;
+        min-height: auto;
+    }
+
+    #projects {
+        margin-top: 40px;
+    }
+
+    #supply {
+        margin-bottom: 40px;
+    }
+
+    #marketing {
+        margin-top: 20px;
+    }
+    
+
+    .nav-node {
+        position: static;
+        transform: none !important;
+        animation: none !important;
+        width: 250px; /* Give a fixed width to align content */
+        justify-content: flex-start; /* Align content to the left within the node */
+        margin-bottom: 25px;
+        flex-direction: row !important; /* Force all to [Icon] [Text] */
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .center-content {
+        order: 1;
+        text-align: center;
+        margin-bottom: 40px;
+        max-width: 300px;
+        z-index: 5;
+        position: relative;
+    }
+    #projects { order: 2; }
+    #supply { order: 3; }
+    #centrium { order: 4; margin-top: 20px; }
+    #marketing { order: 5; }
+    #maintenance { order: 6; }
+    #diagnostics { order: 7; }
+}
+
+@media (max-width: 480px) {
+
+    .center-content {
+        order: 1;
+        text-align: center;
+        margin-bottom: 40px;
+        max-width: 200px;
+        z-index: 5;
+        position: relative;
+    }
+    .main-title{
+        font-size: 1.5rem;
+    }
+
+}
