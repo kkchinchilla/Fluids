@@ -4,12 +4,13 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     overflow-x: hidden;
 }
 
 body {
-    font-family: 'Noto Sans HK', sans-serif;
+    font-family: "Noto Sans HK", sans-serif;
     background-color: #0c1014;
     color: white;
     min-height: 100vh;
@@ -23,7 +24,11 @@ body {
     width: 100%;
     height: 100%;
     /* Restored original glow effect */
-    background: radial-gradient(circle at 50% 30%, rgba(81, 216, 202, 0.163) 0%, transparent 50%);
+    background: radial-gradient(
+        circle at 50% 30%,
+        rgba(81, 216, 202, 0.163) 0%,
+        transparent 50%
+    );
     pointer-events: none;
 }
 
@@ -32,24 +37,41 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 700px; 
+    width: 700px;
     height: 700px;
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
-    transform: translate(-50%, -50%) rotate(-101deg); 
-    
+    transform: translate(-50%, -50%) rotate(-101deg);
+
     /* Using a conic-gradient for the background: 45% green (162deg), 55% pink */
-    background: conic-gradient(#7FCEC3 162deg, #D68EAD 162deg);
-    
+    /* background: conic-gradient(#7FCEC3 162deg, #D68EAD 162deg); */
+    /* 創建有缺口的圓環：青色120度，缺口20度，粉色120度，缺口100度 */
+
+    background: conic-gradient(
+        #7fcec3 0deg,
+        /* 從12點開始青色 */ #7fcec3 120deg,
+        /* 青色到3點 (原60+30) */ transparent 130deg,
+        /* 3點缺口開始 (原90+30) */ transparent 170deg,
+        /* 缺口到5點 (原150+30) */ #d68ead 180deg,
+        /* 5點粉色開始 (原150+30) */ #d68ead 320deg,
+        /* 粉色到10點 (原300+30) */ transparent 330deg,
+        /* 10點缺口開始 (原300+30) */ transparent 360deg,
+        /* 缺口到12點 (原360+30) */ #7fcec3 360deg /* 回到12點青色 */
+    );
+
     /* This masking technique creates a perfect, hollow ring */
-    -webkit-mask:
-        radial-gradient(farthest-side, transparent calc(100% - 1.5px), #fff calc(100% - 1.5px));
-    mask:
-        radial-gradient(farthest-side, transparent calc(100% - 1.5px), #fff calc(100% - 1.5px));
-
+    -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 1.5px),
+        #fff calc(100% - 1.5px)
+    );
+    mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 1.5px),
+        #fff calc(100% - 1.5px)
+    );
 }
-
 
 .page-container {
     width: 100%;
@@ -101,13 +123,12 @@ body {
     animation: float 3s ease-in-out infinite;
     text-decoration: none;
     color: white;
-    top: 50%; 
+    top: 50%;
     left: 50%;
     margin: 0; /* Reset margin */
 }
 
 /* Targeting only the nodes that are links */
-
 
 a.nav-node:hover {
     opacity: 1;
@@ -126,7 +147,7 @@ a.nav-node:hover {
 
 /* Pseudo-element to hold the gradient background without affecting layout */
 .nav-icon::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -139,13 +160,13 @@ a.nav-node:hover {
 }
 
 #fluids-control-nav .nav-icon::before {
-    background: radial-gradient(circle, #1c2b2d 7px, rgba(22, 32, 34, 0) 50px);
+    background: radial-gradient(circle, #172123 7px, rgba(22, 32, 34, 0) 50px);
 }
 #projects .nav-icon::before {
-    background: radial-gradient(circle, #1c2b2d 7px, rgba(22, 32, 34, 0) 50px);
+    background: radial-gradient(circle, #0f1418 7px, rgba(22, 32, 34, 0) 50px);
 }
 #supply .nav-icon::before {
-    background: radial-gradient(circle, #162023 7px, rgba(22, 32, 34, 0) 50px);
+    background: radial-gradient(circle, #192426 7px, rgba(22, 32, 34, 0) 50px);
 }
 #centrium .nav-icon::before {
     background: radial-gradient(circle, #0d1014 7px, rgba(22, 32, 34, 0) 50px);
@@ -154,21 +175,19 @@ a.nav-node:hover {
     background: radial-gradient(circle, #12191c 7px, rgba(22, 32, 34, 0) 50px);
 }
 #maintenance .nav-icon::before {
-    background: radial-gradient(circle, #101519 7px, rgba(22, 32, 34, 0) 50px);
+    background: radial-gradient(circle, #151d20 7px, rgba(22, 32, 34, 0) 50px);
 }
 #diagnostics .nav-icon::before {
     background: radial-gradient(circle, #0d1014 7px, rgba(22, 32, 34, 0) 50px);
 }
-
-
-
 
 .nav-text {
     position: relative;
     z-index: 2;
 }
 
-.icon-teal img, .icon-pink img {
+.icon-teal img,
+.icon-pink img {
     width: 18px;
     height: auto;
 }
@@ -179,21 +198,21 @@ a.nav-node:hover {
 }
 
 #green-logo {
-    width: 28px; height: auto;
+    width: 28px;
+    height: auto;
 }
 
 #pink-logo {
-    width: 28px; height: auto;
+    width: 28px;
+    height: auto;
 }
 
 /* Targeting all nav nodes for consistent opacity effects */
 a.nav-node .nav-icon {
     opacity: 1; /* Icons are always fully visible */
-    transform:scale(0.8);
+    transform: scale(0.8);
     transition: transform 0.3s ease;
 }
-
-
 
 a.nav-node .nav-text {
     opacity: 0.7; /* Text is slightly faded by default */
@@ -204,47 +223,53 @@ a.nav-node:hover .nav-text {
     opacity: 1; /* Text becomes fully visible on hover */
 }
 
-a.nav-node:hover .nav-icon{
+a.nav-node:hover .nav-icon {
     transform: scale(1);
 }
 
 /* Specific positions for each navigation node on DESKTOP using rotation */
 /* Radius is now half of 700px = 350px */
-#fluids-control-nav { 
-    transform: rotate(-90deg) translate(325px) rotate(90deg) translateY(-50%);
-    --initial-transform: rotate(-90deg) translate(325px) rotate(90deg) translateY(-50%);
-    flex-direction: column; 
-    gap: 10px;
-}
-#supply { 
-    transform: rotate(-30deg) translate(380px) rotate(30deg) translateX(-50%); 
-    --initial-transform: rotate(-30deg) translate(380px) rotate(30deg) translateX(-50%);
-}
-#maintenance { 
-    transform: rotate(15deg) translate(400px) rotate(-15deg) translateX(-50%); 
-    --initial-transform: rotate(15deg) translate(400px) rotate(-15deg) translateX(-50%);
-}
-#diagnostics { 
-    transform: rotate(55deg) translate(367px) rotate(-55deg) translateX(-50%); 
-    --initial-transform: rotate(55deg) translate(367px) rotate(-55deg) translateX(-50%);
-}
-#centrium { 
-    transform: rotate(125deg) translate(407px) rotate(-125deg) translateY(-50%); 
-    --initial-transform: rotate(125deg) translate(407px) rotate(-125deg) translateY(-50%);
+#fluids-control-nav {
+    transform: rotate(-140deg) translate(375px) rotate(140deg) translateY(-50%);
+    --initial-transform: rotate(-140deg) translate(375px) rotate(140deg)
+        translateY(-50%);
     flex-direction: column;
     gap: 10px;
 }
-#marketing { 
-    transform: rotate(175deg) translate(510px) rotate(-175deg) translateX(50%); 
-    --initial-transform: rotate(175deg) translate(510px) rotate(-175deg) translateX(50%);
+#supply {
+    transform: rotate(-60deg) translate(375px) rotate(60deg) translateX(-50%);
+    --initial-transform: rotate(-60deg) translate(375px) rotate(60deg)
+        translateX(-50%);
+}
+#maintenance {
+    transform: rotate(-17deg) translate(400px) rotate(17deg) translateX(-50%);
+    --initial-transform: rotate(-17deg) translate(400px) rotate(17deg)
+        translateX(-50%);
+}
+#diagnostics {
+    transform: rotate(25deg) translate(390px) rotate(-25deg) translateX(-50%);
+    --initial-transform: rotate(25deg) translate(390px) rotate(-25deg)
+        translateX(-50%);
+}
+#centrium {
+    transform: rotate(100deg) translate(375px) rotate(-100deg) translateY(-50%);
+    --initial-transform: rotate(100deg) translate(375px) rotate(-100deg)
+        translateY(-50%);
+    flex-direction: column;
+    gap: 10px;
+}
+#marketing {
+    transform: rotate(152deg) translate(480px) rotate(-152deg) translateX(50%);
+    --initial-transform: rotate(152deg) translate(480px) rotate(-152deg)
+        translateX(50%);
     flex-direction: row-reverse;
 }
-#projects { 
-    transform: rotate(-140deg) translate(450px) rotate(140deg) translateX(50%); 
-    --initial-transform: rotate(-140deg) translate(450px) rotate(140deg) translateX(50%);
+#projects {
+    transform: rotate(-185deg) translate(490px) rotate(185deg) translateX(50%);
+    --initial-transform: rotate(-185deg) translate(490px) rotate(185deg)
+        translateX(50%);
     flex-direction: row-reverse;
 }
-
 
 /* Center Content */
 .center-content {
@@ -278,7 +303,7 @@ a.nav-node:hover .nav-icon{
 }
 
 .main-title .highlight {
-    background: linear-gradient(135deg, #7FCEC3, #009d88);
+    background: linear-gradient(135deg, #7fcec3, #009d88);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -349,36 +374,73 @@ a.nav-node:hover .nav-icon{
 
 .line {
     position: absolute;
-    background: linear-gradient(to bottom, transparent, rgba(64, 224, 208, 0.3), transparent);
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(64, 224, 208, 0.3),
+        transparent
+    );
     width: 1px;
     animation: moveLine 4s linear infinite;
 }
 
-.line:nth-child(1) { left: 30%; height: 200px; animation-delay: 0s; }
-.line:nth-child(2) { left: 50%; height: 150px; animation-delay: 1s; }
-.line:nth-child(3) { left: 70%; height: 180px; animation-delay: 2s; }
+.line:nth-child(1) {
+    left: 30%;
+    height: 200px;
+    animation-delay: 0s;
+}
+.line:nth-child(2) {
+    left: 50%;
+    height: 150px;
+    animation-delay: 1s;
+}
+.line:nth-child(3) {
+    left: 70%;
+    height: 180px;
+    animation-delay: 2s;
+}
 
 /* Animations */
 @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.05); opacity: 1; }
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
 }
 
 @keyframes float {
-    0%, 100% { transform: var(--initial-transform) translateY(0px); }
-    50% { transform: var(--initial-transform) translateY(-10px); }
+    0%,
+    100% {
+        transform: var(--initial-transform) translateY(0px);
+    }
+    50% {
+        transform: var(--initial-transform) translateY(-10px);
+    }
 }
 
 @keyframes moveLine {
-    0% { top: -200px; opacity: 0; }
-    50% { opacity: 1; }
-    100% { top: 100vh; opacity: 0; }
+    0% {
+        top: -200px;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
 }
-
 
 /* Responsive Design for Mobile */
 @media (max-width: 1280px) {
-    .circular-path-container, .animated-lines {
+    .circular-path-container,
+    .animated-lines {
         display: none;
     }
 
@@ -390,7 +452,9 @@ a.nav-node:hover .nav-icon{
         text-align: left;
     }
 
-    .main-logo { width: 160px; }
+    .main-logo {
+        width: 160px;
+    }
 
     .container {
         flex-direction: column;
@@ -399,7 +463,7 @@ a.nav-node:hover .nav-icon{
         padding-top: 40px;
         min-height: auto;
     }
-    
+
     .nav-node {
         position: static;
         transform: none !important;
@@ -415,8 +479,10 @@ a.nav-node:hover .nav-icon{
     .nav-icon::before {
         display: none;
     }
-    
-    .main-title { font-size: 2.5rem; }
+
+    .main-title {
+        font-size: 2.5rem;
+    }
 
     .center-content {
         order: 1;
@@ -427,18 +493,38 @@ a.nav-node:hover .nav-icon{
         position: relative;
         transform: scale(1); /* Reset scale for mobile */
     }
-    
+
     /* Mobile Ordering */
-    #fluids-control-nav { order: 2; margin-top: 40px; }
-    #projects { order: 3; }
-    #supply { order: 4; }
-    #centrium { order: 5; }
-    #marketing { order: 6; }
-    #maintenance { order: 7; }
-    #diagnostics { order: 8; margin-bottom: 40px; }
+    #fluids-control-nav {
+        order: 2;
+        margin-top: 40px;
+    }
+    #projects {
+        order: 3;
+    }
+    #supply {
+        order: 4;
+    }
+    #centrium {
+        order: 5;
+    }
+    #marketing {
+        order: 6;
+    }
+    #maintenance {
+        order: 7;
+    }
+    #diagnostics {
+        order: 8;
+        margin-bottom: 40px;
+    }
 }
 
 @media (max-width: 480px) {
-    .center-content { max-width: 90%; }
-    .main-title { font-size: 2.2rem; }
+    .center-content {
+        max-width: 90%;
+    }
+    .main-title {
+        font-size: 2.2rem;
+    }
 }
