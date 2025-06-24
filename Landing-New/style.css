@@ -147,19 +147,27 @@ a.nav-node:hover {
 }
 
 /* Specific positions for each navigation node on DESKTOP */
-#projects {
+#centrium-left {
     top: 25%;
     left: 20%;
-    transform: translateX(-125%);
-    --initial-transform: translateX(-125%);
-    flex-direction: row-reverse; /* [Text] [Icon] */
+    transform: translate(-115%, -50%);
+    --initial-transform: translate(-115%, -50%);
+    flex-direction: row-reverse;
 }
-#supply {
-    bottom: 25%;
+
+#projects {
+    top: 47%; /* Adjusted for even spacing */
     left: 20%;
     transform: translateX(-125%);
     --initial-transform: translateX(-125%);
-    flex-direction: row-reverse; /* [Text] [Icon] */
+    flex-direction: row-reverse;
+}
+#supply {
+    top: 70%; /* Aligned with #diagnostics */
+    left: 20%;
+    transform: translateX(-125%);
+    --initial-transform: translateX(-125%);
+    flex-direction: row-reverse;
 }
 #centrium {
     top: 25%;
@@ -368,20 +376,7 @@ a.nav-node:hover {
         padding-top: 40px;
         min-height: auto;
     }
-
-    #projects {
-        margin-top: 40px;
-    }
-
-    #supply {
-        margin-bottom: 40px;
-    }
-
-    #marketing {
-        margin-top: 20px;
-    }
     
-
     .nav-node {
         position: static;
         transform: none !important;
@@ -404,12 +399,34 @@ a.nav-node:hover {
         z-index: 5;
         position: relative;
     }
-    #projects { order: 2; }
-    #supply { order: 3; }
-    #centrium { order: 4; margin-top: 20px; }
-    #marketing { order: 5; }
-    #maintenance { order: 6; }
-    #diagnostics { order: 7; }
+    
+    /* --- NEW MOBILE ORDERING --- */
+    #centrium-left { 
+        order: 2; 
+        margin-top: 40px;
+    }
+    #projects { 
+        order: 3;
+        margin-top: 20px; /* Removed original margin */
+    }
+    #supply { 
+        order: 4; 
+        margin-bottom: 40px;
+    }
+    #centrium { 
+        order: 5; 
+        margin-top: 20px;
+    }
+    #marketing { 
+        order: 6; 
+        margin-top: 20px; /* Adjusted from original */
+    }
+    #maintenance { 
+        order: 7;
+    }
+    #diagnostics { 
+        order: 8; 
+    }
 }
 
 @media (max-width: 480px) {
