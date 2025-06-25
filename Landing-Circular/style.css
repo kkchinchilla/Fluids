@@ -438,7 +438,7 @@ a.nav-node:hover .nav-icon {
 }
 
 /* Responsive Design for Mobile */
-@media (max-width: 1280px) {
+@media (max-width: 900px) {
     .circular-path-container,
     .animated-lines {
         display: none;
