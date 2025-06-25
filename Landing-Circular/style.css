@@ -230,10 +230,10 @@ a.nav-node:hover .nav-icon {
 /* Specific positions for each navigation node on DESKTOP using rotation */
 /* Radius is now half of 700px = 350px */
 #fluids-control-nav {
-    transform: rotate(-140deg) translate(375px) rotate(140deg) translateY(-50%);
-    --initial-transform: rotate(-140deg) translate(375px) rotate(140deg)
+    transform: rotate(-140deg) translate(434px) rotate(140deg) translateY(-50%);
+    --initial-transform: rotate(-140deg) translate(434px) rotate(140deg)
         translateY(-50%);
-    flex-direction: column;
+    flex-direction: row-reverse;
     gap: 10px;
 }
 #supply {
