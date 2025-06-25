@@ -496,27 +496,41 @@ a.nav-node:hover .nav-icon {
 
     /* Mobile Ordering */
     #fluids-control-nav {
+        font-size: 0.9rem;
         order: 2;
-        margin-top: 40px;
+        padding-top: 20px;
+        padding-bottom: 10px;
     }
     #projects {
+        font-size: 0.9rem;
         order: 3;
+        margin-top: 20px;
     }
     #supply {
+        font-size: 0.9rem;
         order: 4;
+        margin-bottom: 40px;
     }
     #centrium {
+        font-size: 0.9rem;
+        margin-top: 20px;
+        padding-top: 20px;
+        padding-bottom: 10px;
         order: 5;
     }
     #marketing {
+        font-size: 0.9rem;
         order: 6;
+        margin-top: 20px;
     }
     #maintenance {
+        font-size: 0.9rem;
         order: 7;
     }
     #diagnostics {
+        font-size: 0.9rem;
         order: 8;
-        margin-bottom: 40px;
+        
     }
 }
 
