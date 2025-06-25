@@ -497,19 +497,26 @@ a.nav-node:hover .nav-icon {
     /* Mobile Ordering */
     #fluids-control-nav {
         order: 2;
-        margin-top: 40px;
+        padding-top: 20px;
+        padding-bottom: 10px;
     }
     #projects {
         order: 3;
+        margin-top: 20px;
     }
     #supply {
         order: 4;
+        margin-bottom: 40px;
     }
     #centrium {
+        margin-top: 20px;
+        padding-top: 20px;
+        padding-bottom: 10px;
         order: 5;
     }
     #marketing {
         order: 6;
+        margin-top: 20px;
     }
     #maintenance {
         order: 7;
