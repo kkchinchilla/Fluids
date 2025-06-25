@@ -528,3 +528,44 @@ a.nav-node:hover .nav-icon {
         font-size: 2.2rem;
     }
 }
+
+/* Language Switcher */
+.language-switcher {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    
+    border-radius: 20px;
+    border: none;
+}
+
+.lang-option {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.lang-option.active,
+.lang-option:hover {
+    color: white;
+}
+
+.lang-separator {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+}
+
+/* Responsive adjustment for the language switcher */
+@media (max-width: 900px) {
+    .language-switcher {
+        top: 28px;
+        right: 20px;
+    }
+}
